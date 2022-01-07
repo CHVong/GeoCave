@@ -21,6 +21,7 @@ const AdminEquipmentCard = ({
   id,
   updateItem,
   updatePicture,
+  deleteItem,
 }) => {
   const [editStock, setEditStock] = useState(false);
   const [editVendor, setEditVendor] = useState(false);
@@ -127,6 +128,9 @@ const AdminEquipmentCard = ({
             icon={faTrashCan}
             size="sm"
             className="hover:text-red-500 cursor-pointer hover:scale-90 transition"
+            onClick={() => {
+              deleteItem(id);
+            }}
           />
         </h2>
         <div className="flex justify-around items-center w-full h-full">

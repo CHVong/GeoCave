@@ -151,6 +151,11 @@ const AdminEquipment = () => {
     }
   };
 
+  const deleteItem = async (id) => {
+    console.log("delete item");
+    console.log(id);
+  };
+
   useEffect(() => {
     document.title = "GeoCave - Equipment";
     fetchData();
@@ -182,6 +187,7 @@ const AdminEquipment = () => {
             <AdminEquipmentCard
               updateItem={updateItem}
               updatePicture={updatePicture}
+              deleteItem={deleteItem}
               key={e._id}
               id={e._id}
               stock={e.stock}
