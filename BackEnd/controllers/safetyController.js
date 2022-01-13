@@ -113,8 +113,15 @@ module.exports = {
       if (!safety) {
         return res.status(400).json({ message: "Safety incident not found" });
       }
+
+      if (safety.cloudinaryId) {
+        await cloudinary.uploader.destroy(safety.cloudinaryId);
+      }
       const result = await safety.deleteOne();
-      res.json(`Safety incident (${result.name}) has been deleted`);
+      res.json({
+        message: `Safety incident (${result.name}) has been deleted`,
+        deletedSafety: result,
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
