@@ -62,7 +62,7 @@ const EquipmentCard = ({
                     className="inline p-2 cursor-pointer"
                     onClick={(e) => {
                       setEditStock(!editStock);
-                      updateStock(e, id, name, description, location, stockNumber);
+                      updateStock(e, id, stockNumber);
                     }}
                   >
                     <FontAwesomeIcon

@@ -93,15 +93,15 @@ const Equipment = () => {
     }
   };
 
-  const updateStock = async (e, id, name, description, location, stockNumber) => {
+  const updateStock = async (e, id, stockNumber) => {
     if (e) {
       e.preventDefault();
     }
-    console.log(id, name, description, location, stockNumber);
+    console.log(id, stockNumber);
     try {
       const response = await axios.patch(
         UPDATE_STOCK_URL,
-        { id: id, name: name, description: description, location: location, stock: stockNumber },
+        { id: id, stock: stockNumber },
         {
           headers: {
             "Content-Type": "application/json",
