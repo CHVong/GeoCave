@@ -25,7 +25,7 @@ const AdminCheckInCard = ({
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   return (
     <div className="lg:w-1/2 m-auto animate-fadeIn">
-      <div className="text-left border-2 border-primary p-4 lg:p-8 rounded-md relative">
+      <div className="text-left border-2 border-primary p-4 lg:p-4 rounded-md relative">
         <div className="flex justify-end flex-row gap-2 pb-2">
           {showConfirmDelete ? (
             <>
@@ -115,7 +115,7 @@ const AdminCheckInCard = ({
             <span className="text-base text-slate-500"> {summary}</span>
           </h2>
         </div>
-        <div className="text-xs text-slate-500 absolute bottom-0 right-0 p-2">
+        <div className="text-xs text-slate-500 relative text-center p-2">
           {/* Show the relative time */}
           Submitted <span className="text-slate-400 italic">
             {moment(createdAt).fromNow()}
