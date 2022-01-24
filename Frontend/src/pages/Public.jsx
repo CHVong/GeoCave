@@ -16,6 +16,7 @@ const Public = () => {
   }, []);
 
   const guestLogin = async () => {
+    localStorage.setItem("persist", true);
     try {
       const response = await axios.post(
         "/auth",
