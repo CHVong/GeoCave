@@ -17,7 +17,7 @@ const AdminSafetyCard = ({
 }) => {
   const createdAtMoment = moment(createdAt);
   return (
-    <div className="lg:w-1/2 mx-auto animate-fadeIn">
+    <div className="lg:w-1/2 m-auto animate-fadeIn">
       <div className="text-left border-2 border-primary p-4 lg:p-8 rounded-md relative">
         <div className="grid grid-cols-2 pb-6">
           <h2 className="text-lg text-slate-300">

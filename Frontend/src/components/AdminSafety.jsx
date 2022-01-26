@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import PageHeading from "./PageHeading";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import AdminSafetyCard from "./AdminSafetyCard";
 import Loading from "./Loading";
@@ -13,7 +15,7 @@ const AdminSafety = () => {
   const [data, setData] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
@@ -53,10 +55,10 @@ const AdminSafety = () => {
   };
   return (
     <div>
-      <PageHeading heading={"Manage Safety"} />
+      <PageHeading heading={"All Submitted Safety Incidents"} />
 
       {data.length !== 0 ? (
-        <div className="grid 2xl:grid-cols-2 gap-3 p-2">
+        <div className="grid gap-8">
           {currentItems.map((e, index) => (
             <AdminSafetyCard
               // updateItem={updateItem}
@@ -82,6 +84,39 @@ const AdminSafety = () => {
           </div>
         </>
       )}
+      <div className="flex justify-center mt-4 col-span-full">
+        {currentPage > 1 && data && (
+          <button
+            className="mr-2 bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            <FontAwesomeIcon icon={faCaretLeft} />
+          </button>
+        )}
+
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            className={`mr-2 ${
+              number === currentPage
+                ? "bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
+                : "bg-blue-100 hover:bg-blue-200 text-gray-800 font-bold py-2 px-4 rounded"
+            }`}
+            onClick={() => setCurrentPage(number)}
+          >
+            {number}
+          </button>
+        ))}
+
+        {currentPage < totalPages && (
+          <button
+            className="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            <FontAwesomeIcon icon={faCaretRight} />
+          </button>
+        )}
+      </div>
     </div>
   );
 };
