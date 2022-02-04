@@ -49,7 +49,6 @@ const AdminUsersCard = ({
     setUpdatedRoles([...updatedRoles]);
     // Trigger re-render by updating the state with the modified array
     console.log(updatedRoles);
-    updateRole(id, updatedRoles);
   };
 
   const handleKeyDown = (e) => {
@@ -99,7 +98,10 @@ const AdminUsersCard = ({
                   <FontAwesomeIcon
                     icon={faFloppyDisk}
                     className="hover:scale-90 hover:cursor-pointer transition hover:text-green-600"
-                    onClick={() => setEditRoles(false)}
+                    onClick={() => {
+                      setEditRoles(false);
+                      updateRole(id, updatedRoles);
+                    }}
                   />
                 ) : (
                   ""
