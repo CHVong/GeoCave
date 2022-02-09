@@ -1,6 +1,7 @@
 const userModel = require("../models/userModel");
 const checklistModel = require("../models/checklistModel");
 const bcrypt = require("bcrypt");
+var ip = require("ip");
 
 module.exports = {
   getAllUsers: async (req, res) => {
@@ -69,10 +70,17 @@ module.exports = {
           .status(409)
           .json({ message: "Cannot create a new user with duplicate username" });
       }
-      const hasedPassword = await bcrypt.hash(password, 10);
-      const userIP = req.ip;
-      const userObject = { username, password: hasedPassword, roles, ip: userIP };
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const userIP = ip.address();
+      const userObject = {
+        username,
+        password: hashedPassword,
+        roles,
+        ip: `${req.headers["x-forwarded-for"] || req.connection.remoteAddress} , ${userIP}`,
+      };
       const newUser = await userModel.create(userObject);
+      console.log(userObject.ip);
+      console.log(userIP);
       if (newUser) {
         res.status(201).json({ message: `New user (${username}) created` });
       } else res.status(400).json({ message: `Invalid user data received` });
