@@ -266,7 +266,7 @@ const Register = () => {
                 disabled={!validName || !validPwd || !validMatch ? true : false}
                 className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none w-40 ${
                   !validName || !validPwd || !validMatch
-                    ? `bg-gray-700 text-tertiary`
+                    ? `bg-gray-700 text-tertiary cursor-not-allowed`
                     : ` text-tertiary hover:bg-tertiary hover:text-primary`
                 } `}
               >
