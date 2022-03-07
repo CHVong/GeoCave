@@ -1,4 +1,3 @@
-import { useState } from "react";
 import FormCheck from "../../components/FormCheck";
 
 const Drilling = () => {

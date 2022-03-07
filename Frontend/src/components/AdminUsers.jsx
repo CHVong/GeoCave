@@ -6,8 +6,6 @@ import useAuth from "../hooks/useAuth";
 import AdminUsersCard from "./AdminUsersCard";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const USER_URL = "/user";
 const ADD_ROLE_URL = "/user/addRole";

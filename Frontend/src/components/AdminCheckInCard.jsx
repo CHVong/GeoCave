@@ -1,10 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  faUpRightFromSquare,
-  faXmark,
-  faCheck,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { faXmark, faCheck, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import Users from "../components/Users";
 import { useState, useEffect } from "react";
 import PageHeading from "../components/PageHeading";
 import AdminStatCard from "../components/AdminStatCard";

@@ -1,5 +1,5 @@
 import React from "react";
-import { faChevronLeft, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BackButton = ({ onClick }) => {

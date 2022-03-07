@@ -5,9 +5,6 @@ import jwt_decode from "jwt-decode";
 import {
   faPenToSquare,
   faFloppyDisk,
-  faCheck,
-  faXmark,
-  faRotateLeft,
   faToggleOn,
   faToggleOff,
 } from "@fortawesome/free-solid-svg-icons";

@@ -6,15 +6,7 @@ import PageHeading from "../../components/PageHeading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
-  faHelmetSafety,
-  faListCheck,
-  faToolbox,
-  faBoxesStacked,
-  faFlaskVial,
-  faHouseLaptop,
   faPaste,
-  faPersonHiking,
-  faMicroscope,
   faFileCircleCheck,
   faEnvelope,
   faChartPie,
