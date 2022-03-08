@@ -36,6 +36,10 @@ const AdminSafety = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
+  }, [currentPage]);
+
   const fetchData = async () => {
     try {
       const response = await axios.get(SAFETY_URL, {
@@ -80,7 +84,7 @@ const AdminSafety = () => {
   };
 
   return (
-    <div>
+    <div id="scroller">
       <PageHeading heading={"All Submitted Safety Incidents"} />
 
       {data.length !== 0 ? (
