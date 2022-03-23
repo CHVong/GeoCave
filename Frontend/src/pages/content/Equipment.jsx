@@ -50,7 +50,7 @@ const Equipment = () => {
         },
         withCredentials: true,
       });
-      // setData(response.data);
+      setData(response.data);
       console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
