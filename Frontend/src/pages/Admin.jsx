@@ -15,7 +15,7 @@ const Admin = () => {
       <div className="flex justify-center flex-wrap gap-8">
         <AdminStatCard title={"Users"} url={"/user"} />
         <AdminStatCard title={"Equipments"} url={"/equipment"} />
-        <AdminStatCard title={"Safety"} url={"/safety"} />
+        <AdminStatCard title={"Safety Incidents"} url={"/safety"} />
         <AdminStatCard title={"Check-Ins"} url={"checkin"} />
       </div>
 
