@@ -26,6 +26,18 @@ app.use("/equipment", require("./routes/equipmentRoutes"));
 app.use("/checkin", require("./routes/checkInRoutes"));
 app.use("/safety", require("./routes/safetyRoutes"));
 
+app.get("/healthz", (req, res) => {
+  // Perform any necessary checks (e.g., database query, external service check)
+  // and determine if the app is healthy.
+  const isAppHealthy = true; // Replace with your actual health check logic
+
+  if (isAppHealthy) {
+    res.sendStatus(200); // OK
+  } else {
+    res.sendStatus(503); // Service Unavailable
+  }
+});
+
 app.all("*", async (req, res) => {
   try {
     res.status(404);
