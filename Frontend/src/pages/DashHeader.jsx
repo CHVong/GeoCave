@@ -33,15 +33,24 @@ const DashHeader = () => {
         setShowMenu(false);
       }
     }
-
+    function handleKeyDown(event) {
+      if (event.key === "Escape" || event.key === "Enter") {
+        setShowMenu(false);
+      }
+    }
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [menuRef]);
 
   return (
-    <header className="relative flex items-center justify-between md:flex md:flex-col">
+    <header
+      className="relative flex items-center justify-between md:flex md:flex-col"
+      ref={menuRef}
+    >
       <img
         src={mountainbgIcon}
         alt="SVG image of a mountain top"
@@ -61,7 +70,6 @@ const DashHeader = () => {
       />
 
       <div
-        ref={menuRef}
         className={`${
           showMenu
             ? "animate-fadeIn absolute top-20 p-6 w-full bg-primary rounded-lg text-xl grid grid-cols-2 gap-4 font-medium z-10"
