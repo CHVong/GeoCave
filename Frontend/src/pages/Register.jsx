@@ -53,7 +53,7 @@ const Register = () => {
 
       <section className="flex flex-col gap-4 lg:flex-row justify-center items-center">
         <LinkButton path={"Dash"} name={"Sign Up"} />
-        <LinkButton path={"../"} name={"Cancel"} />
+        <LinkButton path={""} name={"Cancel"} />
       </section>
     </form>
   );

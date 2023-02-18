@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Public from "./pages/Public";
 import Welcome from "./pages/Welcome";
 import Register from "./pages/Register";
+import Error404 from "./pages/Error404";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
             </Route>
           </Route>
         </Route>
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
