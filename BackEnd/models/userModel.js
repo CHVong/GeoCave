@@ -4,11 +4,15 @@ const { format } = require("date-fns");
 const userSchema = new mongoose.Schema({
   userName: {
     type: String,
+    min: 4,
+    max: 25,
+    unique: true,
     required: true,
   },
   password: {
     type: String,
     required: true,
+    min: 8,
   },
   roles: [
     {
@@ -20,7 +24,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  created: {
+  createdDate: {
     type: Date,
     default: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
   },
