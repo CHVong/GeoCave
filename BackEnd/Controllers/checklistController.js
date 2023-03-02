@@ -9,7 +9,7 @@ module.exports = {
         return res.status(400).json({ message: "No checklist items found" });
       }
       res.json(checklistItems);
-    } catch (err) {
+    } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
     }
