@@ -2,7 +2,7 @@ const path = require("path");
 module.exports = {
   getIndex: async (req, res) => {
     try {
-      res.sendFile(path.join(__dirname, "..", "Views", "index.html"));
+      res.sendFile(path.join(__dirname, "..", "views", "index.html"));
     } catch (error) {
       console.log(error);
     }
@@ -10,7 +10,7 @@ module.exports = {
   get404Page: async (req, res) => {
     try {
       res.status(404);
-      res.sendFile(path.join(__dirname, "..", "Views", "404.html"));
+      res.sendFile(path.join(__dirname, "..", "views", "404.html"));
     } catch (error) {
       console.log(error);
     }

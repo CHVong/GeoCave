@@ -7,12 +7,13 @@
     "start": "node server",
     "dev": "concurrently \"npm run nodemon\" \"npm run tailwind\"",
     "nodemon": "nodemon server",
-    "tailwind": "npx tailwindcss -i ./Public/input.css -o ./Public/output.css --watch"
+    "tailwind": "npx tailwindcss -i ./public/input.css -o ./public/output.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2"
   },
   "devDependencies": {
