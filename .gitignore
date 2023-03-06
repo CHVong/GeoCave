@@ -1,2 +1,3 @@
 Backend/node_modules
-Backend/Public/output.css
+Backend/public/output.css
+Backend/.env
