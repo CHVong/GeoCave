@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
+const errorHandler = require("./middlewares/errorHandler");
 const cors = require("cors");
 const rootRoutes = require("./routes/rootRoutes.js");
 const userRoutes = require("./routes/userRoutes");
@@ -14,6 +15,7 @@ app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(errorHandler);
 
 // Routes
 app.use("/", rootRoutes);

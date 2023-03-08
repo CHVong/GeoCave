@@ -6,7 +6,7 @@ module.exports = {
   getAllUsers: async (req, res) => {
     try {
       const users = await userModel.find().select("-password").lean();
-      if (!users) {
+      if (!users?.length) {
         return res.status(400).json({ message: "No users found" });
       }
       res.json(users);
@@ -23,13 +23,15 @@ module.exports = {
       }
       const duplicate = await userModel.findOne({ username }).lean().exec();
       if (duplicate) {
-        return res.status(409).json({ message: "Duplicate username" });
+        return res
+          .status(409)
+          .json({ message: "Cannot create a new user with duplicate username" });
       }
       const hasedPassword = await bcrypt.hash(password, 10);
       const userObject = { username, password: hasedPassword, roles };
       const newUser = await userModel.create(userObject);
       if (newUser) {
-        res.status(201).json({ message: `New user ${username} created` });
+        res.status(201).json({ message: `New user (${username}) created` });
       } else res.status(400).json({ message: `Invalid user data received` });
     } catch (error) {
       console.error(error);
@@ -54,7 +56,7 @@ module.exports = {
       }
       const duplicate = await userModel.findOne({ username }).lean().exec();
       if (duplicate && duplicate?._id.toString() !== id) {
-        return res.status(409).json({ message: "Duplicate username" });
+        return res.status(409).json({ message: "Cannot update: username already exists" });
       }
 
       user.username = username;
@@ -86,7 +88,7 @@ module.exports = {
 
       await checklistModel.deleteMany({ user: id });
       await userModel.findByIdAndDelete(id);
-      res.json({ message: `${user?.username} has been deleted` });
+      res.json({ message: `User(${user?.username}) has been deleted` });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
