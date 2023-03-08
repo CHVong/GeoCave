@@ -5,7 +5,7 @@ const checklistSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "userSchema",
+    ref: "userModel",
   },
   item: {
     type: String,

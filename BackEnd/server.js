@@ -2,9 +2,12 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
-const rootRoutes = require("./routes/rootRoute.js");
+const rootRoutes = require("./routes/rootRoutes.js");
+const userRoutes = require("./routes/userRoutes");
 const corsOptions = require("./config/corsOptions");
+const mongoose = require("mongoose");
 
 // Middlewares
 app.use(cors(corsOptions));
@@ -14,12 +17,24 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/", rootRoutes);
-app.all("*", rootRoutes);
+app.use("/user", userRoutes);
+
+app.all("*", async (req, res) => {
+  try {
+    res.status(404);
+    res.sendFile(path.join(__dirname, ".", "views", "404.html"));
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // Mongoose
 const PORT = process.env.PORT || 3600;
 mongoose
   .connect(process.env.DATABASE_URI)
+  .then(() => {
+    console.log(`Connected to MongoDB`);
+  })
   .then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })

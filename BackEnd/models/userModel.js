@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { format } = require("date-fns");
 
 const userSchema = new mongoose.Schema({
-  userName: {
+  username: {
     type: String,
     min: 4,
     max: 25,

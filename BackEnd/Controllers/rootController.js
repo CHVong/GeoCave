@@ -7,12 +7,12 @@ module.exports = {
       console.log(error);
     }
   },
-  get404Page: async (req, res) => {
-    try {
-      res.status(404);
-      res.sendFile(path.join(__dirname, "..", "views", "404.html"));
-    } catch (error) {
-      console.log(error);
-    }
-  },
+  // get404Page: async (req, res) => {
+  //   try {
+  //     res.status(404);
+  //     res.sendFile(path.join(__dirname, "..", "views", "404.html"));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
 };
