@@ -7,6 +7,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const cors = require("cors");
 const rootRoutes = require("./routes/rootRoutes.js");
 const userRoutes = require("./routes/userRoutes");
+const checklistRoutes = require("./routes/checklistRoutes");
 const corsOptions = require("./config/corsOptions");
 const mongoose = require("mongoose");
 
@@ -20,6 +21,7 @@ app.use(errorHandler);
 // Routes
 app.use("/", rootRoutes);
 app.use("/user", userRoutes);
+app.use("/checklist", checklistRoutes);
 
 app.all("*", async (req, res) => {
   try {
