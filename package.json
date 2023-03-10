@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "geocavebackend",
   "version": "1.0.0",
   "description": "GeoCave: An info center for geologists.",
   "main": "server.js",
