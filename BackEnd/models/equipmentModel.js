@@ -39,4 +39,4 @@ const equipmentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("equipmentModel", equipmentSchema);
+module.exports = mongoose.model("equipmentModel", equipmentSchema, "equipmentCollection");

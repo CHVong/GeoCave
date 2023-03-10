@@ -25,4 +25,4 @@ const checklistSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("checklistModel", checklistSchema);
+module.exports = mongoose.model("checklistModel", checklistSchema, "checklistCollection");
