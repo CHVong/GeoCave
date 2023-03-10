@@ -3,6 +3,11 @@ const equipmentModel = require("../models/equipmentModel");
 module.exports = {
   getAllEquipment: async (req, res) => {
     try {
+      const equipment = await equipmentModel.find().lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
     } catch (err) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
