@@ -8,11 +8,11 @@ const equipmentSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     cloudinaryId: {
       type: String,
-      require: true,
+      require: false,
     },
     description: {
       type: String,

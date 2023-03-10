@@ -1,4 +1,3 @@
-const userModel = require("../models/userModel");
 const checklistModel = require("../models/checklistModel");
 
 module.exports = {
