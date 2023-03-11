@@ -12,6 +12,11 @@ module.exports = {
           "100%": { opacity: 1 },
         },
       },
+      colors: {
+        primary: "#1e293b",
+        secondary: "#d4d4d4",
+        tertiary: "#bfdbfe",
+      },
     },
   },
   plugins: [],

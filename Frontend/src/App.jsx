@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Checklist from "./components/checklist";
-import DashLayout from "./components/DashLayout";
-import Equipment from "./components/equipment";
-import Layout from "./components/Layout";
-import Login from "./components/Login";
-import Public from "./components/Public";
-import Welcome from "./components/Welcome";
+import Checklist from "./pages/checklist";
+import DashLayout from "./pages/DashLayout";
+import Equipment from "./pages/equipment";
+import Layout from "./pages/Layout";
+import Login from "./pages/Login";
+import Public from "./pages/Public";
+import Welcome from "./pages/Welcome";
 
 const App = () => {
   return (
