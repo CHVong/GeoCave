@@ -3,8 +3,11 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      height: {
+        128: "90vh",
+      },
       animation: {
-        fadeIn: "fadeIn 1s ease-in-out",
+        fadeIn: "fadeIn 0.75s ease-in-out",
       },
       keyframes: {
         fadeIn: {
@@ -16,6 +19,7 @@ module.exports = {
         primary: "#1e293b",
         secondary: "#d4d4d4",
         tertiary: "#bfdbfe",
+        primarybg: "#0f172a",
       },
     },
   },
