@@ -15,9 +15,9 @@ const Public = () => {
         processes that are specifically designed to meet the demands of your field.
       </main>
       <section className="flex flex-col gap-4 lg:flex-row justify-center items-center">
-        <LinkButton text={"Login"} />
-        <LinkButton text={"Register"} />
-        <LinkButton text={"Guest Demo"} />
+        <LinkButton path={"Login"} name={"Login"} />
+        <LinkButton path={"Register"} name={"Register"} />
+        <LinkButton path={"GuestDemo"} name={"Guest Demo"} />
       </section>
     </div>
   );
