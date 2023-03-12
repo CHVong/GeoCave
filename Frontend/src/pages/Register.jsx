@@ -1,54 +1,41 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import InputField from "../components/InputField";
 import LinkButton from "../components/LinkButton";
 
 const Register = () => {
   return (
     <form
       action="action_page.php"
-      className="animate-fadeIn flex flex-col gap-4 mx-auto md:w-3/4 lg:w-1/2"
+      className="animate-fadeIn flex flex-col gap-6 mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3"
     >
       <h1 className="text-3xl underline text-tertiary font-medium">REGISTRATION</h1>
       <p>Please fill in this form to create an account.</p>
 
-      <label htmlFor="username">
-        <h2 className="text-left italic">Username:</h2>
-      </label>
-      <input
-        type="text"
-        placeholder="Enter Username"
-        name="username"
-        autoComplete="off"
-        required
-        className="rounded px-5 py-1 outline-tertiary bg-black"
+      <InputField
+        name={"username"}
+        type={"text"}
+        placeholder={"Enter username"}
+        title={"Username:"}
       />
-      <label htmlFor="password">
-        <h2 className="text-left italic">Password:</h2>
-      </label>
-      <input
-        type="password"
-        placeholder="Enter Password"
-        name="password"
-        required
-        className="rounded px-5 py-1 outline-tertiary bg-black"
+      <InputField
+        name={"password"}
+        type={"password"}
+        placeholder={"Enter password"}
+        title={"Password:"}
       />
-      <label htmlFor="confirmpassword">
-        <h2 className="text-left italic">Confirm Password:</h2>
-      </label>
-      <input
-        type="password"
-        placeholder="Re-enter Password"
-        name="confirmpassword"
-        required
-        className="rounded px-5 py-1 outline-tertiary bg-black"
+      <InputField
+        name={"confirmpassword"}
+        type={"password"}
+        placeholder={"Re-enter password"}
+        title={"Confirm Password:"}
       />
-      <label>
-        <input type="checkbox" name="remember" />
-        Remember me
-      </label>
-
       <p>
-        By creating an account you agree to our <a href="#">Terms & Privacy</a>.
+        By creating an account you agree to our{" "}
+        <a href="#" className="underline">
+          Terms & Privacy
+        </a>
+        .
       </p>
 
       <section className="flex flex-col gap-4 lg:flex-row justify-center items-center">
