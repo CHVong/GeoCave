@@ -7,7 +7,7 @@ module.exports = {
         128: "90vh",
       },
       animation: {
-        fadeIn: "fadeIn 0.75s ease-in-out",
+        fadeIn: "fadeIn 0.5s ease-in-out",
       },
       keyframes: {
         fadeIn: {

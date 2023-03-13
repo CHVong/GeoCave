@@ -1,48 +1,271 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import InputField from "../components/InputField";
+import { useRef, useState, useEffect } from "react";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "../api/axios";
 import LinkButton from "../components/LinkButton";
+import { Link } from "react-router-dom";
+
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
+const REGISTER_URL = "/user";
 
 const Register = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState("");
+  const [validName, setValidName] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+
+  const [pwd, setPwd] = useState("");
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+
+  const [matchPwd, setMatchPwd] = useState("");
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setMatchFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setValidName(USER_REGEX.test(user));
+  }, [user]);
+
+  useEffect(() => {
+    setValidPwd(PWD_REGEX.test(pwd));
+    setValidMatch(pwd === matchPwd);
+  }, [pwd, matchPwd]);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd, matchPwd]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // if button enabled with JS hack
+    const v1 = USER_REGEX.test(user);
+    const v2 = PWD_REGEX.test(pwd);
+    if (!v1 || !v2) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ username: user, password: pwd, roles: ["Employee"] }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      // console.log(response);
+      // console.log(response?.data);
+      // console.log(response?.accessToken);
+      // console.log(JSON.stringify(response));
+      setSuccess(true);
+      //clear state and controlled inputs
+      //need value attrib on inputs for this
+      setUser("");
+      setPwd("");
+      setMatchPwd("");
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Username Taken");
+      } else {
+        console.log(err.response.data);
+        setErrMsg(`Registration Failed. ${err.response.data.message}`);
+      }
+      errRef.current.focus();
+    }
+  };
+
   return (
-    <form
-      action="action_page.php"
-      className="animate-fadeIn flex flex-col gap-6 mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3"
-    >
-      <h1 className="text-3xl underline text-tertiary font-medium">REGISTRATION</h1>
-      <p>Please fill in this form to create an account.</p>
+    <>
+      {success ? (
+        <section className="relative flex flex-col gap-8 md:mx-auto  md:w-3/4 lg:w-1/2 xl:w-1/3">
+          <h1 className="animate-fadeIn text-2xl text-green-500 font-medium">
+            Account successfully created!
+          </h1>
 
-      <InputField
-        name={"username"}
-        type={"text"}
-        placeholder={"Enter username"}
-        title={"Username:"}
-      />
-      <InputField
-        name={"password"}
-        type={"password"}
-        placeholder={"Enter password"}
-        title={"Password:"}
-      />
-      <InputField
-        name={"confirmpassword"}
-        type={"password"}
-        placeholder={"Re-enter password"}
-        title={"Confirm Password:"}
-      />
-      <p>
-        By creating an account you agree to our{" "}
-        <a href="#" className="underline">
-          Terms & Privacy
-        </a>
-        .
-      </p>
-
-      <section className="flex flex-col gap-4 lg:flex-row justify-center items-center">
-        <LinkButton path={"Dash"} name={"Sign Up"} />
-        <LinkButton path={""} name={"Cancel"} />
-      </section>
-    </form>
+          <Link
+            to={`/login`}
+            className="animate-fadeIn font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out text-tertiary hover:bg-tertiary hover:text-primary hover:shadow-none text-md w-40 mx-auto"
+          >
+            Login
+          </Link>
+        </section>
+      ) : (
+        <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto  md:w-3/4 lg:w-1/2 xl:w-1/3">
+          <p
+            ref={errRef}
+            className={
+              errMsg
+                ? "animate-fadeIn rounded-lg absolute bottom-full w-full bg-red-600"
+                : "absolute left-full"
+            }
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
+          <h1 className="text-3xl underline text-tertiary font-medium">Registration</h1>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+            <label htmlFor="username" className="text-left italic">
+              Username
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={validName ? "text-green-500 px-3 align-middle" : "hidden"}
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={validName || !user ? "hidden" : "text-red-500 px-3 align-middle"}
+              />
+            </label>
+            <input
+              type="text"
+              id="username"
+              ref={userRef}
+              autoComplete="off"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              required
+              aria-invalid={validName ? "false" : "true"}
+              aria-describedby="uidnote"
+              onFocus={() => setUserFocus(true)}
+              onBlur={() => setUserFocus(false)}
+              className={`rounded px-8 py-2 ${
+                validName ? "ring-green-500 " : ""
+              } bg-black outline-none ring-1`}
+            />
+            <div className="relative">
+              <p
+                id="uidnote"
+                className={
+                  userFocus && user && !validName
+                    ? "w-full absolute top-full animate-fadeIn rounded bg-primary text-secondary p-2"
+                    : "fixed left-full"
+                }
+              >
+                <FontAwesomeIcon icon={faInfoCircle} className="px-2" />
+                4 to 24 characters.
+                <br />
+                Must begin with a letter.
+                <br />
+                Letters, numbers, underscores, hyphens allowed.
+              </p>
+            </div>
+            <label htmlFor="password" className="text-left italic">
+              Password
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={validPwd ? "text-green-500 px-3 align-middle" : "hidden"}
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={validPwd || !pwd ? "hidden" : "text-red-500 px-3 align-middle"}
+              />
+            </label>
+            <input
+              type="password"
+              id="password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+              aria-invalid={validPwd ? "false" : "true"}
+              aria-describedby="pwdnote"
+              onFocus={() => setPwdFocus(true)}
+              onBlur={() => setPwdFocus(false)}
+              className={`rounded px-8 py-2 ${
+                validPwd ? "ring-green-500 " : ""
+              } bg-black outline-none ring-1`}
+            />
+            <div className="relative">
+              <p
+                id="pwdnote"
+                className={
+                  pwdFocus && !validPwd
+                    ? "w-full absolute top-full animate-fadeIn rounded bg-primary text-secondary p-2"
+                    : "fixed left-full"
+                }
+              >
+                <FontAwesomeIcon icon={faInfoCircle} className="px-2" />
+                8 to 24 characters.
+                <br />
+                Must include a number, uppercase and lowercase letter.
+                <br />
+              </p>
+            </div>
+            <label htmlFor="confirm_pwd" className="text-left italic">
+              Confirm Password
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={validMatch && matchPwd ? "text-green-500 px-3 align-middle" : "hidden"}
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={validMatch || !matchPwd ? "hidden" : "text-red-500 px-3 align-middle"}
+              />
+            </label>
+            <input
+              type="password"
+              id="confirm_pwd"
+              onChange={(e) => setMatchPwd(e.target.value)}
+              value={matchPwd}
+              required
+              aria-invalid={validMatch ? "false" : "true"}
+              aria-describedby="confirmnote"
+              onFocus={() => setMatchFocus(true)}
+              onBlur={() => setMatchFocus(false)}
+              className={`rounded px-8 py-2 ${
+                validMatch && matchPwd ? "ring-green-500 " : ""
+              } bg-black outline-none ring-1`}
+            />
+            <div className="relative">
+              <p
+                id="confirmnote"
+                className={
+                  matchFocus && !validMatch
+                    ? "w-full absolute top-full animate-fadeIn rounded bg-primary text-secondary p-2"
+                    : "fixed left-full"
+                }
+              >
+                <FontAwesomeIcon icon={faInfoCircle} className="px-2" />
+                Must match the first password input field.
+              </p>
+            </div>
+            <div className="flex flex-col mx-auto mt-6 gap-4 lg:flex-row">
+              <button
+                disabled={!validName || !validPwd || !validMatch ? true : false}
+                className={`${
+                  !validName || !validPwd || !validMatch
+                    ? "bg-gray-600 hover:bg-gray-600 text-primary"
+                    : ""
+                } font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out text-tertiary hover:bg-tertiary hover:text-primary hover:shadow-none text-md w-40`}
+              >
+                Sign Up
+              </button>
+              <LinkButton path={""} name={"Cancel"} />
+            </div>
+          </form>
+          <p>
+            Already registered?
+            <br />
+            <span className="line">
+              {/*put router link here*/}
+              <Link to={`/login`} className="underline">
+                Login
+              </Link>
+            </span>
+          </p>
+        </section>
+      )}
+    </>
   );
 };
 

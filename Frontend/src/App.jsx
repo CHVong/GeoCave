@@ -9,7 +9,6 @@ import Public from "./pages/Public";
 import Welcome from "./pages/Welcome";
 import Register from "./pages/Register";
 import Error404 from "./pages/Error404";
-import TestRegister from "./pages/TestRegister";
 
 const App = () => {
   return (
@@ -18,7 +17,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<TestRegister />} />
+          <Route path="register" element={<Register />} />
           <Route path="dash" element={<DashLayout />}>
             <Route index element={<Welcome />} />
             <Route path="checklist">
