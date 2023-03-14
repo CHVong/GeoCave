@@ -107,7 +107,7 @@ const Register = () => {
             ref={errRef}
             className={
               errMsg
-                ? "animate-fadeIn rounded-lg absolute bottom-full w-full bg-red-600"
+                ? "animate-fadeIn rounded-lg absolute bottom-full w-full bg-red-500"
                 : "absolute left-full"
             }
             aria-live="assertive"
@@ -256,7 +256,7 @@ const Register = () => {
           <p>
             Already registered?
             <br />
-            <span className="line">
+            <span>
               {/*put router link here*/}
               <Link to={`/login`} className="underline">
                 Login
