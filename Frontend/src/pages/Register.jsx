@@ -242,11 +242,11 @@ const Register = () => {
             <div className="flex flex-col mx-auto mt-6 gap-4 lg:flex-row">
               <button
                 disabled={!validName || !validPwd || !validMatch ? true : false}
-                className={`${
+                className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none text-md w-40 ${
                   !validName || !validPwd || !validMatch
-                    ? "bg-gray-600 hover:bg-gray-600 text-primary"
-                    : ""
-                } font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out text-tertiary hover:bg-tertiary hover:text-primary hover:shadow-none text-md w-40`}
+                    ? `bg-gray-700 text-tertiary`
+                    : ` text-tertiary hover:bg-tertiary hover:text-primary`
+                } `}
               >
                 Sign Up
               </button>

@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
+import mountainbg from "../assets/mountainbg.svg";
 
 const Public = () => {
   return (
-    <div className="flex flex-col gap-10 animate-fadeIn">
+    <div className="flex flex-col gap-10 animate-fadeIn items-center">
+      <img src={mountainbg} alt="SVG image of a mountain top" className="w-48" />
       <header className="text-5xl font-medium text-tertiary">Welcome to the GeoCave!</header>
-      <main className="text-justify indent-8 mx-auto md:w-3/4 lg:w-1/2 ">
+      <main className="text-justify indent-8 md:w-3/4 lg:w-1/2 ">
         We are a comprehensive platform created for geologists, engineers, and professionals in the
         geotechnical engineering and environmental consulting industry. Our platform optimizes
         workflows and enhances efficiency by offering features such as inventory supply tracking,
-        customizable checklists, and standard operating procedures for various tasks. Join our
+        customizable checklists, and technical testing of standard operating procedures. Join our
         community of professionals to get access to streamlined, accurate, and reliable work
         processes that are specifically designed to meet the demands of your field.
       </main>
