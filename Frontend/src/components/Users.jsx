@@ -29,7 +29,7 @@ const Users = () => {
 
     return () => {
       isMounted = false;
-      isMounted && controller.abort();
+      isMounted && controller.abort(); //Need this line, found fix online, googled the err message.
     };
   }, []);
 
