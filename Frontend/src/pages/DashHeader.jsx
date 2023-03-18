@@ -11,6 +11,9 @@ const DashHeader = () => {
       <Link to="/dash/equipment">
         <h1>Equipment</h1>
       </Link>
+      <Link to="/dash/admin">
+        <h1>admin</h1>
+      </Link>
     </header>
   );
 };

@@ -1,13 +1,16 @@
-import { useRef, useState, useEffect, useContext } from "react";
-// import AuthContext from "./context/AuthProvider";
-import { useNavigate, redirect, Link } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import useAuth from "../hooks/useAuth";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
 import axios from "../api/axios";
+
 const LOGIN_URL = "/auth";
 
 const Login = () => {
-  // const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const userRef = useRef();
   const errRef = useRef();
@@ -15,7 +18,6 @@ const Login = () => {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -29,27 +31,32 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(LOGIN_URL, JSON.stringify({ user, pwd }), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ username: user, password: pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
       console.log(JSON.stringify(response?.data));
       //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
+      // console.log(roles, accessToken);
       setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
-      setSuccess(true);
-      navigate("/dash");
+      navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
-        navigate("/dash");
       } else if (err.response?.status === 400) {
         setErrMsg("Missing Username or Password");
       } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
+        setErrMsg("Unauthorized: Incorrect Login");
+      } else if (err.response?.status === 429) {
+        setErrMsg("Too many failed requests (Timed out: 60sec)");
       } else {
         setErrMsg("Login Failed");
       }

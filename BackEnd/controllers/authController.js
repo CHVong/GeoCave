@@ -48,9 +48,9 @@ module.exports = {
         sameSite: "None", //cross-site cookie
         maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
       });
-
+      // const roles = foundUser.roles;
       // Send accessToken containing username and roles
-      res.json({ accessToken });
+      res.json({ roles: foundUser.roles, accessToken });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });

@@ -117,7 +117,7 @@ const Register = () => {
           <h1 className="text-3xl underline text-tertiary font-medium">Registration</h1>
           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <label htmlFor="username" className="text-left italic">
-              Username
+              Username:
               <FontAwesomeIcon
                 icon={faCheck}
                 className={validName ? "text-green-500 px-3 align-middle" : "hidden"}
@@ -161,7 +161,7 @@ const Register = () => {
               </p>
             </div>
             <label htmlFor="password" className="text-left italic">
-              Password
+              Password:
               <FontAwesomeIcon
                 icon={faCheck}
                 className={validPwd ? "text-green-500 px-3 align-middle" : "hidden"}
@@ -202,7 +202,7 @@ const Register = () => {
               </p>
             </div>
             <label htmlFor="confirm_pwd" className="text-left italic">
-              Confirm Password
+              Confirm Password:
               <FontAwesomeIcon
                 icon={faCheck}
                 className={validMatch && matchPwd ? "text-green-500 px-3 align-middle" : "hidden"}
