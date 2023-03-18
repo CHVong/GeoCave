@@ -181,9 +181,9 @@ const Register = () => {
               aria-describedby="pwdnote"
               onFocus={() => setPwdFocus(true)}
               onBlur={() => setPwdFocus(false)}
-              className={`rounded px-8 py-2 ${
+              className={`rounded px-8 py-2  bg-black outline-none ring-1 tracking-widest ${
                 validPwd ? "ring-green-500 " : ""
-              } bg-black outline-none ring-1`}
+              }`}
             />
             <div className="relative">
               <p
@@ -222,9 +222,9 @@ const Register = () => {
               aria-describedby="confirmnote"
               onFocus={() => setMatchFocus(true)}
               onBlur={() => setMatchFocus(false)}
-              className={`rounded px-8 py-2 ${
+              className={`rounded px-8 py-2  bg-black outline-none ring-1 tracking-widest ${
                 validMatch && matchPwd ? "ring-green-500 " : ""
-              } bg-black outline-none ring-1`}
+              }`}
             />
             <div className="relative">
               <p
@@ -242,7 +242,7 @@ const Register = () => {
             <div className="flex flex-col mx-auto mt-6 gap-4 lg:flex-row">
               <button
                 disabled={!validName || !validPwd || !validMatch ? true : false}
-                className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none text-md w-40 ${
+                className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none w-40 ${
                   !validName || !validPwd || !validMatch
                     ? `bg-gray-700 text-tertiary`
                     : ` text-tertiary hover:bg-tertiary hover:text-primary`

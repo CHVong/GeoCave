@@ -102,11 +102,11 @@ const Login = () => {
           onChange={(e) => setPwd(e.target.value)}
           value={pwd}
           required
-          className={`rounded px-8 py-2 bg-black outline-none ring-1`}
+          className={`rounded px-8 py-2 bg-black outline-none ring-1 tracking-widest`}
         />
         <div className="flex flex-col mx-auto mt-6 gap-4 lg:flex-row">
           <button
-            className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none text-md w-40 text-tertiary hover:bg-tertiary hover:text-primary `}
+            className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none w-40 text-tertiary hover:bg-tertiary hover:text-primary `}
           >
             Sign In
           </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
-import mountainbg from "../assets/mountainbg.svg";
+import mountainbg from "../assets/images/mountainbg.svg";
 
 const Public = () => {
   return (
