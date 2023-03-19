@@ -7,7 +7,7 @@ import axios from "../api/axios";
 const LOGIN_URL = "/auth";
 
 const Login = () => {
-  const { setAuth } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -64,6 +64,12 @@ const Login = () => {
     }
   };
 
+  const togglePersist = () => {
+    setPersist((prev) => !prev);
+  };
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist]);
   return (
     <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto  md:w-3/4 lg:w-1/2 xl:w-1/3">
       <p
@@ -104,7 +110,20 @@ const Login = () => {
           required
           className={`rounded px-8 py-2 bg-black outline-none ring-1 tracking-widest`}
         />
-        <div className="flex flex-col mx-auto mt-6 gap-4 lg:flex-row">
+        <div className="mt-3">
+          <input
+            type="checkbox"
+            id="persist"
+            onChange={togglePersist}
+            checked={persist}
+            className="cursor-pointer"
+          />
+          <label htmlFor="persist" className="cursor-pointer p-3">
+            Remember Me
+          </label>
+        </div>
+
+        <div className="flex flex-col mx-auto mt-4 gap-4 lg:flex-row">
           <button
             className={`font-medium px-4 py-2 border-2 border-secondary rounded-lg shadow-md shadow-black transition duration-500 ease-in-out  hover:shadow-none w-40 text-tertiary hover:bg-tertiary hover:text-primary `}
           >

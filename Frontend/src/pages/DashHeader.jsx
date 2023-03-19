@@ -1,6 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useLogout from "../hooks/useLogout";
+
 const DashHeader = () => {
+  const navigate = useNavigate();
+  const logout = useLogout();
+
+  const signOut = async () => {
+    await logout();
+    navigate("/");
+  };
+
   return (
     <header>
       <h1>Header</h1>
@@ -14,6 +24,9 @@ const DashHeader = () => {
       <Link to="/dash/admin">
         <h1>admin</h1>
       </Link>
+      <button onClick={signOut} className="bg-red-400">
+        Logout
+      </button>
     </header>
   );
 };

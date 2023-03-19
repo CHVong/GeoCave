@@ -12,6 +12,7 @@ import Error404 from "./pages/Error404";
 import RequireAuth from "./components/RequireAuth";
 import Unauthorized from "./pages/Unauthorized";
 import Admin from "./pages/Admin";
+import PersistLogin from "./components/PersistLogin";
 
 const App = () => {
   return (
@@ -24,23 +25,24 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="unauthorized" element={<Unauthorized />} />
           {/* PRIVATE ROUTES */}
-          <Route element={<RequireAuth allowedRoles={["Employee"]} />}>
-            <Route path="dash" element={<DashLayout />}>
-              <Route index element={<Welcome />} />
-              <Route path="checklist">
-                <Route index element={<Checklist />} />
-              </Route>
-              <Route path="equipment">
-                <Route index element={<Equipment />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={["Employee"]} />}>
+              <Route path="dash" element={<DashLayout />}>
+                <Route index element={<Welcome />} />
+                <Route path="checklist">
+                  <Route index element={<Checklist />} />
+                </Route>
+                <Route path="equipment">
+                  <Route index element={<Equipment />} />
+                </Route>
               </Route>
             </Route>
-          </Route>
 
-          <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
-            <Route path="dash/admin" element={<Admin />} />
+            <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+              <Route path="dash/admin" element={<Admin />} />
+            </Route>
           </Route>
         </Route>
-
         {/* CATCH ALL */}
         <Route path="*" element={<Error404 />} />
       </Routes>

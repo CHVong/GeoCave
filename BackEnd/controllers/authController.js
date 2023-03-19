@@ -48,9 +48,9 @@ module.exports = {
         sameSite: "None", //cross-site cookie
         maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
       });
-      // const roles = foundUser.roles;
+      const roles = foundUser.roles;
       // Send accessToken containing username and roles
-      res.json({ roles: foundUser.roles, accessToken });
+      res.json({ roles, accessToken });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
@@ -85,8 +85,9 @@ module.exports = {
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: "15m" }
           );
+          const roles = foundUser.roles;
 
-          res.json({ accessToken });
+          res.json({ roles, accessToken });
         } catch (error) {
           console.error(error);
           res.status(500).json({ message: "Server error" });
