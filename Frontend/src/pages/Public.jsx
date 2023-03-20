@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
 import mountainbg from "../assets/images/mountainbg.svg";
+import useAuth from "../hooks/useAuth";
+import LogOutButton from "../components/LogOutButton";
 
 const Public = () => {
+  const { auth } = useAuth();
+
   return (
     <div className="flex flex-col gap-10 animate-fadeIn items-center">
       <img src={mountainbg} alt="SVG image of a mountain top" className="w-48" />
@@ -17,9 +21,18 @@ const Public = () => {
         processes that are specifically designed to meet the demands of your field.
       </main>
       <section className="flex flex-col gap-4 lg:flex-row justify-center items-center">
-        <LinkButton path={"Login"} name={"Login"} />
-        <LinkButton path={"Register"} name={"Register"} />
-        <LinkButton path={"GuestDemo"} name={"Guest Demo"} />
+        {auth?.accessToken ? (
+          <>
+            <LinkButton path={"dash"} name={"Dashboard"} />
+            <LogOutButton />
+          </>
+        ) : (
+          <>
+            <LinkButton path={"Login"} name={"Login"} />
+            <LinkButton path={"Register"} name={"Register"} />
+            <LinkButton path={"GuestDemo"} name={"Guest Demo"} />
+          </>
+        )}
       </section>
     </div>
   );

@@ -21,8 +21,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* PUBLIC ROUTES */}
-          <Route index element={<Public />} />
+
           <Route element={<PersistLogin />}>
+            <Route index element={<Public />} />
             <Route element={<IsLoggedIn />}>
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
