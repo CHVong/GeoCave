@@ -13,6 +13,7 @@ import RequireAuth from "./components/RequireAuth";
 import Unauthorized from "./pages/Unauthorized";
 import Admin from "./pages/Admin";
 import PersistLogin from "./components/PersistLogin";
+import IsLoggedIn from "./components/IsLoggedIn";
 
 const App = () => {
   return (
@@ -21,8 +22,12 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           {/* PUBLIC ROUTES */}
           <Route index element={<Public />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<IsLoggedIn />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+            </Route>
+          </Route>
           <Route path="unauthorized" element={<Unauthorized />} />
           {/* PRIVATE ROUTES */}
           <Route element={<PersistLogin />}>
