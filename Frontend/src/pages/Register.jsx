@@ -30,6 +30,7 @@ const Register = () => {
 
   useEffect(() => {
     userRef.current.focus();
+    document.title = "GeoCave - Register";
   }, []);
 
   useEffect(() => {

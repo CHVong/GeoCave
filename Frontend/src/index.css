@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .layout {
-  @apply bg-primarybg p-6 md:p-10 flex flex-col justify-center md:m-auto md:w-4/5 animate-fadeIn shadow-lg rounded-lg shadow-black md:h-[90vh] w-screen;
+  @apply bg-primarybg p-6 md:p-6 flex flex-col justify-center md:m-auto md:w-4/5 animate-fadeIn shadow-lg rounded-lg shadow-black md:h-[90vh] w-screen;
 }
 
 @font-face {

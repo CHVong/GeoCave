@@ -27,11 +27,11 @@ const Public = () => {
             <LogOutButton />
           </>
         ) : (
-          <>
+          <div className="flex flex-col gap-4 lg:flex-row justify-center items-center animate-fadeIn">
             <LinkButton path={"Login"} name={"Login"} />
             <LinkButton path={"Register"} name={"Register"} />
             <LinkButton path={"GuestDemo"} name={"Guest Demo"} />
-          </>
+          </div>
         )}
       </section>
     </div>

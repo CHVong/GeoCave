@@ -13,7 +13,6 @@ const DashHeader = () => {
 
   return (
     <header>
-      <h1>Header</h1>
       <h1>GeoCave</h1>
       <Link to="/dash/checklist">
         <h1>Checklist</h1>

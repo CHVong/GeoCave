@@ -21,6 +21,7 @@ const Login = () => {
 
   useEffect(() => {
     userRef.current.focus();
+    document.title = "GeoCave - Log In";
   }, []);
 
   useEffect(() => {

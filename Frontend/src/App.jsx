@@ -29,7 +29,9 @@ const App = () => {
               <Route path="register" element={<Register />} />
             </Route>
           </Route>
+
           <Route path="unauthorized" element={<Unauthorized />} />
+
           {/* PRIVATE ROUTES */}
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth allowedRoles={["Employee"]} />}>

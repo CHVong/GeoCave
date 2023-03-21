@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import Users from "../components/Users";
+import { useEffect } from "react";
 
 const Admin = () => {
+  useEffect(() => {
+    document.title = "GeoCave - Admin Dashboard";
+  }, []);
+
   return (
     <section>
       <h1>Admins Page</h1>
