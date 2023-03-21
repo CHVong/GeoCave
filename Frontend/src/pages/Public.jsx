@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
 import mountainbg from "../assets/images/mountainbg.svg";
@@ -7,7 +7,9 @@ import LogOutButton from "../components/LogOutButton";
 
 const Public = () => {
   const { auth } = useAuth();
-
+  useEffect(() => {
+    document.title = "GeoCave";
+  }, []);
   return (
     <div className="flex flex-col gap-10 animate-fadeIn items-center">
       <img src={mountainbg} alt="SVG image of a mountain top" className="w-48" />

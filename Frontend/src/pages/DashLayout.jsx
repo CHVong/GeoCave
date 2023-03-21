@@ -9,12 +9,16 @@ const DashLayout = () => {
   }, []);
 
   return (
-    <div>
-      <DashHeader></DashHeader>
+    <div className="flex flex-col h-screen justify-between">
+      <div>
+        <DashHeader />
+      </div>
       <div>
         <Outlet />
       </div>
-      <DashFooter></DashFooter>
+      <div>
+        <DashFooter />
+      </div>
     </div>
   );
 };
