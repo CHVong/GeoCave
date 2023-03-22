@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import mountainbgIcon from "../assets/images/mountainbg.svg";
+import mountainbgIcon from "../assets/images/mountainbgfavicon2.svg";
 import HamburgerLink from "../components/mobile/HamburgerLink";
 
 const DashHeader = () => {
@@ -42,7 +42,7 @@ const DashHeader = () => {
       <div
         className={`${
           showMenu
-            ? "animate-fadeIn absolute top-20 p-6 w-full text-center bg-primary rounded-lg text-xl flex flex-col gap-4"
+            ? "animate-fadeIn absolute top-20 p-6 w-full text-center bg-primary rounded-lg text-xl flex flex-col gap-4 font-medium"
             : "hidden"
         } md:block`}
       >

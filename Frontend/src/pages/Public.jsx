@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
-import mountainbg from "../assets/images/mountainbg.svg";
+import mountainbg from "../assets/images/mountainbg2.svg";
 import useAuth from "../hooks/useAuth";
 import LogOutButton from "../components/LogOutButton";
 
