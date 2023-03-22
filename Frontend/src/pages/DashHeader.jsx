@@ -20,7 +20,7 @@ const DashHeader = () => {
   };
 
   return (
-    <header className="relative flex items-center justify-between md:flex md:justify-around text-end">
+    <header className="relative flex items-center justify-between md:flex text-end">
       <img
         src={mountainbgIcon}
         alt="SVG image of a mountain top"
@@ -42,15 +42,22 @@ const DashHeader = () => {
       <div
         className={`${
           showMenu
-            ? "animate-fadeIn absolute top-20 p-6 w-full text-center bg-primary rounded-lg text-xl flex flex-col gap-4 font-medium"
+            ? "animate-fadeIn absolute top-20 p-6 w-full text-center bg-primary rounded-lg text-xl grid grid-cols-2 gap-4 font-medium"
             : "hidden"
-        } md:block`}
+        } md:flex md:items-center md:justify-center`}
       >
+        <HamburgerLink url={"/dash/checkin"} name={"Check In"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/checklist"} name={"Checklist"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/equipment"} name={"Equipment"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/lab"} name={"Lab"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/office"} name={"Office"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/safety"} name={"Safety"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/supplies"} name={"Supplies"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/templates"} name={"Templates"} onClick={handleLinkClick} />
+
         <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash"} name={"Dashboard"} onClick={handleLinkClick} />
-        <button onClick={signOut} className="bg-red-400">
+        <button onClick={signOut} className="bg-red-500 col-span-2 rounded-2xl p-1 ">
           Logout
         </button>
       </div>

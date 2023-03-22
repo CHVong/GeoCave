@@ -10,6 +10,14 @@
   @apply hover:scale-90 transition duration-300;
 }
 
+.hoverScaleBig {
+  @apply hover:scale-105 transition duration-300;
+}
+
+.focusScaleBig {
+  @apply focus:scale-105 transition duration-300;
+}
+
 @font-face {
   font-family: "ceraRoundPro";
   src: url("/fonts/CeraPro-Light.woff2") format("woff2");

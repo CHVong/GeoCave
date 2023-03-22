@@ -64,7 +64,7 @@ const App = () => {
                 <Route path="templates">
                   <Route index element={<Templates />} />
                 </Route>
-                <Route path="worklifebalance">
+                <Route path="checkin">
                   <Route index element={<WorkLifeBalance />} />
                 </Route>
               </Route>

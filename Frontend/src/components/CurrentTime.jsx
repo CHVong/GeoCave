@@ -13,9 +13,9 @@ function CurrentTime() {
   }, []);
 
   return (
-    <div>
+    <>
       <p>{moment(time).format("dddd - MMM DD, YYYY - h:mm A")}</p>
-    </div>
+    </>
   );
 }
 
