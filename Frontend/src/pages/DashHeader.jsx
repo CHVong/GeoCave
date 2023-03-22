@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,9 @@ const DashHeader = () => {
   const logout = useLogout();
 
   const [showMenu, setShowMenu] = useState(false);
-
+  const handleLinkClick = () => {
+    setShowMenu(false);
+  };
   const signOut = async () => {
     await logout();
     navigate("/");
@@ -23,7 +25,10 @@ const DashHeader = () => {
         src={mountainbgIcon}
         alt="SVG image of a mountain top"
         className="w-10 cursor-pointer hoverScale"
-        onClick={() => navigate("/dash")}
+        onClick={() => {
+          navigate("/dash");
+          handleLinkClick();
+        }}
       />
 
       <FontAwesomeIcon
@@ -37,13 +42,13 @@ const DashHeader = () => {
       <div
         className={`${
           showMenu
-            ? "animate-fadeIn absolute top-20 p-10 w-full text-start bg-primary rounded-lg text-xl flex flex-col gap-4"
+            ? "animate-fadeIn absolute top-20 p-6 w-full text-center bg-primary rounded-lg text-xl flex flex-col gap-4"
             : "hidden"
         } md:block`}
       >
-        <HamburgerLink url={"/dash/checklist"} name={"Checklist"} />
-        <HamburgerLink url={"/dash/equipment"} name={"Equipment"} />
-        <HamburgerLink url={"/dash/admin"} name={"Admin"} />
+        <HamburgerLink url={"/dash/checklist"} name={"Checklist"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/equipment"} name={"Equipment"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
         <button onClick={signOut} className="bg-red-400">
           Logout
         </button>
