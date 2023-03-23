@@ -4,7 +4,7 @@ import useLogout from "../hooks/useLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import mountainbgIcon from "../assets/images/mountainbgfavicon2.svg";
-import HamburgerLink from "../components/mobile/HamburgerLink";
+import HamburgerLink from "../components/HamburgerLink";
 
 const DashHeader = () => {
   const navigate = useNavigate();
@@ -33,9 +33,9 @@ const DashHeader = () => {
 
       <FontAwesomeIcon
         icon={showMenu ? faXmark : faBars}
-        className={`md:hidden cursor-pointer text-3xl w-7 hoverScale animate-fadeIn p-2 hover:bg-primary ${
+        className={`md:hidden cursor-pointer text-3xl w-7 hoverScale animate-fadeIn p-2 hover:bg-primary rounded-lg ${
           showMenu ? "bg-primary scale-90" : ""
-        } rounded-lg`}
+        }`}
         onClick={() => setShowMenu(!showMenu)}
       />
 
@@ -49,6 +49,7 @@ const DashHeader = () => {
         <HamburgerLink url={"/dash/checklist"} name={"Checklist"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/equipment"} name={"Equipment"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
+        <HamburgerLink url={"/dash"} name={"Dashboard"} onClick={handleLinkClick} />
         <button onClick={signOut} className="bg-red-400">
           Logout
         </button>

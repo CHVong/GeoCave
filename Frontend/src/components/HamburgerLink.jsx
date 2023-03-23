@@ -6,6 +6,7 @@ const HamburgerLink = ({ url, name, onClick }) => {
     <NavLink
       onClick={onClick}
       to={url}
+      end
       className={({ isActive, isPending }) =>
         isPending
           ? "pending"

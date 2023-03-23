@@ -9,7 +9,7 @@ const DashLayout = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col h-screen justify-between p-5">
       <div>
         <DashHeader />
       </div>

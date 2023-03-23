@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 
-const equipment = () => {
+const Equipment = () => {
   useEffect(() => {
     document.title = "GeoCave - Equipment";
   }, []);
 
   return (
     <div>
-      <h1>equipment</h1>
+      <h1>Equipment</h1>
     </div>
   );
 };
 
-export default equipment;
+export default Equipment;

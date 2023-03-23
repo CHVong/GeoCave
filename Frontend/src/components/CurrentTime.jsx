@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 function CurrentTime() {
   const [time, setTime] = useState(new Date());
@@ -6,15 +7,14 @@ function CurrentTime() {
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
-    }, 1000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div>
-      <h2>Current Time:</h2>
-      <p>{time.toLocaleTimeString()}</p>
+      <p>{moment(time).format("dddd - MMM DD, YYYY - h:mm A")}</p>
     </div>
   );
 }

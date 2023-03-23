@@ -11,7 +11,7 @@ const Public = () => {
     document.title = "GeoCave";
   }, []);
   return (
-    <div className="flex flex-col gap-10 animate-fadeIn items-center">
+    <div className="flex flex-col gap-10 animate-fadeIn items-center p-6">
       <img src={mountainbg} alt="SVG image of a mountain top" className="w-48" />
       <header className="text-5xl font-medium text-tertiary">Welcome to the GeoCave!</header>
       <main className="text-justify indent-8 md:w-3/4 lg:w-1/2 ">

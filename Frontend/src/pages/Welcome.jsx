@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import jwt_decode from "jwt-decode";
-import CurrentTime from "../components/CurrentTime";
+import DashboardLinks from "../components/DashboardLinks";
 
 const Welcome = () => {
   const { auth } = useAuth();
@@ -15,13 +15,16 @@ const Welcome = () => {
   return (
     <div>
       <h1>Welcome {username}!</h1>
-      <CurrentTime />
-      <p>
-        <Link to="/dash/checklist">View Checklist</Link>
-      </p>
-      <p>
-        <Link to="/dash/equipment">View Equipment</Link>
-      </p>
+      <div className="grid grid-cols-2 gap-3">
+        <DashboardLinks url={"/dash/worklifebalance"} name={"Check In"} />
+        <DashboardLinks url={"/dash/Safety"} name={"Safety"} />
+        <DashboardLinks url={"/dash/checklist"} name={"Checklist"} />
+        <DashboardLinks url={"/dash/equipment"} name={"Equipment"} />
+        <DashboardLinks url={"/dash/supplies"} name={"Supplies"} />
+        <DashboardLinks url={"/dash/lab"} name={"Lab"} />
+        <DashboardLinks url={"/dash/office"} name={"Office"} />
+        <DashboardLinks url={"/dash/templates"} name={"Template"} />
+      </div>
     </div>
   );
 };

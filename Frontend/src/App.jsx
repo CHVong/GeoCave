@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Checklist from "./pages/checklist";
+import Checklist from "./pages/content/checklist";
 import DashLayout from "./pages/DashLayout";
-import Equipment from "./pages/equipment";
+import Equipment from "./pages/content/Equipment";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Public from "./pages/Public";
@@ -14,6 +14,12 @@ import Unauthorized from "./pages/Unauthorized";
 import Admin from "./pages/Admin";
 import PersistLogin from "./components/PersistLogin";
 import IsLoggedIn from "./components/IsLoggedIn";
+import WorkLifeBalance from "./pages/content/worklifebalance";
+import Lab from "./pages/content/Lab";
+import Office from "./pages/content/Office";
+import Safety from "./pages/content/Safety";
+import Templates from "./pages/content/Templates";
+import Supplies from "./pages/content/Supplies";
 
 const App = () => {
   return (
@@ -42,6 +48,24 @@ const App = () => {
                 </Route>
                 <Route path="equipment">
                   <Route index element={<Equipment />} />
+                </Route>
+                <Route path="lab">
+                  <Route index element={<Lab />} />
+                </Route>
+                <Route path="office">
+                  <Route index element={<Office />} />
+                </Route>
+                <Route path="safety">
+                  <Route index element={<Safety />} />
+                </Route>
+                <Route path="supplies">
+                  <Route index element={<Supplies />} />
+                </Route>
+                <Route path="templates">
+                  <Route index element={<Templates />} />
+                </Route>
+                <Route path="worklifebalance">
+                  <Route index element={<WorkLifeBalance />} />
                 </Route>
               </Route>
             </Route>

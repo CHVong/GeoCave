@@ -90,7 +90,7 @@ const Register = () => {
   return (
     <>
       {success ? (
-        <section className="relative flex flex-col gap-8 md:mx-auto  md:w-3/4 lg:w-1/2 xl:w-1/3">
+        <section className="relative flex flex-col gap-8 md:mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3 p-6">
           <h1 className="animate-fadeIn text-2xl text-green-500 font-medium">
             Account successfully created!
           </h1>
@@ -103,12 +103,12 @@ const Register = () => {
           </Link>
         </section>
       ) : (
-        <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto  md:w-3/4 lg:w-1/2 xl:w-1/3">
+        <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3 p-6">
           <p
             ref={errRef}
             className={
               errMsg
-                ? "animate-fadeIn rounded-lg absolute bottom-full w-full bg-red-500"
+                ? "animate-fadeIn rounded-lg absolute bottom-full w-4/5 md:w-full bg-red-500 left-1/2 -translate-x-1/2"
                 : "absolute left-full"
             }
             aria-live="assertive"

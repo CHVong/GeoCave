@@ -75,13 +75,14 @@ const Login = () => {
   useEffect(() => {
     localStorage.setItem("persist", persist);
   }, [persist]);
+
   return (
-    <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto  md:w-3/4 lg:w-1/2 xl:w-1/3">
+    <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3 p-6">
       <p
         ref={errRef}
         className={
           errMsg
-            ? "animate-fadeIn rounded-lg absolute bottom-full w-full bg-red-500"
+            ? "animate-fadeIn rounded-lg absolute bottom-full w-4/5 md:w-full bg-red-500 left-1/2 -translate-x-1/2"
             : "absolute left-full"
         }
         aria-live="assertive"
