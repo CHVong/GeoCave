@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import mountainbgIcon from "../assets/images/mountainbgfavicon2.svg";
 import HamburgerLink from "../components/HamburgerLink";
+import useAuth from "../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 
 const DashHeader = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const logout = useLogout();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -18,6 +21,10 @@ const DashHeader = () => {
     await logout();
     navigate("/");
   };
+
+  const { auth } = useAuth();
+  const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
+  const roles = decoded?.UserInfo.roles || [];
 
   return (
     <header className="relative flex items-center justify-between md:flex md:flex-col">
@@ -54,9 +61,11 @@ const DashHeader = () => {
         <HamburgerLink url={"/dash/safety"} name={"Safety"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/supplies"} name={"Supplies"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/templates"} name={"Templates"} onClick={handleLinkClick} />
-
-        <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash"} name={"Dashboard"} onClick={handleLinkClick} />
+
+        {roles?.find((role) => role.includes("Admin")) ? (
+          <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
+        ) : null}
         <button onClick={signOut} className="bg-red-500 col-span-2 rounded-2xl p-1  md:rounded-md">
           Logout
         </button>
