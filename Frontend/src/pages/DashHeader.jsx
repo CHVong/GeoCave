@@ -20,7 +20,7 @@ const DashHeader = () => {
   };
 
   return (
-    <header className="relative flex items-center justify-between md:flex text-end">
+    <header className="relative flex items-center justify-between md:flex md:flex-col">
       <img
         src={mountainbgIcon}
         alt="SVG image of a mountain top"
@@ -42,9 +42,9 @@ const DashHeader = () => {
       <div
         className={`${
           showMenu
-            ? "animate-fadeIn absolute top-20 p-6 w-full text-center bg-primary rounded-lg text-xl grid grid-cols-2 gap-4 font-medium"
+            ? "animate-fadeIn absolute top-20 p-6 w-full bg-primary rounded-lg text-xl grid grid-cols-2 gap-4 font-medium"
             : "hidden"
-        } md:flex md:items-center md:justify-center`}
+        } md:static md:text-base md:w-auto md:bg-primarybg md:grid md:grid-cols-6 md:gap-2 md:p-2 md:font-medium`}
       >
         <HamburgerLink url={"/dash/checkin"} name={"Check In"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash/checklist"} name={"Checklist"} onClick={handleLinkClick} />
@@ -57,7 +57,7 @@ const DashHeader = () => {
 
         <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
         <HamburgerLink url={"/dash"} name={"Dashboard"} onClick={handleLinkClick} />
-        <button onClick={signOut} className="bg-red-500 col-span-2 rounded-2xl p-1 ">
+        <button onClick={signOut} className="bg-red-500 col-span-2 rounded-2xl p-1  md:rounded-md">
           Logout
         </button>
       </div>

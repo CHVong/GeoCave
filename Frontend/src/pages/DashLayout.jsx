@@ -13,7 +13,7 @@ const DashLayout = () => {
       <div>
         <DashHeader />
       </div>
-      <div>
+      <div className="scrollbar h-[80vh] md:h-[70vh] overflow-x-hidden">
         <Outlet />
       </div>
       <div>

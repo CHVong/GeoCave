@@ -12,7 +12,11 @@ const DashFooter = () => {
     goHomeButton = <CurrentTime />;
   }
 
-  return <div className="pt-5">{goHomeButton}</div>;
+  return (
+    <div className={`pt-5`}>
+      <CurrentTime />
+    </div>
+  );
 };
 
 export default DashFooter;

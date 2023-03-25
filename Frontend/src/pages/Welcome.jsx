@@ -24,9 +24,9 @@ const Welcome = () => {
     document.title = "GeoCave - Dashboard";
   }, []);
   return (
-    <div>
+    <>
       <h1 className="text-3xl p-6 font-medium">Welcome {username}!</h1>
-      <div className="grid grid-cols-2 gap-4 max-w-[50vh] m-auto">
+      <div className="grid grid-cols-2 gap-1 max-w-[50vh] m-auto">
         <DashboardLinks
           url={"/dash/checkin"}
           name={"Check In"}
@@ -78,7 +78,7 @@ const Welcome = () => {
           iconColor={"group-hover:text-amber-500 group-focus:text-amber-500"}
         />
       </div>
-    </div>
+    </>
   );
 };
 
