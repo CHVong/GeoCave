@@ -61,7 +61,7 @@ const Welcome = () => {
           url={"/dash/Safety"}
           name={"Safety"}
           icon={faHelmetSafety}
-          iconColor={"group-hover:text-yellow-500 group-focus:text-yellow-500"}
+          iconColor={"group-hover:text-yellow-400 group-focus:text-yellow-400"}
         />
 
         <DashboardLinks

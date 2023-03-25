@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ const DashHeader = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const logout = useLogout();
+  const menuRef = useRef(null);
 
   const [showMenu, setShowMenu] = useState(false);
   const handleLinkClick = () => {
@@ -25,6 +26,19 @@ const DashHeader = () => {
   const { auth } = useAuth();
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
   const roles = decoded?.UserInfo.roles || [];
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
 
   return (
     <header className="relative flex items-center justify-between md:flex md:flex-col">
@@ -47,9 +61,10 @@ const DashHeader = () => {
       />
 
       <div
+        ref={menuRef}
         className={`${
           showMenu
-            ? "animate-fadeIn absolute top-20 p-6 w-full bg-primary rounded-lg text-xl grid grid-cols-2 gap-4 font-medium"
+            ? "animate-fadeIn absolute top-20 p-6 w-full bg-primary rounded-lg text-xl grid grid-cols-2 gap-4 font-medium z-10"
             : "hidden"
         } md:static md:text-base md:w-auto md:bg-primarybg md:grid md:grid-cols-6 md:gap-2 md:p-2 md:font-medium`}
       >
