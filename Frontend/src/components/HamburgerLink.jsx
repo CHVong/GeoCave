@@ -11,8 +11,8 @@ const HamburgerLink = ({ url, name, onClick }) => {
         isPending
           ? "pending"
           : isActive
-          ? "text-primary bg-tertiary block w-full p-2 rounded-md animate-fadeIn "
-          : "p-2 hover:bg-primarybg rounded-md"
+          ? "text-primary bg-tertiary block w-full p-2 rounded-md transition duration-300"
+          : "p-2 hover:bg-primarybg rounded-md md:hover:bg-primary transition duration-300"
       }
     >
       {name}

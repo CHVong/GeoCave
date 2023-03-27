@@ -20,6 +20,7 @@ import Office from "./pages/content/Office";
 import Safety from "./pages/content/Safety";
 import Templates from "./pages/content/Templates";
 import Supplies from "./pages/content/Supplies";
+import Field from "./pages/content/Field";
 
 const App = () => {
   return (
@@ -66,6 +67,9 @@ const App = () => {
                 </Route>
                 <Route path="checkin">
                   <Route index element={<WorkLifeBalance />} />
+                </Route>
+                <Route path="field">
+                  <Route index element={<Field />} />
                 </Route>
               </Route>
             </Route>
