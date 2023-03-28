@@ -25,6 +25,7 @@ import Proposals from "./pages/content/Proposals";
 import Permits from "./pages/content/Permits";
 import SOPs from "./pages/content/SOPs";
 import DataAnalysis from "./pages/content/DataAnalysis";
+import Tests from "./pages/content/Tests";
 
 const App = () => {
   return (
@@ -86,6 +87,9 @@ const App = () => {
                 </Route>
                 <Route path="dataanalysis">
                   <Route index element={<DataAnalysis />} />
+                </Route>
+                <Route path="tests">
+                  <Route index element={<Tests />} />
                 </Route>
               </Route>
             </Route>
