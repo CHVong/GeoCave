@@ -21,6 +21,10 @@ import Safety from "./pages/content/Safety";
 import Templates from "./pages/content/Templates";
 import Supplies from "./pages/content/Supplies";
 import Field from "./pages/content/Field";
+import Proposals from "./pages/content/Proposals";
+import Permits from "./pages/content/Permits";
+import SOPs from "./pages/content/SOPs";
+import DataAnalysis from "./pages/content/DataAnalysis";
 
 const App = () => {
   return (
@@ -70,6 +74,18 @@ const App = () => {
                 </Route>
                 <Route path="field">
                   <Route index element={<Field />} />
+                </Route>
+                <Route path="permits">
+                  <Route index element={<Permits />} />
+                </Route>
+                <Route path="proposals">
+                  <Route index element={<Proposals />} />
+                </Route>
+                <Route path="SOPs">
+                  <Route index element={<SOPs />} />
+                </Route>
+                <Route path="dataanalysis">
+                  <Route index element={<DataAnalysis />} />
                 </Route>
               </Route>
             </Route>

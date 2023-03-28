@@ -13,6 +13,12 @@ import {
   faFlaskVial,
   faHouseLaptop,
   faPaste,
+  faPersonHiking,
+  faMicroscope,
+  faFileCircleCheck,
+  faEnvelope,
+  faBook,
+  faChartPie,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Welcome = () => {
@@ -24,9 +30,9 @@ const Welcome = () => {
     document.title = "GeoCave - Dashboard";
   }, []);
   return (
-    <>
+    <div className="animate-fadeIn">
       <h1 className="text-3xl p-6 font-medium">Welcome {username}!</h1>
-      <div className="grid grid-cols-2 gap-1 max-w-[50vh] m-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-1 max-w-[50vh] md:max-w-[75vh] m-auto">
         <DashboardLinks
           url={"/dash/checkin"}
           name={"Check In"}
@@ -40,10 +46,22 @@ const Welcome = () => {
           iconColor={"group-hover:text-blue-500 group-focus:text-blue-500"}
         />
         <DashboardLinks
+          url={"/dash/dataanalysis"}
+          name={"Data Analysis"}
+          icon={faChartPie}
+          iconColor={"group-hover:text-cyan-400 group-focus:text-cyan-400"}
+        />
+        <DashboardLinks
           url={"/dash/equipment"}
           name={"Equipment"}
           icon={faToolbox}
           iconColor={"group-hover:text-orange-500 group-focus:text-orange-500"}
+        />
+        <DashboardLinks
+          url={"/dash/field"}
+          name={"Field"}
+          icon={faPersonHiking}
+          iconColor={"group-hover:text-teal-300 group-focus:text-teal-300"}
         />
         <DashboardLinks
           url={"/dash/lab"}
@@ -58,7 +76,7 @@ const Welcome = () => {
           iconColor={"group-hover:text-slate-400 group-focus:text-slate-400"}
         />
         <DashboardLinks
-          url={"/dash/Safety"}
+          url={"/dash/safety"}
           name={"Safety"}
           icon={faHelmetSafety}
           iconColor={"group-hover:text-yellow-400 group-focus:text-yellow-400"}
@@ -70,15 +88,38 @@ const Welcome = () => {
           icon={faBoxesStacked}
           iconColor={"group-hover:text-orange-300 group-focus:text-orange-300"}
         />
-
+        <DashboardLinks
+          url={"/dash/permits"}
+          name={"Permits"}
+          icon={faFileCircleCheck}
+          iconColor={"group-hover:text-green-500 group-focus:text-green-500"}
+        />
+        <DashboardLinks
+          url={"/dash/proposals"}
+          name={"Proposals"}
+          icon={faEnvelope}
+          iconColor={"group-hover:text-rose-400 group-focus:text-rose-400"}
+        />
+        <DashboardLinks
+          url={"/dash/SOPs"}
+          name={"SOPs"}
+          icon={faBook}
+          iconColor={"group-hover:text-stone-400 group-focus:text-stone-400"}
+        />
         <DashboardLinks
           url={"/dash/templates"}
           name={"Templates"}
           icon={faPaste}
           iconColor={"group-hover:text-amber-500 group-focus:text-amber-500"}
         />
+        <DashboardLinks
+          url={"/dash/tests"}
+          name={"Tests"}
+          icon={faMicroscope}
+          iconColor={"group-hover:text-blue-500 group-focus:text-blue-500"}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

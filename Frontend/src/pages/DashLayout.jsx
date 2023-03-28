@@ -9,11 +9,11 @@ const DashLayout = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-full justify-between p-4 md:p-2 animate-fadeIn md:min-h-[90vh]">
+    <div className="flex flex-col min-h-full justify-between p-4 md:p-2 animate-fadeIn md:h-[90vh]">
       <div>
         <DashHeader />
       </div>
-      <div className="scrollbar overflow-x-hidden">
+      <div className="scrollbar overflow-x-hidden h-full">
         <Outlet />
       </div>
       <div>
