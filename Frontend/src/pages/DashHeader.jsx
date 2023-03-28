@@ -84,7 +84,10 @@ const DashHeader = () => {
         {roles?.find((role) => role.includes("Admin")) ? (
           <HamburgerLink url={"/dash/admin"} name={"Admin"} onClick={handleLinkClick} />
         ) : null}
-        <button onClick={signOut} className="bg-red-500 rounded-2xl p-1  md:rounded-md">
+        <button
+          onClick={signOut}
+          className="border-2 border-red-500 text-red-500 rounded-2xl p-1  md:rounded-md hover:bg-red-500 hover:text-secondary"
+        >
           Logout
         </button>
       </div>
