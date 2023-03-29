@@ -14,7 +14,7 @@ import Unauthorized from "./pages/Unauthorized";
 import Admin from "./pages/Admin";
 import PersistLogin from "./components/PersistLogin";
 import IsLoggedIn from "./components/IsLoggedIn";
-import WorkLifeBalance from "./pages/content/worklifebalance";
+import WorkLifeBalance from "./pages/content/WorkLifeBalance";
 import Lab from "./pages/content/Lab";
 import Office from "./pages/content/Office";
 import Safety from "./pages/content/Safety";
