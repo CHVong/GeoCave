@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import FormTextInput from "../../components/FormTextInput";
 import FormRadio from "../../components/FormRadio";
 import FormSelect from "../../components/FormSelect";
@@ -6,6 +6,7 @@ import FormSelect from "../../components/FormSelect";
 const WorkLifeBalance = () => {
   useEffect(() => {
     document.title = "GeoCave - Check In";
+    document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
   }, []);
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,7 +16,7 @@ const WorkLifeBalance = () => {
     console.log("hi");
   }
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn" id="scroller">
       <h1 className="text-3xl p-2 font-medium">Work/Life Balance Check In</h1>
       <p className="p-2">
         Please complete the form below. <br />
@@ -25,14 +26,14 @@ const WorkLifeBalance = () => {
         onSubmit={handleSubmit}
         className="border-2 border-primary md:w-3/4 xl:w-1/2 m-auto rounded-lg p-6"
       >
-        <div className="flex flex-col p-2 gap-2">
+        <div className="flex flex-col p-3 gap-2">
           <label htmlFor="weeksOutForFieldWorkNonLocal" className="text-left italic">
             How many weeks have you been out for field work? (Non Local)
           </label>
 
           <select
             name="weeksOutForFieldWorkNonLocal"
-            className="rounded text-secondary bg-primary"
+            className="rounded text-secondary bg-primary cursor-pointer"
             required
           >
             <option value="">Please select</option>
@@ -43,12 +44,16 @@ const WorkLifeBalance = () => {
             <option name="N/A">N/A</option>
           </select>
         </div>
-        <div className="flex flex-col p-2 gap-2">
+        <div className="flex flex-col p-3 gap-2">
           <label htmlFor="hoursLastWeek" className="text-left italic">
             How many hours did you work last week?
           </label>
 
-          <select name="hoursLastWeek" className="rounded text-secondary bg-primary" required>
+          <select
+            name="hoursLastWeek"
+            className="rounded text-secondary bg-primary cursor-pointer"
+            required
+          >
             <option value="">Please select</option>
             <option name="Less than 30">Less than 30</option>
             <option name="30 to 35">30 to 35</option>
@@ -60,12 +65,16 @@ const WorkLifeBalance = () => {
             <option name="N/A">N/A Took days off</option>
           </select>
         </div>
-        <div className="flex flex-col p-2 gap-2">
+        <div className="flex flex-col p-3 gap-2">
           <label htmlFor="hoursThisWeek" className="text-left italic">
             About how many hours will you have by the end of this week?
           </label>
 
-          <select name="hoursThisWeek" className="rounded text-secondary bg-primary" required>
+          <select
+            name="hoursThisWeek"
+            className="rounded text-secondary bg-primary cursor-pointer"
+            required
+          >
             <option value="">Please select</option>
             <option name="Less than 30">Less than 30</option>
             <option name="30 to 35">30 to 35</option>
@@ -77,16 +86,25 @@ const WorkLifeBalance = () => {
             <option name="N/A">N/A Took days off</option>
           </select>
         </div>
-        <div className="flex flex-col items-start p-2 gap-2">
-          <label htmlFor="happyHours" className="text-left italic">
+        <div className="flex flex-col items-start p-3 gap-1">
+          <label htmlFor="happyHours" className="text-left italic ">
             Are you happy with the number of hours you are working?
           </label>
           <FormRadio title={"Yes"} group={"happyHours"} />
           <FormRadio title={"No, It's less than what I want"} group={"happyHours"} />
           <FormRadio title={"No, It's more than what I want"} group={"happyHours"} />
         </div>
+        <div className="flex flex-col items-start p-3 gap-1">
+          <label htmlFor="needBreak" className="text-left italic ">
+            Would you like a break and switch off between field, office, or lab work?
+          </label>
+          <FormRadio title={"No, I'm fine"} group={"needBreak"} />
+          <FormRadio title={"Yes, I want to switch off next week"} group={"needBreak"} />
+          <FormRadio title={"Yes, in a couple of weeks"} group={"needBreak"} />
+          <FormRadio title={"N/A"} group={"needBreak"} />
+        </div>
 
-        <FormTextInput label={"How are you feeling this week?"} setRefOnLoad={true} />
+        <FormTextInput label={"How are you feeling this week?"} />
         <FormTextInput label={"How are you feeling this weeek?"} />
         <FormTextInput label={"How are you feeling this week?"} />
 
