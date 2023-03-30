@@ -7,7 +7,7 @@ import axios from "../api/axios";
 const LOGIN_URL = "/auth";
 
 const Login = () => {
-  const { setAuth, persist, setPersist } = useAuth();
+  const { setAuth, persist, setPersist, username, setUsername } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -46,6 +46,7 @@ const Login = () => {
       // const roles = response?.data?.roles;
       // console.log(roles, accessToken);
       setAuth({ user, accessToken });
+      setUsername(user);
       setUser("");
       setPwd("");
       if (from === "/") {
