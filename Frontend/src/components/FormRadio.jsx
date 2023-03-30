@@ -1,9 +1,9 @@
-const FormRadio = ({ title, group }) => {
+const FormRadio = ({ title, group, onClick }) => {
   return (
-    <div className="">
+    <div className="text-left" onChange={onClick}>
       <label className="">
-        <input type="radio" value={title} name={group} className="bg-secondary" />
-        <span className="p-2">{title}</span>
+        <input type="radio" value={title} name={group} className="bg-secondary" required />
+        <span className="p-2 ">{title}</span>
       </label>
     </div>
   );

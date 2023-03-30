@@ -1,9 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import FormTextInput from "../../components/FormTextInput";
 import FormRadio from "../../components/FormRadio";
-import FormSelect from "../../components/FormSelect";
+import FormTextArea from "../../components/FormTextArea";
+import SubmitButton from "../../components/SubmitButton";
 
 const WorkLifeBalance = () => {
+  const [other, setOther] = useState(true);
+  const radioRef = useRef();
+  function enableOther() {
+    setOther(false);
+    setTimeout(() => {
+      radioRef.current.focus();
+    }, 0);
+  }
+  function disableOther() {
+    setOther(true);
+  }
+
   useEffect(() => {
     document.title = "GeoCave - Check In";
     document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
@@ -17,15 +30,16 @@ const WorkLifeBalance = () => {
   }
   return (
     <div className="animate-fadeIn" id="scroller">
-      <h1 className="text-3xl p-2 font-medium">Work/Life Balance Check In</h1>
-      <p className="p-2">
-        Please complete the form below. <br />
-        Tell us about your current workload and how you are feeling.
-      </p>
+      <h1 className="text-3xl p-6 font-medium">Work/Life Balance Check In</h1>
+
       <form
         onSubmit={handleSubmit}
         className="border-2 border-primary md:w-3/4 xl:w-1/2 m-auto rounded-lg p-6"
       >
+        <p className="p-2">
+          Please complete the form below. <br />
+          Tell us about your current workload and how you are feeling.
+        </p>
         <div className="flex flex-col p-3 gap-2">
           <label htmlFor="weeksOutForFieldWorkNonLocal" className="text-left italic">
             How many weeks have you been out for field work? (Non Local)
@@ -104,11 +118,52 @@ const WorkLifeBalance = () => {
           <FormRadio title={"N/A"} group={"needBreak"} />
         </div>
 
-        <FormTextInput label={"How are you feeling this week?"} />
-        <FormTextInput label={"How are you feeling this weeek?"} />
-        <FormTextInput label={"How are you feeling this week?"} />
-
-        <input type="submit"></input>
+        <div className="flex flex-col items-start p-3 gap-1">
+          <label htmlFor="currentWorkload" className="text-left italic ">
+            How are you feeling about your current workload?
+          </label>
+          <FormRadio title={"Good"} group={"currentWorkload"} onClick={disableOther} />
+          <FormRadio
+            title={"Busy, but doing okay"}
+            group={"currentWorkload"}
+            onClick={disableOther}
+          />
+          <FormRadio
+            title={"Too much is going on, I need a breather or more help"}
+            group={"currentWorkload"}
+            onClick={disableOther}
+          />
+          <div>
+            <label>
+              <input
+                type="radio"
+                value="Other"
+                name="currentWorkload"
+                className="bg-secondary"
+                required
+                onChange={enableOther}
+              />
+              <span className="p-2">Other</span>
+              <input
+                className="rounded-md pt-0 pb-0 text-primary"
+                type="text"
+                name="currentWorkload"
+                placeholder="Current workload"
+                disabled={other}
+                ref={radioRef}
+                required
+              />
+            </label>
+          </div>
+        </div>
+        <FormTextArea
+          label={
+            "Are there any issues, suggestions, or needs(supplies, equipment, etc.) you'd like to discuss?"
+          }
+          payloadName={"summary"}
+          placeholder={"Tell us more or you can type in no or N/A"}
+        />
+        <SubmitButton />
       </form>
     </div>
   );
