@@ -64,7 +64,7 @@ const WorkLifeBalance = () => {
           <h1 className="animate-fadeIn text-2xl text-green-500 font-medium">
             Check in form successfully submitted!
           </h1>
-          <div className="flex p-6 gap-4">
+          <div className="flex flex-col md:flex-row p-6 gap-4">
             <LinkButton path={"dash"} name={"Dashboard"} />
             <LinkButton
               path={"dash/checkin"}
