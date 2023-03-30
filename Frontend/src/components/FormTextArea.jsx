@@ -12,7 +12,7 @@ const FormTextArea = ({ label, placeholder, setRefOnLoad, payloadName }) => {
 
   return (
     <div className="relative flex flex-col gap-2 p-2">
-      <label htmlFor={payloadName} className="text-left italic">
+      <label htmlFor={payloadName} className="text-left italic text-neutral-200 font-bold">
         {label}
       </label>
       <textarea

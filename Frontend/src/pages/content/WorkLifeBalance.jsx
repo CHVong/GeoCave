@@ -26,7 +26,6 @@ const WorkLifeBalance = () => {
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
     console.log(payload);
-    console.log("hi");
   }
   return (
     <div className="animate-fadeIn" id="scroller">
@@ -41,13 +40,16 @@ const WorkLifeBalance = () => {
           Tell us about your current workload and how you are feeling.
         </p>
         <div className="flex flex-col p-3 gap-2">
-          <label htmlFor="weeksOutForFieldWorkNonLocal" className="text-left italic">
+          <label
+            htmlFor="weeksOutForFieldWorkNonLocal"
+            className="text-left italic text-neutral-200 font-bold"
+          >
             How many weeks have you been out for field work? (Non Local)
           </label>
 
           <select
             name="weeksOutForFieldWorkNonLocal"
-            className="rounded text-secondary bg-primary cursor-pointer"
+            className="rounded bg-primary cursor-pointer"
             required
           >
             <option value="">Please select</option>
@@ -59,15 +61,11 @@ const WorkLifeBalance = () => {
           </select>
         </div>
         <div className="flex flex-col p-3 gap-2">
-          <label htmlFor="hoursLastWeek" className="text-left italic">
+          <label htmlFor="hoursLastWeek" className="text-left italic text-neutral-200 font-bold">
             How many hours did you work last week?
           </label>
 
-          <select
-            name="hoursLastWeek"
-            className="rounded text-secondary bg-primary cursor-pointer"
-            required
-          >
+          <select name="hoursLastWeek" className="rounded bg-primary cursor-pointer" required>
             <option value="">Please select</option>
             <option name="Less than 30">Less than 30</option>
             <option name="30 to 35">30 to 35</option>
@@ -80,15 +78,11 @@ const WorkLifeBalance = () => {
           </select>
         </div>
         <div className="flex flex-col p-3 gap-2">
-          <label htmlFor="hoursThisWeek" className="text-left italic">
+          <label htmlFor="hoursThisWeek" className="text-left italic  text-neutral-200 font-bold">
             About how many hours will you have by the end of this week?
           </label>
 
-          <select
-            name="hoursThisWeek"
-            className="rounded text-secondary bg-primary cursor-pointer"
-            required
-          >
+          <select name="hoursThisWeek" className="rounded bg-primary cursor-pointer" required>
             <option value="">Please select</option>
             <option name="Less than 30">Less than 30</option>
             <option name="30 to 35">30 to 35</option>
@@ -101,7 +95,7 @@ const WorkLifeBalance = () => {
           </select>
         </div>
         <div className="flex flex-col items-start p-3 gap-1">
-          <label htmlFor="happyHours" className="text-left italic ">
+          <label htmlFor="happyHours" className="text-left italic text-neutral-200 font-bold">
             Are you happy with the number of hours you are working?
           </label>
           <FormRadio title={"Yes"} group={"happyHours"} />
@@ -109,7 +103,7 @@ const WorkLifeBalance = () => {
           <FormRadio title={"No, It's more than what I want"} group={"happyHours"} />
         </div>
         <div className="flex flex-col items-start p-3 gap-1">
-          <label htmlFor="needBreak" className="text-left italic ">
+          <label htmlFor="needBreak" className="text-left italic text-neutral-200 font-bold">
             Would you like a break and switch off between field, office, or lab work?
           </label>
           <FormRadio title={"No, I'm fine"} group={"needBreak"} />
@@ -119,7 +113,7 @@ const WorkLifeBalance = () => {
         </div>
 
         <div className="flex flex-col items-start p-3 gap-1">
-          <label htmlFor="currentWorkload" className="text-left italic ">
+          <label htmlFor="currentWorkload" className="text-left italic text-neutral-200 font-bold">
             How are you feeling about your current workload?
           </label>
           <FormRadio title={"Good"} group={"currentWorkload"} onClick={disableOther} />
@@ -133,7 +127,7 @@ const WorkLifeBalance = () => {
             group={"currentWorkload"}
             onClick={disableOther}
           />
-          <div>
+          <div className="text-left">
             <label>
               <input
                 type="radio"
@@ -145,7 +139,7 @@ const WorkLifeBalance = () => {
               />
               <span className="p-2">Other</span>
               <input
-                className="rounded-md pt-0 pb-0 text-primary"
+                className="rounded-md pt-0 pb-0 mt-2 md:mt-0 text-primary"
                 type="text"
                 name="currentWorkload"
                 placeholder="Current workload"
@@ -158,7 +152,7 @@ const WorkLifeBalance = () => {
         </div>
         <FormTextArea
           label={
-            "Are there any issues, suggestions, or needs(supplies, equipment, etc.) you'd like to discuss?"
+            "Are there any issues, suggestions, or needs (supplies, equipment, etc.) you'd like to discuss?"
           }
           payloadName={"summary"}
           placeholder={"Tell us more or you can type in no or N/A"}
