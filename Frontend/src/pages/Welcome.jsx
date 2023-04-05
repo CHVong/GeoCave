@@ -30,7 +30,7 @@ const Welcome = () => {
     document.title = "GeoCave - Dashboard";
   }, []);
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn" id="scroller">
       <h1 className="text-3xl p-6 font-medium">Welcome {username}!</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-1 max-w-[50vh] md:max-w-[75vh] m-auto">
         <DashboardLinks

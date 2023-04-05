@@ -29,7 +29,6 @@ const WorkLifeBalance = () => {
 
   useEffect(() => {
     document.title = "GeoCave - Check In";
-    document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
   async function handleSubmit(e) {
@@ -194,7 +193,7 @@ const WorkLifeBalance = () => {
                   />
                   <span className="p-2">Other</span>
                   <input
-                    className="rounded-md pt-0 pb-0 mt-2 md:mt-0 text-primary"
+                    className="rounded-md pt-0 pb-0 mt-2 md:mt-0 text-secondary bg-black outline-none ring-1"
                     type="text"
                     name="currentWorkload"
                     placeholder="Current workload"
