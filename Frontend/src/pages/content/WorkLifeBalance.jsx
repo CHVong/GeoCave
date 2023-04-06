@@ -7,6 +7,7 @@ import SubmitButton from "../../components/SubmitButton";
 import LinkButton from "../../components/LinkButton";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
+import PageHeading from "../../components/PageHeading";
 
 const CHECKIN_URL = "/checkin";
 
@@ -74,7 +75,7 @@ const WorkLifeBalance = () => {
         </div>
       ) : (
         <div className="animate-fadeIn" id="scroller">
-          <h1 className="text-3xl p-6 font-medium">Work/Life Balance Check In</h1>
+          <PageHeading heading={"Work/Life Balance Check In"} />
 
           <form
             onSubmit={handleSubmit}

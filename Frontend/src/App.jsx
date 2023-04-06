@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Checklist from "./pages/content/checklist";
+import Checklist from "./pages/content/Checklist";
 import DashLayout from "./pages/DashLayout";
 import Equipment from "./pages/content/Equipment";
 import Layout from "./pages/Layout";

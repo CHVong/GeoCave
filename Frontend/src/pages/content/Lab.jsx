@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import jwt_decode from "jwt-decode";
 import DashboardLinks from "../../components/DashboardLinks";
+import PageHeading from "../../components/PageHeading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -27,7 +28,7 @@ const Lab = () => {
   }, []);
   return (
     <div className="animate-fadeIn">
-      <h1 className="text-3xl p-6 font-medium">Lab Work Resources</h1>
+      <PageHeading heading={"Lab Work Resources"} />
       <div className="grid grid-cols-2 md:grid-cols-3 gap-1 max-w-[50vh] md:max-w-[75vh] m-auto">
         <DashboardLinks
           url={"/dash/checkin"}
