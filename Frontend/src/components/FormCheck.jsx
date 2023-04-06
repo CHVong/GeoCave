@@ -10,7 +10,7 @@ const FormCheck = ({ id, title }) => {
       />
       <label
         for={id}
-        className="p-2 peer-checked:text-gray-500 peer-checked:line-through peer-checked:decoration-green-700 transition cursor-pointer w-full"
+        className="p-1 peer-checked:text-gray-500 peer-checked:line-through peer-checked:decoration-green-700 transition cursor-pointer w-full"
       >
         {title}
       </label>
