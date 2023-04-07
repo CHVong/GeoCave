@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PageHeading from "../../components/PageHeading";
 import Drilling from "./Drilling";
 import ERTest from "./ERTest";
@@ -11,12 +11,17 @@ import USAMarking from "./USAMarking";
 
 const Checklist = () => {
   const [task, setTask] = useState("");
+
+  useEffect(() => {
+    document.title = "GeoCave - Checklist";
+  }, []);
+
   const handleTaskChange = (event) => {
     setTask(event.target.value);
   };
 
   return (
-    <div className="md:w-3/4 xl:w-1/2 m-auto rounded-lg p-6">
+    <div className="md:w-3/4 xl:w-1/2 m-auto rounded-lg animate-fadeIn">
       <PageHeading heading={"Checklist"} />
       <form className="flex justify-center p-3 gap-2">
         <select
