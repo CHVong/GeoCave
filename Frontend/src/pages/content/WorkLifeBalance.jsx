@@ -8,6 +8,7 @@ import LinkButton from "../../components/LinkButton";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import PageHeading from "../../components/PageHeading";
+import jwt_decode from "jwt-decode";
 
 const CHECKIN_URL = "/checkin";
 
@@ -16,7 +17,10 @@ const WorkLifeBalance = () => {
   const [success, setSuccess] = useState(false);
   const [other, setOther] = useState(true);
   const radioRef = useRef();
-  const { auth, username } = useAuth();
+  const { auth } = useAuth();
+
+  const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
+  const username = decoded?.UserInfo.username || [];
 
   function enableOther() {
     setOther(false);

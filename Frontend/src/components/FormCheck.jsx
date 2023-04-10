@@ -17,10 +17,10 @@ const FormCheck = ({ id, title }) => {
       <input
         type="checkbox"
         id={id}
-        className="focus:ring-0 focus:ring-offset-0 rounded-full w-6 h-6 checked:text-green-700 peer transition bg-gray-800 cursor-pointer"
+        className="focus:ring-0 focus:ring-offset-0 rounded-full w-6 h-6 checked:text-green-700 peer transition bg-gray-800 cursor-pointer border-2"
       />
       <label
-        for={id}
+        htmlFor={id}
         className="p-1 peer-checked:text-gray-500 peer-checked:line-through peer-checked:decoration-green-700 transition cursor-pointer w-full hover:opacity-80"
       >
         {title}

@@ -3,7 +3,7 @@ const checklistModel = require("../models/checklistModel");
 module.exports = {
   getChecklistItems: async (req, res) => {
     try {
-      const { user, job } = req.body;
+      const { user, job } = req.query;
       const checklistItems = await checklistModel.find({ user, job }).lean();
       if (!checklistItems?.length) {
         return res.status(400).json({ message: "No checklist items found" });

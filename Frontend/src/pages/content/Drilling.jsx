@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import FormCheck from "../../components/FormCheck";
 
 const Drilling = () => {
@@ -13,8 +13,7 @@ const Drilling = () => {
       <FormCheck id={"6"} title={"Paperwork (PTP, logs, proposal, permits, etc.)"} />
       <FormCheck
         id={"7"}
-        title={`Writing/labeling supplies (Pens, sharpies, clipboard, masking tape)
-`}
+        title={`Writing/labeling supplies (Pens, sharpies, clipboard, masking tape)`}
       />
     </div>
   );
