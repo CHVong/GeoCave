@@ -16,6 +16,7 @@ import FormCheck from "../../components/FormCheck";
 const CHECKLIST_URL = "/checklist";
 
 const Checklist = () => {
+  const [optionalInput, setOptionalInput] = useState("");
   const [task, setTask] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -25,28 +26,31 @@ const Checklist = () => {
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
   const username = decoded?.UserInfo.username || [];
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(CHECKLIST_URL, {
+        params: { user: username, job: task },
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
+      setData(response.data?.map((e) => e));
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    }
+  };
+
   useEffect(() => {
     document.title = "GeoCave - Checklist";
   }, []);
 
   useEffect(() => {
     document.title = "GeoCave - Checklist";
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(CHECKLIST_URL, {
-          params: { user: username, job: task },
-          headers: {
-            "Content-Type": "application/json",
-
-            Authorization: `Bearer ${auth.accessToken}`,
-          },
-          withCredentials: true,
-        });
-        setData(response.data.map((e) => e));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
   }, [task]);
 
@@ -79,6 +83,8 @@ const Checklist = () => {
         setErrMsg(`Submission Failed. ${err.response.data.message}`);
       }
     }
+    fetchData();
+    setOptionalInput("");
   }
   return (
     <div className="md:w-3/4 xl:w-1/2 m-auto rounded-lg animate-fadeIn">
@@ -124,9 +130,9 @@ const Checklist = () => {
         <>
           <h1 className="m-4 underline text-xl font-bold">Optional</h1>
           <div>
-            {data.map((e, index) => (
-              <FormCheck id={e._id} title={e.item} />
-            ))}
+            {data.length !== 0
+              ? data.map((e, index) => <FormCheck key={e._id} id={e._id} title={e.item} />)
+              : "You currently do not have any optional custom checklist items"}
           </div>
           <form onSubmit={handleSubmit}>
             <div className="relative flex flex-col gap-2 p-2">
@@ -143,12 +149,16 @@ const Checklist = () => {
                 </p>
               </div>
               <label htmlFor="item" className="text-left italic">
-                New Checklist Item:
+                Add Checklist Item:
               </label>
               <input
                 type="text"
                 name="item"
-                id="item"
+                id={optionalInput}
+                value={optionalInput}
+                onChange={(e) => {
+                  setOptionalInput(e.target.value);
+                }}
                 autoComplete="off"
                 placeholder="Enter your new checklist item"
                 required
