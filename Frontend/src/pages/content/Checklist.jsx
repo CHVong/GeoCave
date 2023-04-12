@@ -11,7 +11,7 @@ import USAMarking from "./USAMarking";
 import jwt_decode from "jwt-decode";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
-import FormCheck from "../../components/FormCheck";
+import FormCheckOptional from "../../components/FormCheckOptional";
 
 const CHECKLIST_URL = "/checklist";
 
@@ -131,8 +131,10 @@ const Checklist = () => {
           <h1 className="m-4 underline text-xl font-bold">Optional</h1>
           <div>
             {data.length !== 0
-              ? data.map((e, index) => <FormCheck key={e._id} id={e._id} title={e.item} />)
-              : "You currently do not have any optional custom checklist items"}
+              ? data.map((e, index) => (
+                  <FormCheckOptional key={e._id} id={e._id} title={e.item} job={task} />
+                ))
+              : "You currently do not have any custom items for this task"}
           </div>
           <form onSubmit={handleSubmit}>
             <div className="relative flex flex-col gap-2 p-2">
