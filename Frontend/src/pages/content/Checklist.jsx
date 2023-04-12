@@ -26,6 +26,24 @@ const Checklist = () => {
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
   const username = decoded?.UserInfo.username || [];
 
+  const handleDelete = async (id) => {
+    // this needs to be in this parent component to be able to refetch data after deleting from the child, pass it in as a prop and call it inside whichever child element with an onclick and provide an id
+    try {
+      await axios.delete(CHECKLIST_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+        data: { id: id },
+      });
+
+      fetchData();
+    } catch (error) {
+      console.error("Error Updating Data:", error);
+    }
+  };
+
   const fetchData = async () => {
     try {
       const response = await axios.get(CHECKLIST_URL, {
@@ -74,7 +92,10 @@ const Checklist = () => {
         },
         withCredentials: true,
       });
+
       setSuccess(true);
+      fetchData();
+      setOptionalInput("");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -83,8 +104,6 @@ const Checklist = () => {
         setErrMsg(`Submission Failed. ${err.response.data.message}`);
       }
     }
-    fetchData();
-    setOptionalInput("");
   }
   return (
     <div className="md:w-3/4 xl:w-1/2 m-auto rounded-lg animate-fadeIn">
@@ -129,10 +148,16 @@ const Checklist = () => {
       {task !== "" ? (
         <>
           <h1 className="m-4 underline text-xl font-bold">Optional</h1>
-          <div>
+          <div className="animate-fadeIn">
             {data.length !== 0
               ? data.map((e, index) => (
-                  <FormCheckOptional key={e._id} id={e._id} title={e.item} job={task} />
+                  <FormCheckOptional
+                    key={e._id}
+                    id={e._id}
+                    title={e.item}
+                    job={task}
+                    onClick={handleDelete}
+                  />
                 ))
               : "You currently do not have any custom items for this task"}
           </div>

@@ -7,7 +7,7 @@ import axios from "../api/axios";
 
 const CHECKLIST_URL = "/checklist";
 
-const FormCheckOptional = ({ id, title, job }) => {
+const FormCheckOptional = ({ id, title, job, onClick }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [optionalInput, setOptionalInput] = useState(title);
   const { auth } = useAuth();
@@ -18,6 +18,41 @@ const FormCheckOptional = ({ id, title, job }) => {
   const toggleInfo = () => {
     setShowEdit(!showEdit);
   };
+
+  const fetchData = async () => {
+    const response = await axios.get(CHECKLIST_URL, {
+      params: { user: username, job: job },
+      headers: {
+        "Content-Type": "application/json",
+
+        Authorization: `Bearer ${auth.accessToken}`,
+      },
+      withCredentials: true,
+    });
+    console.log(response);
+    console.log(response.data);
+  };
+
+  const handleDelete = async () => {
+    onClick(id);
+  };
+  // const handleDelete = async () => {
+  //   try {
+  //     await axios.delete(CHECKLIST_URL, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${auth.accessToken}`,
+  //       },
+  //       withCredentials: true,
+  //       data: { id: id },
+  //     });
+
+  //     fetchData();
+  //     toggleInfo();
+  //   } catch (error) {
+  //     console.error("Error Updating Data:", error);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     if (e) {
@@ -36,19 +71,9 @@ const FormCheckOptional = ({ id, title, job }) => {
           withCredentials: true,
         }
       );
-
-      const getData = await axios.get(CHECKLIST_URL, {
-        params: { user: username, job: job },
-        headers: {
-          "Content-Type": "application/json",
-
-          Authorization: `Bearer ${auth.accessToken}`,
-        },
-        withCredentials: true,
-      });
+      fetchData();
       toggleInfo();
       console.log(response.data);
-      console.log(getData.data);
     } catch (error) {
       console.error("Error Updating Data:", error);
     }
@@ -89,11 +114,19 @@ const FormCheckOptional = ({ id, title, job }) => {
           </label>
         </div>
       )}
-
+      {showEdit && (
+        <FontAwesomeIcon
+          icon={faTrashCan}
+          className="cursor-pointer hover:opacity-80 text-red-500 animate-fadeIn"
+          onClick={handleDelete}
+        />
+      )}
       <div className="relative">
         <FontAwesomeIcon
           icon={showEdit ? faFloppyDisk : faPenToSquare}
-          className={`cursor-pointer hover:opacity-80 ${showEdit ? "text-green-500" : ""}`}
+          className={`cursor-pointer hover:opacity-80 ${
+            showEdit ? "text-green-500 animate-fadeIn" : ""
+          }`}
           onClick={() => {
             if (showEdit) {
               handleSubmit();
@@ -103,10 +136,6 @@ const FormCheckOptional = ({ id, title, job }) => {
           }}
         />
       </div>
-      <FontAwesomeIcon
-        icon={faTrashCan}
-        className="cursor-pointer hover:opacity-80 hover:text-red-500"
-      />
     </div>
   );
 };
