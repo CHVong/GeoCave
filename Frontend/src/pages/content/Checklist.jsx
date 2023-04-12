@@ -159,7 +159,7 @@ const Checklist = () => {
                     onClick={handleDelete}
                   />
                 ))
-              : "You currently do not have any custom items for this task"}
+              : "You currently do not have any optional items for this task"}
           </div>
           <form onSubmit={handleSubmit}>
             <div className="relative flex flex-col gap-2 p-2">
