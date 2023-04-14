@@ -6,14 +6,6 @@ const equipmentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: false,
-    },
-    cloudinaryId: {
-      type: String,
-      require: false,
-    },
     description: {
       type: String,
       required: true,
@@ -23,18 +15,25 @@ const equipmentSchema = new mongoose.Schema(
       required: true,
     },
     stock: {
-      type: mongoose.Schema.Types.Mixed,
-      default: "Available",
+      type: String,
+      default: "",
     },
     vendor: {
       type: String,
+      default: "",
     },
     job: [
       {
         type: String,
-        default: "All",
+        default: "",
       },
     ],
+    image: {
+      type: String,
+    },
+    cloudinaryId: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

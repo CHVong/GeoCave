@@ -68,7 +68,6 @@ const Checklist = () => {
   }, []);
 
   useEffect(() => {
-    document.title = "GeoCave - Checklist";
     fetchData();
   }, [task]);
 

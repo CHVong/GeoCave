@@ -32,7 +32,7 @@ module.exports = {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m" }
+        { expiresIn: "30m" }
       );
 
       const refreshToken = jwt.sign(
@@ -83,7 +83,7 @@ module.exports = {
               },
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "15m" }
+            { expiresIn: "30m" }
           );
           // const roles = foundUser.roles;
 
