@@ -1,4 +1,5 @@
 const equipmentModel = require("../models/equipmentModel");
+const cloudinary = require("../middlewares/cloudinary");
 
 module.exports = {
   getAllEquipment: async (req, res) => {
@@ -15,19 +16,26 @@ module.exports = {
   },
   createEquipment: async (req, res) => {
     try {
-      const { name, image, cloudinaryId, description, location, stock, vendor, job } = req.body;
+      console.log(req.body);
+      console.log(req.file);
+      console.log(req.file.path);
+
+      const uploadedImage = await cloudinary.uploader.upload(req.file.path);
+      const { name, image, cloudinaryId, description, location, stock, vendor, job, user } =
+        req.body;
       if (!name || !description || !location) {
         return res.status(400).json({ message: "All fields are required" });
       }
       const newEquipment = await equipmentModel.create({
         name,
-        image,
-        cloudinaryId,
+        image: uploadedImage.secure_url,
+        cloudinaryId: uploadedImage.public_id,
         description,
         location,
         stock,
         vendor,
         job,
+        createdByUser: user,
       });
       if (newEquipment) {
         return res.status(201).json({ message: "New equipment created" });

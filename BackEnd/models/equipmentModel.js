@@ -30,9 +30,15 @@ const equipmentSchema = new mongoose.Schema(
     ],
     image: {
       type: String,
+      default: "",
     },
     cloudinaryId: {
       type: String,
+      default: "",
+    },
+    createdByUser: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }

@@ -3,6 +3,9 @@ import CheckboxForAddEquipment from "./CheckboxForAddEquipment";
 import SubmitButton from "./SubmitButton";
 import jwt_decode from "jwt-decode";
 import useAuth from "../hooks/useAuth";
+import axios from "../api/axios";
+
+const EQUIPMENT_URL = "/equipment";
 
 const AddEquipmentForm = () => {
   const [checkedJobs, setCheckedJobs] = useState([]);
@@ -15,9 +18,28 @@ const AddEquipmentForm = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
+    // console.log(payload.imgUpload);
+
     payload.user = username;
     payload.job = checkedJobs;
-    console.log(JSON.stringify(payload));
+
+    try {
+      const response = await axios.post(EQUIPMENT_URL, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
+      console.log(response);
+    } catch (err) {
+      if (!err?.response) {
+        // setErrMsg("No Server Response");
+      } else {
+        console.log(err.response.data);
+        // setErrMsg(`Submission Failed. ${err.response.data.message}`);
+      }
+    }
   };
 
   const handleCheckboxChange = (e) => {
@@ -131,7 +153,7 @@ const AddEquipmentForm = () => {
         </div>
         <div className="flex flex-col items-start">
           <label htmlFor="imgUpload">Upload pictures: </label>
-          <input name="imgUpload" type="file" accept="image/*" multiple />
+          <input name="imgUpload" id="imgUpload" type="file" accept="image/*" />
         </div>
         <SubmitButton />
       </form>
