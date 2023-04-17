@@ -9,10 +9,12 @@ const CheckboxForAddEquipment = ({ name, checked, handleCheckboxChange }) => {
         id={name}
         value={name}
         checked={checked}
-        className={`rounded bg-black outline-none ring-1`}
+        className={`rounded bg-black outline-none ring-1 cursor-pointer`}
         onChange={handleCheckboxChange}
       />
-      <label htmlFor={name}>{name}</label>
+      <label htmlFor={name} className="cursor-pointer">
+        {name}
+      </label>
     </div>
   );
 };

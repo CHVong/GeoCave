@@ -52,7 +52,7 @@ const AddEquipmentForm = () => {
   };
 
   return (
-    <div>
+    <div className="animate-fadeIn">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col md:w-1/2 xl:w-1/3 m-auto gap-2 border-2 border-primary rounded-lg p-4"
@@ -152,8 +152,16 @@ const AddEquipmentForm = () => {
           />
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="imgUpload">Upload pictures: </label>
-          <input name="imgUpload" id="imgUpload" type="file" accept="image/*" />
+          <label htmlFor="imgUpload" className="font-bold p-2">
+            Upload a photo here:{" "}
+          </label>
+          <input
+            name="imgUpload"
+            id="imgUpload"
+            type="file"
+            accept="image/*"
+            className="rounded-md file:border-none bg-primary cursor-pointer file:bg-tertiary file:cursor-pointer"
+          />
         </div>
         <SubmitButton />
       </form>
