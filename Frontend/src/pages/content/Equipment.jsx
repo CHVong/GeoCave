@@ -49,8 +49,42 @@ const Equipment = () => {
         {showAdd ? `Close` : `Add Equipment`}
       </button>
       {showAdd ? <AddEquipmentForm /> : ``}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 p-4">
+        {data.map((e) => {
+          return (
+            <div className="border-2 rounded grid" key={e._id}>
+              <div className="flex flex-row justify-between">
+                <div>
+                  <h2>Name:{e.name}</h2>
+                  <h2>Stock:{e.stock}</h2>
+                  <h2>Vendor:{e.vendor}</h2>
+                </div>
+                <div>
+                  <h2>
+                    {e.image ? (
+                      <img
+                        src={`${e.image}`}
+                        alt={`Image of ${e.name}`}
+                        className="w-52 max-h-52"
+                      />
+                    ) : (
+                      "No image"
+                    )}
+                  </h2>
+                </div>
+              </div>
+              <div className="text-left">
+                <h2>Description:{e.description}</h2>
+                <h2>Location:{e.location}</h2>
 
-      <table className="rounded-lg border-red-500 m-4">
+                <h2>Jobs:{e.job.join(", ")}</h2>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* <table className="rounded-lg border-red-500 overflow-x-auto">
         <thead className="">
           <tr>
             <th>Name</th>
@@ -83,7 +117,7 @@ const Equipment = () => {
             );
           })}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };
