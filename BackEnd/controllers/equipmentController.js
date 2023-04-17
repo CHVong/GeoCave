@@ -17,10 +17,13 @@ module.exports = {
   createEquipment: async (req, res) => {
     try {
       console.log(req.body);
-      console.log(req.file);
-      console.log(req.file.path);
+      // console.log(req.file);
+      // console.log(req.file.path);
+      let uploadedImage = {};
+      if (req.file) {
+        uploadedImage = await cloudinary.uploader.upload(req.file.path);
+      }
 
-      const uploadedImage = await cloudinary.uploader.upload(req.file.path);
       const { name, image, cloudinaryId, description, location, stock, vendor, job, user } =
         req.body;
       if (!name || !description || !location) {
