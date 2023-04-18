@@ -4,6 +4,8 @@ import AddEquipmentForm from "../../components/AddEquipmentForm";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import Searchbar from "../../components/Searchbar";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EQUIPMENT_URL = "/equipment";
 const SEARCH_EQUIPMENT_URL = "/equipment/search";
@@ -62,7 +64,7 @@ const Equipment = () => {
       <PageHeading heading={"Equipment"} />
       <button
         onClick={handleToggle}
-        className={`bg-green-700 hover:bg-green-600 text-secondary font-bold py-2 px-4 rounded-lg cursor-pointer block ml-auto m-4 ${
+        className={`bg-green-700 hover:bg-green-600 text-secondary font-bold py-2 px-4 rounded-lg cursor-pointer block m-4 ml-auto ${
           showAdd ? `bg-red-700 hover:bg-red-600` : ""
         }`}
       >
@@ -84,19 +86,25 @@ const Equipment = () => {
                   <h2>Vendor: {e.vendor}</h2>
                   <h2>Location: {e.location}</h2>
                 </div>
-                <div>
-                  <h2>
-                    {e.image ? (
+                <div className="relative w-56 h-40 cursor-pointer">
+                  {e.image ? (
+                    <>
                       <img
                         src={`${e.image}`}
                         alt={`Image of ${e.name}`}
-                        className="w-56 h-40 object-scale-down hover:scale-95 cursor-pointer border-primary transition"
+                        className="w-full h-full object-scale-down cursor-pointer border-primary transition hover:scale-95"
                         onClick={() => window.open(e.image, "_blank")}
                       />
-                    ) : (
-                      "No image"
-                    )}
-                  </h2>
+                      <div
+                        className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center"
+                        onClick={() => window.open(e.image, "_blank")}
+                      >
+                        <FontAwesomeIcon icon={faUpRightFromSquare} size="xl" />
+                      </div>
+                    </>
+                  ) : (
+                    "No image"
+                  )}
                 </div>
               </div>
               <div className="text-left">

@@ -1,38 +1,32 @@
-import { useState, useEffect } from "react";
+import {} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Searchbar = ({ fetch }) => {
-  const [searchText, setSearchText] = useState("");
-  useEffect(() => {
-    // Call fetch whenever searchText changes
-    handleSearch();
-  }, [searchText]);
-
-  const handleSearch = () => {
-    console.log(searchText);
-    fetch(searchText);
+  const handleSearch = (text) => {
+    fetch(text);
   };
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       // Check if Enter key is pressed
-      handleSearch(); // Call the search function
+      handleSearch();
     }
   };
 
   return (
     <div
-      className={`flex items-center rounded px-4  bg-black outline-none ring-1 md:w-1/4 m-4 md:ml-auto`}
+      className={`flex items-center rounded px-4 ml-auto bg-black outline-none ring-2 md:w-1/4 m-4  focus-within:ring-blue-500`}
     >
       <input
         type="text"
         name="searchbar"
         id="searchbar"
         autoComplete="off"
-        value={searchText}
+        //value={searchText}
         onKeyDown={handleKeyDown}
         onChange={(e) => {
-          setSearchText(e.target.value);
+          //setSearchText(e.target.value);
+          handleSearch(e.target.value);
         }}
         placeholder="Type to search..."
         className={`rounded px-4 py-2 bg-black outline-none ring-0 border-0 focus:border-0 focus:outline-none focus:ring-0 w-full`}
