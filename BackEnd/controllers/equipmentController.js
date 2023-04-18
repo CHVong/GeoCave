@@ -4,7 +4,36 @@ const cloudinary = require("../middlewares/cloudinary");
 module.exports = {
   getAllEquipment: async (req, res) => {
     try {
-      const equipment = await equipmentModel.find().lean();
+      const equipment = await equipmentModel.find().sort({ updatedAt: -1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getSearchedEquipment: async (req, res) => {
+    try {
+      const searchQuery = req.query.search; // Get the search query from the request query parameters
+      const searchRegex = new RegExp(searchQuery, "i"); // Create a regex pattern for case-insensitive search
+
+      const equipment = await equipmentModel
+        .find({
+          $or: [
+            { name: searchRegex },
+            { description: searchRegex },
+            { location: searchRegex },
+            { stock: searchRegex },
+            { vendor: searchRegex },
+            { job: { $in: [searchRegex] } }, // Use $in operator to search for an array of values
+            { createdByUser: searchRegex },
+          ],
+        })
+        .sort({ updatedAt: -1 })
+        .lean();
+
       if (!equipment?.length) {
         return res.status(400).json({ message: "No equipment found" });
       }

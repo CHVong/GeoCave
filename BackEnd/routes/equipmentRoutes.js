@@ -8,6 +8,7 @@ const upload = require("../middlewares/multer");
 router.use(verifyJWT);
 
 router.get("/", equipmentController.getAllEquipment);
+router.get("/search", equipmentController.getSearchedEquipment);
 router.post("/", upload.single("imgUpload"), equipmentController.createEquipment);
 router.patch("/", equipmentController.updateEquipment);
 router.delete("/", equipmentController.deleteEquipment);

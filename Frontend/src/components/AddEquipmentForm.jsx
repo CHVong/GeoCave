@@ -7,7 +7,7 @@ import axios from "../api/axios";
 
 const EQUIPMENT_URL = "/equipment";
 
-const AddEquipmentForm = () => {
+const AddEquipmentForm = ({ fetch }) => {
   const [checkedJobs, setCheckedJobs] = useState([]);
 
   const { auth } = useAuth();
@@ -31,6 +31,7 @@ const AddEquipmentForm = () => {
         },
         withCredentials: true,
       });
+      fetch();
       console.log(response);
     } catch (err) {
       if (!err?.response) {
