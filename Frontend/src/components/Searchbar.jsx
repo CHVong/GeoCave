@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Searchbar = ({ fetch }) => {
   const [searchText, setSearchText] = useState("");
+  useEffect(() => {
+    // Call fetch whenever searchText changes
+    handleSearch();
+  }, [searchText]);
+
   const handleSearch = () => {
+    console.log(searchText);
     fetch(searchText);
   };
   const handleKeyDown = (e) => {
@@ -27,7 +33,6 @@ const Searchbar = ({ fetch }) => {
         onKeyDown={handleKeyDown}
         onChange={(e) => {
           setSearchText(e.target.value);
-          handleSearch();
         }}
         placeholder="Type to search..."
         className={`rounded px-4 py-2 bg-black outline-none ring-0 border-0 focus:border-0 focus:outline-none focus:ring-0 w-full`}
