@@ -33,9 +33,10 @@ const Equipment = () => {
       setData([]);
     }
   };
-  const fetchSearch = async () => {
+  const fetchSearch = async (searchText) => {
     try {
       const response = await axios.get(SEARCH_EQUIPMENT_URL, {
+        params: { searchText },
         headers: {
           "Content-Type": "application/json",
 
@@ -44,6 +45,7 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);

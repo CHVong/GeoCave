@@ -16,8 +16,8 @@ module.exports = {
   },
   getSearchedEquipment: async (req, res) => {
     try {
-      const searchQuery = req.query.search; // Get the search query from the request query parameters
-      const searchRegex = new RegExp(searchQuery, "i"); // Create a regex pattern for case-insensitive search
+      const { searchText } = req.query; // Get the search query from the request query parameters
+      const searchRegex = new RegExp(searchText, "i"); // Create a regex pattern for case-insensitive search
 
       const equipment = await equipmentModel
         .find({
