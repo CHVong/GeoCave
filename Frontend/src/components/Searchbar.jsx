@@ -15,7 +15,7 @@ const Searchbar = ({ fetch }) => {
 
   return (
     <div
-      className={`flex items-center rounded px-4 md:ml-auto bg-black outline-none ring-2 md:w-1/4 m-4  focus-within:ring-blue-500`}
+      className={`flex items-center rounded px-4 bg-black outline-none ring-2 w-full md:w-1/2 lg:w-1/4 focus-within:ring-blue-500`}
     >
       <input
         type="text"

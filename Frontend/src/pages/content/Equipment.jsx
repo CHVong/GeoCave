@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Searchbar from "../../components/Searchbar";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EquipmentFilter from "../../components/EquipmentFilter";
 
 const EQUIPMENT_URL = "/equipment";
 const SEARCH_EQUIPMENT_URL = "/equipment/search";
@@ -71,7 +72,11 @@ const Equipment = () => {
         {showAdd ? `Close` : `Add Equipment`}
       </button>
       {showAdd ? <AddEquipmentForm fetch={fetchData} /> : ``}
-      <Searchbar fetch={fetchSearch} />
+      <div className="flex items-center flex-col md:flex-row justify-between m-4 gap-4">
+        <EquipmentFilter />
+        <Searchbar fetch={fetchSearch} />
+      </div>
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-2">
         {data.map((e) => {
           return (
