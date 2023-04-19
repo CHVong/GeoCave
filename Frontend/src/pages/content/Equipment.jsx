@@ -72,21 +72,73 @@ const Equipment = () => {
       </button>
       {showAdd ? <AddEquipmentForm fetch={fetchData} /> : ``}
       <Searchbar fetch={fetchSearch} />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-2">
         {data.map((e) => {
           return (
             <div
-              className="border-4 border-primary rounded-md grid hover:scale-95 transition hover:border-tertiary p-4"
+              className="border-4 border-primary rounded-md grid hover:scale-95 transition hover:border-tertiary gap-2"
               key={e._id}
             >
-              <div className="flex flex-row justify-between items-center">
-                <div className="text-left">
-                  <h2 className="text-2xl font-bold">{e.name}</h2>
-                  <h2>Stock: {e.stock}</h2>
-                  <h2>Vendor: {e.vendor}</h2>
-                  <h2>Location: {e.location}</h2>
+              <div className="flex flex-col justify-stretch items-center">
+                <h2 className="text-2xl font-bold bg-slate-800 w-full p-1">{e.name}</h2>
+                <div className="flex justify-around items-center w-full h-full">
+                  <div className="text-left p-4  h-full w-[50%]">
+                    <h2>
+                      <span className="text-tertiary">Stock:</span> {e.stock}
+                    </h2>
+                    <h2>
+                      <span className="text-tertiary">Vendor:</span> {e.vendor}
+                    </h2>
+                    <h2>
+                      <span className="text-tertiary">Location:</span> {e.location}
+                    </h2>
+                  </div>
+                  <div className="h-full w-[50%]">
+                    {e.image ? (
+                      <div className="relative group ">
+                        <img
+                          src={`${e.image}`}
+                          alt={`Image of ${e.name}`}
+                          className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2"
+                          onClick={() => window.open(e.image, "_blank")}
+                        />
+                        <div
+                          className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center group-hover:scale-95 cursor-pointer"
+                          onClick={() => window.open(e.image, "_blank")}
+                        >
+                          <FontAwesomeIcon icon={faUpRightFromSquare} size="xl" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="relative group ">
+                        <img
+                          src={`https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png`}
+                          alt={`Placeholder image`}
+                          className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2"
+                          onClick={() =>
+                            window.open(
+                              "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png",
+                              "_blank"
+                            )
+                          }
+                        />
+                        <div
+                          className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center group-hover:scale-95 cursor-pointer"
+                          onClick={() =>
+                            window.open(
+                              "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png",
+                              "_blank"
+                            )
+                          }
+                        >
+                          <FontAwesomeIcon icon={faUpRightFromSquare} size="xl" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="relative w-56 h-40 cursor-pointer">
+
+                {/* <div className="relative w-56 h-40 cursor-pointer">
                   {e.image ? (
                     <>
                       <img
@@ -105,11 +157,17 @@ const Equipment = () => {
                   ) : (
                     "No image"
                   )}
-                </div>
+                </div> */}
               </div>
-              <div className="text-left">
-                <h2>Jobs: {e.job.join(", ")}</h2>
-                <h2>Description: {e.description}</h2>
+              <div className="text-left p-2 text-gray-400 text-sm">
+                <h3>
+                  <span className="text-lg underline underline-offset-4">Jobs:</span>{" "}
+                  {e.job.join(", ")}
+                </h3>
+                <h3>
+                  <span className="text-lg underline underline-offset-4 ">Description:</span>{" "}
+                  {e.description}
+                </h3>
               </div>
             </div>
           );
