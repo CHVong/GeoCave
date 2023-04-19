@@ -137,77 +137,22 @@ const Equipment = () => {
                     )}
                   </div>
                 </div>
-
-                {/* <div className="relative w-56 h-40 cursor-pointer">
-                  {e.image ? (
-                    <>
-                      <img
-                        src={`${e.image}`}
-                        alt={`Image of ${e.name}`}
-                        className="w-full h-full object-scale-down cursor-pointer border-primary transition hover:scale-95"
-                        onClick={() => window.open(e.image, "_blank")}
-                      />
-                      <div
-                        className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center"
-                        onClick={() => window.open(e.image, "_blank")}
-                      >
-                        <FontAwesomeIcon icon={faUpRightFromSquare} size="xl" />
-                      </div>
-                    </>
-                  ) : (
-                    "No image"
-                  )}
-                </div> */}
               </div>
-              <div className="text-left p-2 text-gray-400 text-sm">
+              <div className="text-left p-2 text-gray-400 text-sm h-full">
                 <h3>
                   <span className="text-lg underline underline-offset-4">Jobs:</span>{" "}
                   {e.job.join(", ")}
                 </h3>
-                <h3>
+                <h3 className="">
                   <span className="text-lg underline underline-offset-4 ">Description:</span>{" "}
                   {e.description}
                 </h3>
+                <h6>Created by: {e.createdByUser}</h6>
               </div>
             </div>
           );
         })}
       </div>
-
-      {/* <table className="rounded-lg border-red-500 overflow-x-auto">
-        <thead className="">
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Location</th>
-            <th>Stock</th>
-            <th>Vendor</th>
-            <th>Jobs</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((e) => {
-            return (
-              <tr className="border-2 divide-x" key={e._id}>
-                <td>{e.name}</td>
-                <td>{e.description}</td>
-                <td>{e.location}</td>
-                <td>{e.stock}</td>
-                <td>{e.vendor}</td>
-                <td>{e.job.join(", ")}</td>
-                <td>
-                  {e.image ? (
-                    <img src={`${e.image}`} alt={`Image of ${e.name}`} className="w-52" />
-                  ) : (
-                    "No image"
-                  )}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table> */}
     </div>
   );
 };

@@ -98,7 +98,7 @@ const AddEquipmentForm = ({ fetch }) => {
           Stock
         </label>
         <input
-          type="text"
+          type="number"
           name="stock"
           id="stock"
           autoComplete="off"
