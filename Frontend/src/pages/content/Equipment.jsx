@@ -72,9 +72,9 @@ const Equipment = () => {
         {showAdd ? `Close` : `Add Equipment`}
       </button>
       {showAdd ? <AddEquipmentForm fetch={fetchData} /> : ``}
-      <div className="flex items-center flex-col md:flex-row justify-between m-4 gap-4">
-        <EquipmentFilter />
+      <div className="flex items-end md:items-center flex-col-reverse md:flex-row justify-between m-4 gap-4">
         <Searchbar fetch={fetchSearch} />
+        <EquipmentFilter />
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-2">
