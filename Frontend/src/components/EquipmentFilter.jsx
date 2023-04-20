@@ -13,8 +13,8 @@ import {
 
 const EquipmentFilter = () => {
   const options = [
-    { value: "nameAZ", label: "Name-AZ", icon: faArrowDownAZ },
-    { value: "nameZA", label: "Name-ZA", icon: faArrowUpZA },
+    { value: "nameAZ", label: "Name: A-Z", icon: faArrowDownAZ },
+    { value: "nameZA", label: "Name: Z-A", icon: faArrowUpZA },
     { value: "stockHighToLow", label: "Stock-High", icon: faArrowUp91 },
     { value: "stockLowToHigh", label: "Stock-Low", icon: faArrowDown19 },
     { value: "newest", label: "Newest", icon: faClock },
@@ -35,6 +35,7 @@ const EquipmentFilter = () => {
         getOptionLabel={getOptionLabel}
         isSearchable={false}
         className="w-48"
+        onChange={(selectedOption) => console.log(selectedOption.value)}
         placeholder={
           <div className="">
             <FontAwesomeIcon icon={faFilter} />
@@ -45,6 +46,8 @@ const EquipmentFilter = () => {
           control: (provided) => ({
             ...provided,
             backgroundColor: "black",
+            borderColor: "#3b82f680",
+            borderWidth: "2px",
           }),
           singleValue: (provided) => ({
             ...provided,
@@ -57,7 +60,7 @@ const EquipmentFilter = () => {
           option: (provided, state) => ({
             ...provided,
 
-            backgroundColor: state.isSelected ? "#172554" : state.isFocused ? "#334155" : "black",
+            backgroundColor: state.isSelected ? "#1e3a8a" : state.isFocused ? "#334155" : undefined,
             color: state.isSelected ? "white" : state.isFocused ? "white" : "#a5a5a5",
             ":hover": {
               backgroundColor: state.isSelected ? "#334155" : "#1e293b",
@@ -67,6 +70,9 @@ const EquipmentFilter = () => {
             ":hover": {
               // your other hover styles
               cursor: "pointer",
+            },
+            ":active": {
+              backgroundColor: state.isSelected ? "" : "rgba(30, 58, 138, 0.5)",
             },
           }),
         }}
