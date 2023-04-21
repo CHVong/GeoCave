@@ -4,11 +4,13 @@ import SubmitButton from "./SubmitButton";
 import jwt_decode from "jwt-decode";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
+import UploadProgressBar from "./UploadProgressBar";
 
 const EQUIPMENT_URL = "/equipment";
 
 const AddEquipmentForm = ({ fetch }) => {
   const [checkedJobs, setCheckedJobs] = useState([]);
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const { auth } = useAuth();
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
@@ -29,6 +31,15 @@ const AddEquipmentForm = ({ fetch }) => {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${auth.accessToken}`,
         },
+        onUploadProgress: (progressEvent) => {
+          setUploadPercentage(
+            parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total))
+          );
+          setTimeout(() => {
+            setUploadPercentage(0);
+          }, 10000);
+        },
+
         withCredentials: true,
       });
       fetch();
@@ -117,7 +128,6 @@ const AddEquipmentForm = ({ fetch }) => {
           placeholder="Where can this be purchased?"
           className={`rounded px-8 py-2 bg-black outline-none ring-1`}
         />
-
         <div className="p-2">
           <label htmlFor="job" className="text-left italic">
             Check usage for all applicable jobs
@@ -162,9 +172,10 @@ const AddEquipmentForm = ({ fetch }) => {
             id="imgUpload"
             type="file"
             accept="image/*"
-            className="rounded-md file:border-none bg-primary cursor-pointer file:bg-tertiary file:cursor-pointer"
+            className="rounded-md file:border-none bg-primary cursor-pointer file:bg-tertiary file:cursor-pointer w-full"
           />
         </div>
+        <UploadProgressBar percentage={uploadPercentage} />
         <SubmitButton />
       </form>
     </div>
