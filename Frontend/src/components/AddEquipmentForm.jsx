@@ -95,7 +95,7 @@ const AddEquipmentForm = ({ fetch }) => {
           className={`rounded px-8 py-2 bg-black outline-none ring-1`}
         />
         <label htmlFor="stock" className="text-left italic">
-          Stock
+          Stock *
         </label>
         <input
           type="number"
@@ -103,6 +103,7 @@ const AddEquipmentForm = ({ fetch }) => {
           id="stock"
           autoComplete="off"
           placeholder="Estimated number"
+          required
           className={`rounded px-8 py-2 bg-black outline-none ring-1`}
         />
         <label htmlFor="vendor" className="text-left italic">

@@ -16,7 +16,8 @@ const equipmentSchema = new mongoose.Schema(
     },
     stock: {
       type: String,
-      default: "",
+      default: 1,
+      required: true,
     },
     vendor: {
       type: String,

@@ -54,6 +54,23 @@ const Equipment = () => {
       setData([]);
     }
   };
+  const fetchFilter = async (filter) => {
+    try {
+      const response = await axios.get(`/equipment/${filter}`, {
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
+      setData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    }
+  };
 
   useEffect(() => {
     document.title = "GeoCave - Equipment";
@@ -74,7 +91,7 @@ const Equipment = () => {
       {showAdd ? <AddEquipmentForm fetch={fetchData} /> : ``}
       <div className="flex items-end md:items-center flex-col-reverse md:flex-row justify-between m-4 gap-4">
         <Searchbar fetch={fetchSearch} />
-        <EquipmentFilter />
+        <EquipmentFilter fetch={fetchFilter} />
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-2">

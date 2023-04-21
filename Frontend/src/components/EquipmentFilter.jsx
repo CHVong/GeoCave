@@ -11,15 +11,15 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
-const EquipmentFilter = () => {
+const EquipmentFilter = ({ fetch }) => {
   const options = [
+    { value: "recentlyUpdated", label: "Recently Updated", icon: faHistory },
     { value: "nameAZ", label: "Name: A-Z", icon: faArrowDownAZ },
     { value: "nameZA", label: "Name: Z-A", icon: faArrowUpZA },
     { value: "stockHighToLow", label: "Stock-High", icon: faArrowUp91 },
     { value: "stockLowToHigh", label: "Stock-Low", icon: faArrowDown19 },
     { value: "newest", label: "Newest", icon: faClock },
     { value: "oldest", label: "Oldest", icon: faClock },
-    { value: "recentlyUpdated", label: "Recently Updated", icon: faHistory },
   ];
   const getOptionLabel = ({ label, icon = faFilter }) => (
     <div className="flex items-center">
@@ -35,7 +35,7 @@ const EquipmentFilter = () => {
         getOptionLabel={getOptionLabel}
         isSearchable={false}
         className="w-48"
-        onChange={(selectedOption) => console.log(selectedOption.value)}
+        onChange={(selectedOption) => fetch(selectedOption.value)}
         placeholder={
           <div className="">
             <FontAwesomeIcon icon={faFilter} />
@@ -67,10 +67,6 @@ const EquipmentFilter = () => {
               color: state.isSelected ? "#a5a5a5" : "white",
             },
             cursor: "pointer",
-            ":hover": {
-              // your other hover styles
-              cursor: "pointer",
-            },
             ":active": {
               backgroundColor: state.isSelected ? "" : "rgba(30, 58, 138, 0.5)",
             },

@@ -43,6 +43,90 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  getRecent: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ updatedAt: -1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getNameAZ: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ name: 1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getNameZA: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ name: -1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getStockHighToLow: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ stock: -1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getStockLowToHigh: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ stock: 1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getNewest: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ createdAt: -1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getOldest: async (req, res) => {
+    try {
+      const equipment = await equipmentModel.find().sort({ createdAt: 1 }).lean();
+      if (!equipment?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(equipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   createEquipment: async (req, res) => {
     try {
       console.log(req.body);
