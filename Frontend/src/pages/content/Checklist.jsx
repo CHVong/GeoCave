@@ -68,6 +68,7 @@ const Checklist = () => {
   }, []);
 
   useEffect(() => {
+    if (task === null || []) return;
     fetchData();
   }, [task]);
 

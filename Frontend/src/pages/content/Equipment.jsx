@@ -169,7 +169,7 @@ const Equipment = () => {
                   <span className="text-lg underline underline-offset-4 ">Description:</span>{" "}
                   {e.description}
                 </h3>
-                <h6>Created by: {e.createdByUser}</h6>
+                <h6 className="italic">Created by: {e.createdByUser}</h6>
               </div>
             </div>
           );
