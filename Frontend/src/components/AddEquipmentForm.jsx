@@ -171,7 +171,7 @@ const AddEquipmentForm = ({ fetch }) => {
             name="imgUpload"
             id="imgUpload"
             type="file"
-            accept="image/*"
+            accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG,"
             className="rounded-md file:border-none bg-primary cursor-pointer file:bg-tertiary file:cursor-pointer w-full"
           />
         </div>

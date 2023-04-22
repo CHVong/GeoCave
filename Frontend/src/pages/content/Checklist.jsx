@@ -68,7 +68,7 @@ const Checklist = () => {
   }, []);
 
   useEffect(() => {
-    if (task === null || []) return;
+    if (task === null || task === "") return;
     fetchData();
   }, [task]);
 
