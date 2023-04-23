@@ -15,9 +15,11 @@ const EquipmentCard = ({
   description,
   createdByUser,
   location,
+  id,
+  updateStock,
 }) => {
   const [editStock, setEditStock] = useState(false);
-  const [editState, setEditState] = useState({});
+  const [stockNumber, setStockNumber] = useState(stock);
 
   return (
     <div className="border-4 border-primary rounded-md grid hover:scale-95 transition-all hover:border-tertiary gap-2 animate-fadeIn">
@@ -37,10 +39,16 @@ const EquipmentCard = ({
                     placeholder={stock}
                     required
                     className={`rounded px-2 py-0 bg-black outline-none ring-1 w-16 animate-fadeIn`}
+                    onChange={(e) => {
+                      setStockNumber(e.target.value);
+                    }}
                   />
                   <div
                     className="inline p-2 cursor-pointer"
-                    onClick={(e) => setEditStock(!editStock)}
+                    onClick={(e) => {
+                      setEditStock(!editStock);
+                      updateStock(e, id, name, description, location, stockNumber);
+                    }}
                   >
                     <FontAwesomeIcon
                       icon={faFloppyDisk}

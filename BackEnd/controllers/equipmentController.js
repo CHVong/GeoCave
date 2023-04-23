@@ -85,6 +85,7 @@ module.exports = {
       if (!equipment?.length) {
         return res.status(400).json({ message: "No equipment found" });
       }
+      equipment.sort((a, b) => b.stock - a.stock);
       res.json(equipment);
     } catch (error) {
       console.error(error);
@@ -97,6 +98,7 @@ module.exports = {
       if (!equipment?.length) {
         return res.status(400).json({ message: "No equipment found" });
       }
+      equipment.sort((a, b) => a.stock - b.stock);
       res.json(equipment);
     } catch (error) {
       console.error(error);
@@ -184,6 +186,31 @@ module.exports = {
 
       const updatedEquipment = await equipment.save();
       res.json(`Equipment(${updatedEquipment.name}) has been saved`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  updateStock: async (req, res) => {
+    try {
+      const { id, name, image, cloudinaryId, description, location, stock, vendor, job } = req.body;
+
+      if (stock === "") {
+        return;
+      }
+
+      if (!id || !name || !description || !location || !stock) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      const equipment = await equipmentModel.findById(id).exec();
+      if (!equipment) {
+        return res.status(400).json({ message: "Equipment not found" });
+      }
+
+      equipment.stock = stock;
+
+      const updatedEquipment = await equipment.save();
+      res.json(updatedEquipment);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });

@@ -10,6 +10,7 @@ import EquipmentFilter from "../../components/EquipmentFilter";
 
 const EQUIPMENT_URL = "/equipment";
 const SEARCH_EQUIPMENT_URL = "/equipment/search";
+const UPDATE_STOCK_URL = "/equipment/stock";
 
 const Equipment = () => {
   const [showAdd, setShowAdd] = useState(false);
@@ -74,6 +75,35 @@ const Equipment = () => {
     }
   };
 
+  const updateStock = async (e, id, name, description, location, stockNumber) => {
+    if (e) {
+      e.preventDefault();
+    }
+    console.log(id, name, description, location, stockNumber);
+    try {
+      const response = await axios.patch(
+        UPDATE_STOCK_URL,
+        { id: id, name: name, description: description, location: location, stock: stockNumber },
+        {
+          headers: {
+            "Content-Type": "application/json",
+
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+          withCredentials: true,
+        }
+      );
+      setData((prevData) => {
+        const newData = [...prevData];
+        const index = newData.findIndex((item) => item._id === response.data._id);
+        newData[index] = response.data;
+        return newData;
+      });
+    } catch (error) {
+      console.error("Error Updating Data:", error);
+    }
+  };
+
   useEffect(() => {
     document.title = "GeoCave - Equipment";
     fetchData();
@@ -99,6 +129,7 @@ const Equipment = () => {
         {data.length !== 0 ? (
           data.map((e, index) => (
             <EquipmentCard
+              updateStock={updateStock}
               key={e._id}
               id={e._id}
               stock={e.stock}
@@ -107,6 +138,7 @@ const Equipment = () => {
               job={e.job}
               vendor={e.vendor}
               location={e.location}
+              description={e.description}
               createdByUser={e.createdByUser}
             />
           ))

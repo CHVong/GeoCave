@@ -202,6 +202,7 @@ const WorkLifeBalance = () => {
                     type="text"
                     name="currentWorkload"
                     placeholder="Current workload"
+                    autoComplete="off"
                     disabled={other}
                     ref={radioRef}
                     required

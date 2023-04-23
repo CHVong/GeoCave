@@ -7,6 +7,7 @@ const upload = require("../middlewares/multer");
 
 router.use(verifyJWT);
 
+// GET
 router.get("/", equipmentController.getAllEquipment);
 router.get("/search", equipmentController.getSearchedEquipment);
 router.get("/recentlyUpdated", equipmentController.getRecent);
@@ -16,8 +17,15 @@ router.get("/stockHighToLow", equipmentController.getStockHighToLow);
 router.get("/stockLowToHigh", equipmentController.getStockLowToHigh);
 router.get("/newest", equipmentController.getNewest);
 router.get("/oldest", equipmentController.getOldest);
+
+// POST
 router.post("/", upload.single("imgUpload"), equipmentController.createEquipment);
+
+// PATCH
 router.patch("/", equipmentController.updateEquipment);
+router.patch("/stock", equipmentController.updateStock);
+
+// DELETE
 router.delete("/", equipmentController.deleteEquipment);
 
 module.exports = router;
