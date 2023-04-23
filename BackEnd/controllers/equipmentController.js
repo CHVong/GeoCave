@@ -139,7 +139,7 @@ module.exports = {
 
       const { name, image, cloudinaryId, description, location, stock, vendor, job, user } =
         req.body;
-      if (!name || !description || !location) {
+      if (!name || !description || !location || !stock) {
         return res.status(400).json({ message: "All fields are required" });
       }
       const newEquipment = await equipmentModel.create({
