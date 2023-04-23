@@ -144,9 +144,12 @@ const Equipment = () => {
           ))
         ) : (
           <div className="col-span-full">
-            There are no equipment items available for display. Please try refreshing the page.
+            There are no equipment items available for display. Please refresh the page or try again
+            later.
           </div>
         )}
+
+        {/* CONSIDER ADDING PAGINATION? */}
       </div>
     </div>
   );
