@@ -126,8 +126,12 @@ const Equipment = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
+  }, [currentPage]);
+
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn" id="scroller">
       <PageHeading heading={"Equipment"} />
       <button
         onClick={handleToggle}
