@@ -131,7 +131,7 @@ module.exports = {
   },
   createEquipment: async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       // console.log(req.file);
       // console.log(req.file.path);
       let uploadedImage = {};

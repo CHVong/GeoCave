@@ -52,7 +52,7 @@ const EquipmentCard = ({
                   >
                     <FontAwesomeIcon
                       icon={faFloppyDisk}
-                      className="animate-fadeIn text-green-500"
+                      className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
                     />
                   </div>
                 </>
@@ -63,7 +63,10 @@ const EquipmentCard = ({
                     className="inline p-2 cursor-pointer animate-fadeIn"
                     onClick={(e) => setEditStock(!editStock)}
                   >
-                    <FontAwesomeIcon icon={faPenToSquare} />
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      className="hover:scale-95 hover:text-gray-500 transition"
+                    />
                   </div>
                 </>
               )}
