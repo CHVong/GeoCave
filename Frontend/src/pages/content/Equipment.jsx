@@ -171,7 +171,7 @@ const Equipment = () => {
         )}
         {/* CONSIDER ADDING PAGINATION? */}
         <div className="flex justify-center mt-4 col-span-full">
-          {currentPage > 1 && (
+          {currentPage > 1 && data && (
             <button
               className="mr-2 bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => setCurrentPage(currentPage - 1)}

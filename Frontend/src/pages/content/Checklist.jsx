@@ -187,7 +187,7 @@ const Checklist = () => {
                   setOptionalInput(e.target.value);
                 }}
                 autoComplete="off"
-                placeholder="Enter your new checklist item"
+                placeholder="Enter your new optional checklist item"
                 required
                 className={`rounded px-8 py-2 bg-black outline-none ring-1`}
               />

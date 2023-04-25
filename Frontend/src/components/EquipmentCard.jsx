@@ -22,7 +22,7 @@ const EquipmentCard = ({
   const [stockNumber, setStockNumber] = useState(stock);
 
   return (
-    <div className="border-4 border-primary rounded-md grid hover:scale-95 transition-all hover:border-tertiary gap-2 animate-fadeIn">
+    <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
       <div className="flex flex-col justify-stretch items-center">
         <h2 className="text-2xl font-bold bg-slate-800 w-full p-1">{name}</h2>
         <div className="flex justify-around items-center w-full h-full">
