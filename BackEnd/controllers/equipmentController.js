@@ -57,7 +57,11 @@ module.exports = {
   },
   getNameAZ: async (req, res) => {
     try {
-      const equipment = await equipmentModel.find().sort({ name: 1 }).lean();
+      const equipment = await equipmentModel
+        .find()
+        .collation({ locale: "en", strength: 1 })
+        .sort({ name: 1 })
+        .lean();
       if (!equipment?.length) {
         return res.status(400).json({ message: "No equipment found" });
       }
@@ -69,7 +73,11 @@ module.exports = {
   },
   getNameZA: async (req, res) => {
     try {
-      const equipment = await equipmentModel.find().sort({ name: -1 }).lean();
+      const equipment = await equipmentModel
+        .find()
+        .collation({ locale: "en", strength: 1 })
+        .sort({ name: -1 })
+        .lean();
       if (!equipment?.length) {
         return res.status(400).json({ message: "No equipment found" });
       }
