@@ -187,7 +187,7 @@ const ERAnalysis = () => {
       <div className="border-2 border-primary m-auto rounded-lg p-4 mt-8">
         <h2 className="text-lg font-bold">Calculated Apparent Resistivity &#961; (&#x2126;-cm)</h2>
         <h2 className="font-bold">
-          N-S:{" "}
+          N-S :{" "}
           <span
             className={`font-normal ${
               typeof calculatedNSResistance === "number" ? "text-green-500" : "text-red-500"
@@ -197,7 +197,7 @@ const ERAnalysis = () => {
           </span>
         </h2>
         <h2 className="font-bold">
-          E-W:{" "}
+          E-W :{" "}
           <span
             className={`font-normal ${
               typeof calculatedEWResistance === "number" ? "text-green-500" : "text-red-500"
