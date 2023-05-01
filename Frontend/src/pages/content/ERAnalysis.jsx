@@ -69,7 +69,7 @@ const ERAnalysis = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 animate-fadeIn">
       <h1 className="p-4 text-2xl underline">Electrical Resistivity Data Analysis</h1>
       <div className="grid gap-6 lg:grid-cols-2 m-auto">
         <div className="flex flex-col gap-2">
@@ -185,7 +185,7 @@ const ERAnalysis = () => {
       </div>
 
       <div className="border m-auto rounded-lg p-4 mt-8">
-        <h2 className="text-lg font-bold">Calculated Apparrent Resistivity &#961; (&#x2126;-cm)</h2>
+        <h2 className="text-lg font-bold">Calculated Apparent Resistivity &#961; (&#x2126;-cm)</h2>
         <h2 className="font-bold">
           N-S:{" "}
           <span
