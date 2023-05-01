@@ -12,7 +12,9 @@ const PercolationAnalysis = () => {
   const [casingDiameter, setCasingDiameter] = useState("");
   const [deltaWaterLevel, setDeltaWaterLevel] = useState("Require Readings");
   const [percolationRate, setPercolationRate] = useState("Require Time and Δ Water Level");
-  const [infiltrationRate, setInfiltrationRate] = useState("Require All Fields");
+  const [infiltrationRate, setInfiltrationRate] = useState(
+    "Require Δ Water Level, diameter, time, and head"
+  );
 
   useEffect(() => {
     if (initialReading !== "" && finalReading !== "" && wellStickUp !== "") {
@@ -51,7 +53,7 @@ const PercolationAnalysis = () => {
           (deltaTime * (casingDiameter / 2 + 2 * head))
         ).toFixed(4)
       );
-    } else setInfiltrationRate("Require All Fields");
+    } else setInfiltrationRate("Require Δ Water Level, diameter, time, and head");
   }, [casingDiameter, wellStickUp, wellDepth, deltaTime, initialReading, finalReading]);
 
   return (
