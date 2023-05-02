@@ -4,6 +4,7 @@ import ERAnalysis from "./ERAnalysis";
 import PercolationAnalysis from "./PercolationAnalysis";
 import PileInstallationAnalysis from "./PileInstallationAnalysis";
 import PileTestAnalysis from "./PileTestAnalysis";
+import SamplingBlowCount from "./SamplingBlowCount";
 
 const DataAnalysis = () => {
   const [task, setTask] = useState("");
@@ -29,6 +30,7 @@ const DataAnalysis = () => {
           <option name="perctest">Percolation/Infiltration Rate</option>
           <option name="pileinstall">Pile Installation Rate</option>
           <option name="piletest">Pile Analysis</option>
+          <option name="samplingblowcount">Sampling Blow Count</option>
         </select>
       </div>
       <div>
@@ -40,6 +42,8 @@ const DataAnalysis = () => {
           <PileInstallationAnalysis />
         ) : task === "Pile Analysis" ? (
           <PileTestAnalysis />
+        ) : task === "Sampling Blow Count" ? (
+          <SamplingBlowCount />
         ) : null}
       </div>
     </div>
