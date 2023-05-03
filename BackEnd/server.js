@@ -24,6 +24,7 @@ app.use("/user", require("./routes/userRoutes"));
 app.use("/checklist", require("./routes/checklistRoutes"));
 app.use("/equipment", require("./routes/equipmentRoutes"));
 app.use("/checkin", require("./routes/checkInRoutes"));
+app.use("/safety", require("./routes/safetyRoutes"));
 
 app.all("*", async (req, res) => {
   try {
