@@ -14,6 +14,18 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  getLatestSafety: async (req, res) => {
+    try {
+      const safety = await safetyModel.find().sort({ updatedAt: -1 }).limit(1).lean();
+      if (!safety?.length) {
+        return res.status(400).json({ message: "No safety incident found" });
+      }
+      res.json(safety);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   createSafety: async (req, res) => {
     try {
       let uploadedImage = {};

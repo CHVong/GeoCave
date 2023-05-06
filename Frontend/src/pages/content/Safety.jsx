@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
 import PageHeading from "../../components/PageHeading";
-import AddSafetyIncident from "../../components/AddSafetyIncident";
+import AddSafetyIncidentForm from "../../components/AddSafetyIncidentForm";
+import RecentSafetyIncident from "../../components/RecentSafetyIncident";
+
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
+
+const SAFETY_URL = "/safety/latest";
 
 const Safety = () => {
+  const [data, setData] = useState([]);
   const [showAdd, setShowAdd] = useState(false);
+
+  const { auth } = useAuth();
 
   useEffect(() => {
     document.title = "GeoCave - Safety";
-    // fetchData();
+    fetchData();
   }, []);
 
   const handleToggle = () => {
@@ -16,7 +25,7 @@ const Safety = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(EQUIPMENT_URL, {
+      const response = await axios.get(SAFETY_URL, {
         headers: {
           "Content-Type": "application/json",
 
@@ -25,7 +34,7 @@ const Safety = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -42,7 +51,8 @@ const Safety = () => {
       >
         {showAdd ? `Close` : `Add Safety Incident`}
       </button>
-      {showAdd ? <AddSafetyIncident fetch={fetchData} /> : ``}
+      {showAdd ? <AddSafetyIncidentForm fetch={fetchData} /> : ``}
+      <RecentSafetyIncident data={data} />
     </div>
   );
 };

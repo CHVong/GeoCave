@@ -6,10 +6,10 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import UploadProgressBar from "./UploadProgressBar";
 
-const EQUIPMENT_URL = "/#";
+const SAFETY_URL = "/safety";
 
-const AddSafetyIncident = ({ fetch }) => {
-  const [checkedJobs, setCheckedJobs] = useState([]);
+const AddSafetyIncidentForm = ({ fetch }) => {
+  const [checkedHazards, setCheckedHazards] = useState([]);
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const { auth } = useAuth();
@@ -23,10 +23,12 @@ const AddSafetyIncident = ({ fetch }) => {
     // console.log(payload.imgUpload);
 
     payload.user = username;
-    payload.job = checkedJobs;
+    payload.hazards = checkedHazards;
+
+    console.log(payload);
 
     try {
-      const response = await axios.post(EQUIPMENT_URL, payload, {
+      const response = await axios.post(SAFETY_URL, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${auth.accessToken}`,
@@ -57,9 +59,9 @@ const AddSafetyIncident = ({ fetch }) => {
   const handleCheckboxChange = (e) => {
     const { value } = e.target;
     if (e.target.checked) {
-      setCheckedJobs([...checkedJobs, value]);
+      setCheckedHazards([...checkedHazards, value]);
     } else {
-      setCheckedJobs(checkedJobs.filter((job) => job !== value));
+      setCheckedHazards(checkedHazards.filter((job) => job !== value));
     }
   };
 
@@ -69,49 +71,49 @@ const AddSafetyIncident = ({ fetch }) => {
         onSubmit={handleSubmit}
         className="flex flex-col md:w-1/2 xl:w-1/3 m-auto gap-2 border-2 border-primary rounded-lg p-4"
       >
-        <label htmlFor="projectname" className="text-left italic">
+        <label htmlFor="projectName" className="text-left italic">
           Project Name *
         </label>
         <input
           type="text"
-          name="projectname"
-          id="projectname"
+          name="projectName"
+          id="projectName"
           autoComplete="off"
           placeholder="Enter project name"
           required
           className={`rounded px-8 py-2 bg-black outline-none ring-1`}
         />
-        <label htmlFor="projectnumber" className="text-left italic">
+        <label htmlFor="projectNumber" className="text-left italic">
           Project Number *
         </label>
         <input
           type="text"
-          name="projectnumber"
-          id="projectnumber"
+          name="projectNumber"
+          id="projectNumber"
           autoComplete="off"
           placeholder="Enter project number"
           required
           className={`rounded px-8 py-2 bg-black outline-none ring-1`}
         />
-        <label htmlFor="incidentdescription" className="text-left italic">
+        <label htmlFor="description" className="text-left italic">
           Safety Incident Description *
         </label>
         <textarea
           type="text"
-          name="incidentdescription"
-          id="incidentdescription"
+          name="description"
+          id="description"
           autoComplete="off"
           placeholder="Give a description of the event that took place"
           required
           className={`rounded px-8 py-2 bg-black outline-none ring-1`}
         />
-        <label htmlFor="suggestiveaction" className="text-left italic">
+        <label htmlFor="suggestiveAction" className="text-left italic">
           Suggestive Action *
         </label>
         <textarea
           type="text"
-          name="suggestiveaction"
-          id="suggestiveaction"
+          name="suggestiveAction"
+          id="suggestiveAction"
           autoComplete="off"
           placeholder="Give a suggestion for what could be done differently to have a safer working environment"
           required
@@ -119,32 +121,32 @@ const AddSafetyIncident = ({ fetch }) => {
         />
 
         <div className="p-2">
-          <label htmlFor="job" className="text-left italic">
+          <label htmlFor="hazards" className="text-left italic">
             Check all applicable hazards
           </label>
           <CheckboxForAddEquipment
             name={"Biological"}
-            checked={checkedJobs.includes("Biological")}
+            checked={checkedHazards.includes("Biological")}
             handleCheckboxChange={handleCheckboxChange}
           />
           <CheckboxForAddEquipment
             name={"Chemical"}
-            checked={checkedJobs.includes("Chemical")}
+            checked={checkedHazards.includes("Chemical")}
             handleCheckboxChange={handleCheckboxChange}
           />
           <CheckboxForAddEquipment
             name={"Electrical"}
-            checked={checkedJobs.includes("Electrical")}
+            checked={checkedHazards.includes("Electrical")}
             handleCheckboxChange={handleCheckboxChange}
           />
           <CheckboxForAddEquipment
             name={"Mechanical"}
-            checked={checkedJobs.includes("Mechanical")}
+            checked={checkedHazards.includes("Mechanical")}
             handleCheckboxChange={handleCheckboxChange}
           />
           <CheckboxForAddEquipment
             name={"Physical"}
-            checked={checkedJobs.includes("Physical")}
+            checked={checkedHazards.includes("Physical")}
             handleCheckboxChange={handleCheckboxChange}
           />
         </div>
@@ -167,4 +169,4 @@ const AddSafetyIncident = ({ fetch }) => {
   );
 };
 
-export default AddSafetyIncident;
+export default AddSafetyIncidentForm;
