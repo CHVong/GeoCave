@@ -4,16 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RecentSafetyIncident = ({ data }) => {
   return (
-    <div>
-      <h2>Latest Reported Safety Incident</h2>
+    <div className="w-1/2 m-auto">
+      <h1 className="p-4 text-2xl underline">Latest Reported Safety Incident</h1>
       {data && data.length > 0 ? (
-        <div>
-          <h2>Project Name: {data[0].projectName}</h2>
-          <h2>Project Number: {data[0].projectNumber}</h2>
+        <div className="text-left border-2 p-8 rounded-md">
+          <div className="grid grid-cols-2">
+            <h2>Project Name: {data[0].projectName}</h2>
+            <h2 className="cols-span-2 text-end">
+              Hazards:{" "}
+              {data[0].hazards.length > 0 ? data[0].hazards.join(", ") : "No reported hazard tags"}
+            </h2>
+            <h2>Project Number: {data[0].projectNumber}</h2>
+          </div>
+
           <h2>Incident Description: {data[0].description}</h2>
           <h2>Suggestive Action: {data[0].suggestiveAction}</h2>
-          <h2>Hazards: {data[0].hazards.join(", ")}</h2>
-          <div className="relative group w-80">
+
+          <div className="relative group w-80 m-auto">
             <img
               src={`${
                 data[0].image ||
@@ -44,7 +51,7 @@ const RecentSafetyIncident = ({ data }) => {
           </div>
         </div>
       ) : (
-        <p>No safety incident found</p>
+        <p>Loading...</p>
       )}
     </div>
   );

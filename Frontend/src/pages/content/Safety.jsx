@@ -49,7 +49,7 @@ const Safety = () => {
           showAdd ? `bg-red-700 hover:bg-red-600` : ""
         }`}
       >
-        {showAdd ? `Close` : `Add Safety Incident`}
+        {showAdd ? `Close` : `Add New Incident`}
       </button>
       {showAdd ? <AddSafetyIncidentForm fetch={fetchData} /> : ``}
       <RecentSafetyIncident data={data} />
