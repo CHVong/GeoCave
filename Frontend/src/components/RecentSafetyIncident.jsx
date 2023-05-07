@@ -7,7 +7,7 @@ const RecentSafetyIncident = ({ data }) => {
   const createdAtMoment = moment(data[0]?.createdAt);
 
   return (
-    <div className="lg:w-1/2 m-auto">
+    <div className="lg:w-1/2 m-auto animate-fadeIn">
       <h1 className="p-8 text-2xl underline">Latest Reported Safety Incident</h1>
       {data && data.length > 0 ? (
         <div className="text-left border-2 border-primary p-4 lg:p-8 rounded-md relative">
@@ -26,13 +26,13 @@ const RecentSafetyIncident = ({ data }) => {
                           e === "Biological"
                             ? "text-green-600"
                             : e === "Chemical"
-                            ? "text-red-600"
+                            ? "text-red-500"
                             : e === "Electrical"
                             ? "text-yellow-600"
                             : e === "Mechanical"
                             ? "text-blue-600"
                             : e === "Physical"
-                            ? "text-slate-900"
+                            ? "text-slate-400"
                             : ""
                         }`}
                       >
