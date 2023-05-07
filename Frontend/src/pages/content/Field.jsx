@@ -61,8 +61,8 @@ const Field = () => {
         />
 
         <DashboardLinks
-          url={"/dash/supplies"}
-          name={"Supplies"}
+          url={"/dash/training"}
+          name={"Training"}
           icon={faBoxesStacked}
           iconColor={"group-hover:text-orange-300 group-focus:text-orange-300"}
         />

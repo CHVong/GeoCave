@@ -19,7 +19,7 @@ import Lab from "./pages/content/Lab";
 import Office from "./pages/content/Office";
 import Safety from "./pages/content/Safety";
 import Templates from "./pages/content/Templates";
-import Supplies from "./pages/content/Supplies";
+import Training from "./pages/content/Training";
 import Field from "./pages/content/Field";
 import Proposals from "./pages/content/Proposals";
 import Permits from "./pages/content/Permits";
@@ -64,8 +64,8 @@ const App = () => {
                 <Route path="safety">
                   <Route index element={<Safety />} />
                 </Route>
-                <Route path="supplies">
-                  <Route index element={<Supplies />} />
+                <Route path="training">
+                  <Route index element={<Training />} />
                 </Route>
                 <Route path="templates">
                   <Route index element={<Templates />} />

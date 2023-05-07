@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import PageHeading from "../../components/PageHeading";
 
-const Permits = () => {
+const Training = () => {
   useEffect(() => {
-    document.title = "GeoCave - Permits";
+    document.title = "GeoCave - Training";
   }, []);
   return (
     <div>
-      <PageHeading heading={"Permits"} />
+      <PageHeading heading={"Training"} />
       <div>Sorry, this page is currently unavailable for the public.</div>
     </div>
   );
 };
 
-export default Permits;
+export default Training;
