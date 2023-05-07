@@ -58,14 +58,14 @@ const RecentSafetyIncident = ({ data }) => {
             <span className="text-base text-slate-500">{data[0].suggestiveAction}</span>
           </h2>
 
-          <div className="relative group w-full lg:w-80 m-auto">
+          <div className="relative group w-full lg:w-80 m-auto p-4">
             <img
               src={`${
                 data[0].image ||
                 "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png"
               }`}
               alt={`Image of ${data[0].projectName}`}
-              className=" object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2 rounded-xl"
+              className=" object-scale-down group-hover:scale-95 cursor-pointer border-primary transition rounded-xl"
               onClick={() =>
                 window.open(
                   data[0].image ||
@@ -75,7 +75,7 @@ const RecentSafetyIncident = ({ data }) => {
               }
             />
             <div
-              className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center group-hover:scale-95 cursor-pointer"
+              className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center group-hover:scale-95 cursor-pointer rounded-lg"
               onClick={() =>
                 window.open(
                   data[0].image ||
