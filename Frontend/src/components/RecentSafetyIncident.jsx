@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
+import Loading from "./Loading";
 
 const RecentSafetyIncident = ({ data }) => {
   const createdAtMoment = moment(data[0]?.createdAt);
@@ -97,7 +98,7 @@ const RecentSafetyIncident = ({ data }) => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </div>
   );

@@ -14,11 +14,18 @@ module.exports = {
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-in-out",
+        loader: "loader 0.6s infinite alternate",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
+        },
+        loader: {
+          to: {
+            opacity: 0.1,
+            transform: "translate3d(0, -1rem, 0)",
+          },
         },
       },
       colors: {
