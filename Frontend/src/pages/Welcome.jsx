@@ -10,7 +10,7 @@ import {
   faHelmetSafety,
   faListCheck,
   faToolbox,
-  faBoxesStacked,
+  faGraduationCap,
   faFlaskVial,
   faHouseLaptop,
   faPaste,
@@ -86,8 +86,8 @@ const Welcome = () => {
         <DashboardLinks
           url={"/dash/training"}
           name={"Training"}
-          icon={faBoxesStacked}
-          iconColor={"group-hover:text-orange-300 group-focus:text-orange-300"}
+          icon={faGraduationCap}
+          iconColor={"group-hover:text-stone-500 group-focus:text-stone-500"}
         />
         <DashboardLinks
           url={"/dash/permits"}
@@ -105,7 +105,7 @@ const Welcome = () => {
           url={"/dash/SOPs"}
           name={"SOPs"}
           icon={faBook}
-          iconColor={"group-hover:text-stone-400 group-focus:text-stone-400"}
+          iconColor={"group-hover:text-orange-300 group-focus:text-orange-300"}
         />
         <DashboardLinks
           url={"/dash/templates"}
