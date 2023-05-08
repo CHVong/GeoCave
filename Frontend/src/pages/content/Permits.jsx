@@ -8,7 +8,10 @@ const Permits = () => {
   return (
     <div>
       <PageHeading heading={"Permits"} />
-      <div>Sorry, this page is currently unavailable for the public.</div>
+      <div>
+        Sorry, this page is currently unavailable for the public. <br />
+        You are either using a guest demo or you do not have the permitted roles.
+      </div>
     </div>
   );
 };
