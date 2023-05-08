@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
+import Loading from "./Loading";
 
 const Users = () => {
   const [users, setUsers] = useState();
@@ -44,7 +45,7 @@ const Users = () => {
           ))}
         </ul>
       ) : (
-        <p>No users to display</p>
+        <Loading />
       )}
     </article>
   );
