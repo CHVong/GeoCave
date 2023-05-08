@@ -7,7 +7,7 @@ const Training = () => {
   }, []);
   return (
     <div>
-      <PageHeading heading={"Training"} />
+      <PageHeading heading={"Training and Professional Development"} />
       <div>Sorry, this page is currently unavailable for the public.</div>
     </div>
   );

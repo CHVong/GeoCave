@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Users from "../components/Users";
 import { useEffect } from "react";
+import PageHeading from "../components/PageHeading";
 
 const Admin = () => {
   useEffect(() => {
@@ -9,7 +10,7 @@ const Admin = () => {
 
   return (
     <section>
-      <h1>Admins Page</h1>
+      <PageHeading heading={"Admin Dashboard"} />
       <br />
       <Users />
       <br />
