@@ -8,6 +8,7 @@ import EquipmentCard from "../../components/EquipmentCard";
 import EquipmentFilter from "../../components/EquipmentFilter";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "../../components/Loading";
 
 const EQUIPMENT_URL = "/equipment";
 const SEARCH_EQUIPMENT_URL = "/equipment/search";
@@ -49,7 +50,7 @@ const Equipment = () => {
         },
         withCredentials: true,
       });
-      setData(response.data);
+      // setData(response.data);
       console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -164,10 +165,11 @@ const Equipment = () => {
             />
           ))
         ) : (
-          <div className="col-span-full">
-            There are no equipment items available for display. Please refresh the page or try again
-            later.
-          </div>
+          <>
+            <div className="col-span-full">
+              <Loading />
+            </div>
+          </>
         )}
         {/* CONSIDER ADDING PAGINATION? */}
         <div className="flex justify-center mt-4 col-span-full">
