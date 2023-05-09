@@ -4,7 +4,7 @@ module.exports = {
   getCheckInItems: async (req, res) => {
     try {
       const { user } = req.body;
-      const checkInItems = await checkInModel.find({ user }).lean();
+      const checkInItems = await checkInModel.find().lean();
       if (!checkInItems?.length) {
         return res.status(400).json({ message: "No checklist items found" });
       }
