@@ -12,6 +12,7 @@ import jwt_decode from "jwt-decode";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import FormCheckOptional from "../../components/FormCheckOptional";
+import Loading from "../../components/Loading";
 
 const CHECKLIST_URL = "/checklist";
 
@@ -22,6 +23,7 @@ const Checklist = () => {
   const [success, setSuccess] = useState(false);
   const { auth } = useAuth();
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
   const username = decoded?.UserInfo.username || [];
@@ -46,6 +48,7 @@ const Checklist = () => {
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(CHECKLIST_URL, {
         params: { user: username, job: task },
         headers: {
@@ -60,6 +63,8 @@ const Checklist = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -149,6 +154,7 @@ const Checklist = () => {
         <>
           <h1 className="m-4 underline text-xl font-bold">Optional</h1>
           <div className="animate-fadeIn">
+            {isLoading && <Loading />}
             {data.length !== 0
               ? data.map((e, index) => (
                   <FormCheckOptional
