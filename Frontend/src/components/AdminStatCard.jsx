@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 
-const AdminStatCard = ({ title, url, icon }) => {
+const AdminStatCard = ({ title, url, icon, onClick }) => {
   const [data, setData] = useState([]);
   const [displayedNumber, setDisplayedNumber] = useState(0);
   const [animationDuration, setAnimationDuration] = useState(1000);
@@ -60,11 +60,15 @@ const AdminStatCard = ({ title, url, icon }) => {
   };
 
   return (
-    <div className="h-40 w-64 rounded-lg flex flex-col justify-around bg-gray-800 shadow-2xl hover:ring hover:ring-gray-500 group">
+    <div className="h-40 w-64 rounded-lg flex flex-col justify-around bg-gray-800 shadow-2xl hover:ring hover:ring-gray-500 group p-2">
       <h2 className="text-5xl">{displayedNumber}</h2>
       {icon}
-      <h2 className="text-xl">{title}</h2>
-      <h2 className="bg-gray-700 w-max mx-auto rounded-lg px-3 py-1 cursor-pointer hover:scale-90 hover:text-gray-700 hover:bg-gray-300 transition hover:font-medium">
+      <h2 className="text-lg font-medium">{title}</h2>
+
+      <h2
+        className="bg-gray-700 w-max mx-auto rounded-lg px-3 py-1 cursor-pointer hover:scale-90 hover:text-gray-700 hover:bg-gray-300 transition hover:font-medium"
+        onClick={() => onClick(title)}
+      >
         Manage
       </h2>
     </div>
