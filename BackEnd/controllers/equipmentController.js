@@ -201,13 +201,13 @@ module.exports = {
   },
   updateStock: async (req, res) => {
     try {
-      const { id, name, image, cloudinaryId, description, location, stock, vendor, job } = req.body;
+      const { id, fieldToUpdate, contentToUpdate } = req.body;
 
-      if (stock === "") {
+      if (contentToUpdate === "") {
         return;
       }
 
-      if (!id || !name || !description || !location || !stock) {
+      if (!id || !fieldToUpdate || !contentToUpdate) {
         return res.status(400).json({ message: "All fields are required" });
       }
       const equipment = await equipmentModel.findById(id).exec();
@@ -215,9 +215,11 @@ module.exports = {
         return res.status(400).json({ message: "Equipment not found" });
       }
 
-      equipment.stock = stock;
-
-      const updatedEquipment = await equipment.save();
+      const updatedEquipment = await equipmentModel.findOneAndUpdate(
+        { _id: id },
+        { [fieldToUpdate]: contentToUpdate }, //passing fieldToUpdate as a literal string, which is not interpreted as a variable. By wrapping fieldToUpdate in square brackets [fieldToUpdate], it will be interpreted as the value of the variable, and the corresponding field will be updated in the document.
+        { new: true }
+      );
       res.json(updatedEquipment);
     } catch (error) {
       console.error(error);
@@ -239,8 +241,6 @@ module.exports = {
       if (!equipment) {
         return res.status(400).json({ message: "Equipment not found" });
       }
-
-      equipment.vendor = vendor;
 
       const updatedEquipment = await equipmentModel.findOneAndUpdate(
         { _id: id },

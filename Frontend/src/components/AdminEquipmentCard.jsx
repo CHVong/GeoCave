@@ -16,8 +16,7 @@ const AdminEquipmentCard = ({
   createdByUser,
   location,
   id,
-  updateStock,
-  updateVendor,
+  updateItem,
 }) => {
   const [editStock, setEditStock] = useState(false);
   const [editVendor, setEditVendor] = useState(false);
@@ -59,7 +58,7 @@ const AdminEquipmentCard = ({
                     className="inline p-2 cursor-pointer"
                     onClick={(e) => {
                       setEditStock(!editStock);
-                      updateStock(e, id, name, description, location, stockNumber);
+                      updateItem(e, id, "stock", stockNumber, "/equipment/stock");
                     }}
                   >
                     <FontAwesomeIcon

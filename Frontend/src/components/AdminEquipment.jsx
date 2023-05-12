@@ -94,43 +94,15 @@ const AdminEquipment = () => {
     }
   };
 
-  const updateStock = async (e, id, name, description, location, stockNumber) => {
+  const updateItem = async (e, id, fieldToUpdate, contentToUpdate, url) => {
     if (e) {
       e.preventDefault();
     }
-    console.log(id, name, description, location, stockNumber);
+    console.log(id, fieldToUpdate, contentToUpdate, url);
     try {
       const response = await axios.patch(
-        UPDATE_STOCK_URL,
-        { id: id, name: name, description: description, location: location, stock: stockNumber },
-        {
-          headers: {
-            "Content-Type": "application/json",
-
-            Authorization: `Bearer ${auth.accessToken}`,
-          },
-          withCredentials: true,
-        }
-      );
-      setData((prevData) => {
-        const newData = [...prevData];
-        const index = newData.findIndex((item) => item._id === response.data._id);
-        newData[index] = response.data;
-        return newData;
-      });
-    } catch (error) {
-      console.error("Error Updating Data:", error);
-    }
-  };
-  const updateVendor = async (e, vendor, id) => {
-    if (e) {
-      e.preventDefault();
-    }
-    console.log(id, vendor);
-    try {
-      const response = await axios.patch(
-        UPDATE_VENDOR_URL,
-        { id: id, vendor: vendor },
+        url,
+        { id: id, fieldToUpdate: fieldToUpdate, contentToUpdate: contentToUpdate },
         {
           headers: {
             "Content-Type": "application/json",
@@ -181,8 +153,7 @@ const AdminEquipment = () => {
         {data.length !== 0 ? (
           currentItems.map((e, index) => (
             <AdminEquipmentCard
-              updateStock={updateStock}
-              updateVendor={updateVendor}
+              updateItem={updateItem}
               key={e._id}
               id={e._id}
               stock={e.stock}
