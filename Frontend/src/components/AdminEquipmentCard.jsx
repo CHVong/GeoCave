@@ -5,7 +5,7 @@ import {
   faFloppyDisk,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CheckboxForAddEquipment from "./CheckboxForAddEquipment";
+import CheckboxForEditEquipment from "./CheckboxForEditEquipment";
 
 const AdminEquipmentCard = ({
   job,
@@ -98,18 +98,7 @@ const AdminEquipmentCard = ({
               <span className="text-tertiary">Vendor: </span>
               {editVendor ? (
                 <>
-                  <input
-                    type="text"
-                    name="stock"
-                    id="stock"
-                    autoComplete="off"
-                    placeholder={vendor}
-                    required
-                    className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn`}
-                    onChange={(e) => {
-                      setVendorText(e.target.value);
-                    }}
-                  />
+                  {" "}
                   <div
                     className="inline p-2 cursor-pointer"
                     onClick={(e) => {
@@ -122,6 +111,18 @@ const AdminEquipmentCard = ({
                       className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
                     />
                   </div>
+                  <input
+                    type="text"
+                    name="stock"
+                    id="stock"
+                    autoComplete="off"
+                    placeholder={vendor}
+                    required
+                    className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn mt-1`}
+                    onChange={(e) => {
+                      setVendorText(e.target.value);
+                    }}
+                  />
                 </>
               ) : (
                 <>
@@ -142,18 +143,6 @@ const AdminEquipmentCard = ({
               <span className="text-tertiary">Location: </span>
               {editLocation ? (
                 <>
-                  <input
-                    type="text"
-                    name="stock"
-                    id="stock"
-                    autoComplete="off"
-                    placeholder={location}
-                    required
-                    className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn`}
-                    onChange={(e) => {
-                      setLocationText(e.target.value);
-                    }}
-                  />
                   <div
                     className="inline p-2 cursor-pointer"
                     onClick={(e) => {
@@ -166,6 +155,18 @@ const AdminEquipmentCard = ({
                       className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
                     />
                   </div>
+                  <input
+                    type="text"
+                    name="stock"
+                    id="stock"
+                    autoComplete="off"
+                    placeholder={location}
+                    required
+                    className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn mt-1`}
+                    onChange={(e) => {
+                      setLocationText(e.target.value);
+                    }}
+                  />
                 </>
               ) : (
                 <>
@@ -233,42 +234,6 @@ const AdminEquipmentCard = ({
           <span className="text-lg underline underline-offset-4 ">Jobs:</span>
           {editJobs ? (
             <>
-              <CheckboxForAddEquipment
-                name={"Drilling"}
-                checked={checkedJobs.includes("Drilling")}
-                handleCheckboxChange={handleCheckboxChange}
-                id={id}
-              />
-              <CheckboxForAddEquipment
-                name={"Electrical Resistivity Test"}
-                checked={checkedJobs.includes("Electrical Resistivity Test")}
-                handleCheckboxChange={handleCheckboxChange}
-                id={id}
-              />
-              <CheckboxForAddEquipment
-                name={"Percolation Test"}
-                checked={checkedJobs.includes("Percolation Test")}
-                handleCheckboxChange={handleCheckboxChange}
-                id={id}
-              />
-              <CheckboxForAddEquipment
-                name={"Infiltration Test"}
-                checked={checkedJobs.includes("Infiltration Test")}
-                handleCheckboxChange={handleCheckboxChange}
-                id={id}
-              />
-              <CheckboxForAddEquipment
-                name={"Pile Test"}
-                checked={checkedJobs.includes("Pile Test")}
-                handleCheckboxChange={handleCheckboxChange}
-                id={id}
-              />
-              <CheckboxForAddEquipment
-                name={"USA Marking"}
-                checked={checkedJobs.includes("USA Marking")}
-                handleCheckboxChange={handleCheckboxChange}
-                id={id}
-              />
               <div
                 className="inline p-2 cursor-pointer"
                 onClick={(e) => {
@@ -279,6 +244,45 @@ const AdminEquipmentCard = ({
                 <FontAwesomeIcon
                   icon={faFloppyDisk}
                   className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
+                />
+              </div>
+              <div className=" grid grid-cols-2 mt-1">
+                <CheckboxForEditEquipment
+                  name={"Drilling"}
+                  checked={checkedJobs.includes("Drilling")}
+                  handleCheckboxChange={handleCheckboxChange}
+                  id={id}
+                />
+
+                <CheckboxForEditEquipment
+                  name={"Percolation Test"}
+                  checked={checkedJobs.includes("Percolation Test")}
+                  handleCheckboxChange={handleCheckboxChange}
+                  id={id}
+                />
+                <CheckboxForEditEquipment
+                  name={"Infiltration Test"}
+                  checked={checkedJobs.includes("Infiltration Test")}
+                  handleCheckboxChange={handleCheckboxChange}
+                  id={id}
+                />
+                <CheckboxForEditEquipment
+                  name={"Pile Test"}
+                  checked={checkedJobs.includes("Pile Test")}
+                  handleCheckboxChange={handleCheckboxChange}
+                  id={id}
+                />
+                <CheckboxForEditEquipment
+                  name={"USA Marking"}
+                  checked={checkedJobs.includes("USA Marking")}
+                  handleCheckboxChange={handleCheckboxChange}
+                  id={id}
+                />
+                <CheckboxForEditEquipment
+                  name={"Electrical Resistivity Test"}
+                  checked={checkedJobs.includes("Electrical Resistivity Test")}
+                  handleCheckboxChange={handleCheckboxChange}
+                  id={id}
                 />
               </div>
             </>
@@ -301,18 +305,6 @@ const AdminEquipmentCard = ({
           <span className="text-lg underline underline-offset-4 ">Description:</span>
           {editDescription ? (
             <>
-              <input
-                type="text"
-                name="stock"
-                id="stock"
-                autoComplete="off"
-                placeholder={description}
-                required
-                className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn`}
-                onChange={(e) => {
-                  setDescriptionText(e.target.value);
-                }}
-              />
               <div
                 className="inline p-2 cursor-pointer"
                 onClick={(e) => {
@@ -325,6 +317,18 @@ const AdminEquipmentCard = ({
                   className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
                 />
               </div>
+              <input
+                type="text"
+                name="stock"
+                id="stock"
+                autoComplete="off"
+                placeholder={description}
+                required
+                className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn mt-1`}
+                onChange={(e) => {
+                  setDescriptionText(e.target.value);
+                }}
+              />
             </>
           ) : (
             <>
