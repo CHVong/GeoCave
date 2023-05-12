@@ -5,6 +5,7 @@ import {
   faFloppyDisk,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CheckboxForAddEquipment from "./CheckboxForAddEquipment";
 
 const AdminEquipmentCard = ({
   job,
@@ -31,6 +32,17 @@ const AdminEquipmentCard = ({
   const [jobsArray, setJobsArray] = useState(job);
   const [descriptionText, setDescriptionText] = useState(description);
   const [imagePicture, setImagePicture] = useState(image);
+
+  const [checkedJobs, setCheckedJobs] = useState([]);
+
+  const handleCheckboxChange = (e) => {
+    const { value } = e.target;
+    if (e.target.checked) {
+      setCheckedJobs([...checkedJobs, value]);
+    } else {
+      setCheckedJobs(checkedJobs.filter((job) => job !== value));
+    }
+  };
 
   return (
     <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
@@ -127,7 +139,48 @@ const AdminEquipmentCard = ({
               )}
             </h2>
             <h2>
-              <span className="text-tertiary">Location:</span> {location}
+              <span className="text-tertiary">Location: </span>
+              {editLocation ? (
+                <>
+                  <input
+                    type="text"
+                    name="stock"
+                    id="stock"
+                    autoComplete="off"
+                    placeholder={location}
+                    required
+                    className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn`}
+                    onChange={(e) => {
+                      setLocationText(e.target.value);
+                    }}
+                  />
+                  <div
+                    className="inline p-2 cursor-pointer"
+                    onClick={(e) => {
+                      setEditLocation(!editLocation);
+                      updateItem(e, id, "location", locationText, "/equipment");
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faFloppyDisk}
+                      className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span className="animate-fadeIn">{location}</span>
+                  <div
+                    className="inline p-2 cursor-pointer animate-fadeIn"
+                    onClick={(e) => setEditLocation(!editLocation)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      className="hover:scale-95 hover:text-gray-500 transition"
+                    />
+                  </div>
+                </>
+              )}
             </h2>
           </div>
           <div className="h-full w-[50%]">
@@ -176,12 +229,118 @@ const AdminEquipmentCard = ({
         </div>
       </div>
       <div className="text-left p-2 text-gray-400 text-sm h-full">
-        <h3>
-          <span className="text-lg underline underline-offset-4">Jobs:</span> {job.join(", ")}
-        </h3>
-        <h3 className="">
-          <span className="text-lg underline underline-offset-4 ">Description:</span> {description}
-        </h3>
+        <h2>
+          <span className="text-lg underline underline-offset-4 ">Jobs:</span>
+          {editJobs ? (
+            <>
+              <CheckboxForAddEquipment
+                name={"Drilling"}
+                checked={checkedJobs.includes("Drilling")}
+                handleCheckboxChange={handleCheckboxChange}
+                id={id}
+              />
+              <CheckboxForAddEquipment
+                name={"Electrical Resistivity Test"}
+                checked={checkedJobs.includes("Electrical Resistivity Test")}
+                handleCheckboxChange={handleCheckboxChange}
+                id={id}
+              />
+              <CheckboxForAddEquipment
+                name={"Percolation Test"}
+                checked={checkedJobs.includes("Percolation Test")}
+                handleCheckboxChange={handleCheckboxChange}
+                id={id}
+              />
+              <CheckboxForAddEquipment
+                name={"Infiltration Test"}
+                checked={checkedJobs.includes("Infiltration Test")}
+                handleCheckboxChange={handleCheckboxChange}
+                id={id}
+              />
+              <CheckboxForAddEquipment
+                name={"Pile Test"}
+                checked={checkedJobs.includes("Pile Test")}
+                handleCheckboxChange={handleCheckboxChange}
+                id={id}
+              />
+              <CheckboxForAddEquipment
+                name={"USA Marking"}
+                checked={checkedJobs.includes("USA Marking")}
+                handleCheckboxChange={handleCheckboxChange}
+                id={id}
+              />
+              <div
+                className="inline p-2 cursor-pointer"
+                onClick={(e) => {
+                  setEditJobs(!editJobs);
+                  updateItem(e, id, "job", checkedJobs, "/equipment");
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faFloppyDisk}
+                  className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="animate-fadeIn"> {job.join(", ")}</span>
+              <div
+                className="inline p-2 cursor-pointer animate-fadeIn"
+                onClick={(e) => setEditJobs(!editJobs)}
+              >
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
+                  className="hover:scale-95 hover:text-gray-500 transition"
+                />
+              </div>
+            </>
+          )}
+        </h2>
+        <h2>
+          <span className="text-lg underline underline-offset-4 ">Description:</span>
+          {editDescription ? (
+            <>
+              <input
+                type="text"
+                name="stock"
+                id="stock"
+                autoComplete="off"
+                placeholder={description}
+                required
+                className={`rounded px-2 py-0 bg-black outline-none ring-1 w-full animate-fadeIn`}
+                onChange={(e) => {
+                  setDescriptionText(e.target.value);
+                }}
+              />
+              <div
+                className="inline p-2 cursor-pointer"
+                onClick={(e) => {
+                  setEditDescription(!editDescription);
+                  updateItem(e, id, "description", descriptionText, "/equipment");
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faFloppyDisk}
+                  className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="animate-fadeIn"> {description}</span>
+              <div
+                className="inline p-2 cursor-pointer animate-fadeIn"
+                onClick={(e) => setEditDescription(!editDescription)}
+              >
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
+                  className="hover:scale-95 hover:text-gray-500 transition"
+                />
+              </div>
+            </>
+          )}
+        </h2>
         <h6 className="italic">Created by: {createdByUser}</h6>
       </div>
     </div>
