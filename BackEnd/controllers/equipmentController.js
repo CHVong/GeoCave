@@ -173,33 +173,33 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
-  updateEquipment: async (req, res) => {
-    try {
-      const { id, name, image, cloudinaryId, description, location, stock, vendor, job } = req.body;
-      if (!id || !name || !description || !location) {
-        return res.status(400).json({ message: "All fields are required" });
-      }
-      const equipment = await equipmentModel.findById(id).exec();
-      if (!equipment) {
-        return res.status(400).json({ message: "Equipment not found" });
-      }
-      equipment.name = name;
-      equipment.image = image;
-      equipment.cloudinaryId = cloudinaryId;
-      equipment.description = description;
-      equipment.location = location;
-      equipment.stock = stock;
-      equipment.vendor = vendor;
-      equipment.job = job;
+  // updateEquipment: async (req, res) => {
+  //   try {
+  //     const { id, name, image, cloudinaryId, description, location, stock, vendor, job } = req.body;
+  //     if (!id || !name || !description || !location) {
+  //       return res.status(400).json({ message: "All fields are required" });
+  //     }
+  //     const equipment = await equipmentModel.findById(id).exec();
+  //     if (!equipment) {
+  //       return res.status(400).json({ message: "Equipment not found" });
+  //     }
+  //     equipment.name = name;
+  //     equipment.image = image;
+  //     equipment.cloudinaryId = cloudinaryId;
+  //     equipment.description = description;
+  //     equipment.location = location;
+  //     equipment.stock = stock;
+  //     equipment.vendor = vendor;
+  //     equipment.job = job;
 
-      const updatedEquipment = await equipment.save();
-      res.json(`Equipment(${updatedEquipment.name}) has been saved`);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateStock: async (req, res) => {
+  //     const updatedEquipment = await equipment.save();
+  //     res.json(`Equipment(${updatedEquipment.name}) has been saved`);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  updateItem: async (req, res) => {
     try {
       const { id, fieldToUpdate, contentToUpdate } = req.body;
 
@@ -218,33 +218,6 @@ module.exports = {
       const updatedEquipment = await equipmentModel.findOneAndUpdate(
         { _id: id },
         { [fieldToUpdate]: contentToUpdate }, //passing fieldToUpdate as a literal string, which is not interpreted as a variable. By wrapping fieldToUpdate in square brackets [fieldToUpdate], it will be interpreted as the value of the variable, and the corresponding field will be updated in the document.
-        { new: true }
-      );
-      res.json(updatedEquipment);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateVendor: async (req, res) => {
-    try {
-      const { id, vendor } = req.body;
-
-      if (vendor === "") {
-        return;
-      }
-
-      if (!id || !vendor) {
-        return res.status(400).json({ message: "All fields are required" });
-      }
-      const equipment = await equipmentModel.findById(id).exec();
-      if (!equipment) {
-        return res.status(400).json({ message: "Equipment not found" });
-      }
-
-      const updatedEquipment = await equipmentModel.findOneAndUpdate(
-        { _id: id },
-        { vendor },
         { new: true }
       );
       res.json(updatedEquipment);

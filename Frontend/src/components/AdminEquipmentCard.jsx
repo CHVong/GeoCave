@@ -58,7 +58,7 @@ const AdminEquipmentCard = ({
                     className="inline p-2 cursor-pointer"
                     onClick={(e) => {
                       setEditStock(!editStock);
-                      updateItem(e, id, "stock", stockNumber, "/equipment/stock");
+                      updateItem(e, id, "stock", stockNumber, "/equipment");
                     }}
                   >
                     <FontAwesomeIcon
@@ -102,7 +102,7 @@ const AdminEquipmentCard = ({
                     className="inline p-2 cursor-pointer"
                     onClick={(e) => {
                       setEditVendor(!editVendor);
-                      updateVendor(e, vendorText, id);
+                      updateItem(e, id, "vendor", vendorText, "/equipment");
                     }}
                   >
                     <FontAwesomeIcon

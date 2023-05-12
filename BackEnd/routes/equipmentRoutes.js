@@ -22,9 +22,10 @@ router.get("/oldest", equipmentController.getOldest);
 router.post("/", upload.single("imgUpload"), equipmentController.createEquipment);
 
 // PATCH
-router.patch("/", equipmentController.updateEquipment);
-router.patch("/stock", equipmentController.updateStock);
-router.patch("/vendor", equipmentController.updateVendor);
+// router.patch("/", equipmentController.updateEquipment);
+router.patch("/", equipmentController.updateItem);
+// router.patch("/stock", equipmentController.updateStock);
+// router.patch("/vendor", equipmentController.updateVendor);
 
 // DELETE
 router.delete("/", equipmentController.deleteEquipment);
