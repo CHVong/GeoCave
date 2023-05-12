@@ -3,7 +3,7 @@ import BackButton from "./BackButton";
 
 const ManageCheckIn = ({ onClick }) => {
   return (
-    <div>
+    <div className="animate-fadeIn">
       ManageCheckIn
       <BackButton onClick={onClick} />
     </div>

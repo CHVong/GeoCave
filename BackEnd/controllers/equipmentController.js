@@ -224,6 +224,35 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  updateVendor: async (req, res) => {
+    try {
+      const { id, vendor } = req.body;
+
+      if (vendor === "") {
+        return;
+      }
+
+      if (!id || !vendor) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      const equipment = await equipmentModel.findById(id).exec();
+      if (!equipment) {
+        return res.status(400).json({ message: "Equipment not found" });
+      }
+
+      equipment.vendor = vendor;
+
+      const updatedEquipment = await equipmentModel.findOneAndUpdate(
+        { _id: id },
+        { vendor },
+        { new: true }
+      );
+      res.json(updatedEquipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   deleteEquipment: async (req, res) => {
     try {
       const { id } = req.body;

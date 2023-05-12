@@ -39,7 +39,7 @@ const Admin = () => {
       ) : showManage === "Check-Ins" ? (
         <ManageCheckIn onClick={changeManage} />
       ) : (
-        <div className="flex justify-center flex-wrap gap-8 p-1">
+        <div className="flex justify-center flex-wrap gap-8 p-1 animate-fadeIn">
           <AdminStatCard
             title={"Users"}
             url={"/user"}
