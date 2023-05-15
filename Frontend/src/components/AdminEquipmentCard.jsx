@@ -36,6 +36,7 @@ const AdminEquipmentCard = ({
   const [nameText, setNameText] = useState(name);
 
   const [checkedJobs, setCheckedJobs] = useState([]);
+  const [expandName, setExpandName] = useState(false);
 
   const handleCheckboxChange = (e) => {
     const { value } = e.target;
@@ -70,7 +71,11 @@ const AdminEquipmentCard = ({
   return (
     <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
       <div className="flex flex-col justify-stretch items-center">
-        <h2 className="text-2xl font-bold bg-slate-800 w-full p-1 flex items-center justify-between">
+        <h2
+          className="text-2xl font-bold bg-slate-800 w-full p-1 flex items-center justify-between"
+          onMouseEnter={() => setExpandName(true)}
+          onMouseLeave={() => setExpandName(false)}
+        >
           {editName ? (
             <div className="flex items-center flex-wrap">
               <input
@@ -99,9 +104,13 @@ const AdminEquipmentCard = ({
               </div>
             </div>
           ) : (
-            <div className="flex items-center flex-wrap">
-              <span className="animate-fadeIn">
-                {name.length > 15 ? `${name.substring(0, 15)}...` : name}
+            <div className="flex items-center flex-wrap text-start">
+              <span
+                className={`animate-fadeIn flex-1 break-all ${
+                  expandName ? "text-wrap" : "text-ellipsis"
+                }`}
+              >
+                {expandName ? name : name.length > 15 ? `${name.substring(0, 15)}...` : name}
               </span>
               <div
                 className="inline p-2 cursor-pointer animate-fadeIn"
@@ -116,6 +125,7 @@ const AdminEquipmentCard = ({
           )}
           <FontAwesomeIcon
             icon={faTrashCan}
+            size="sm"
             className="hover:text-red-500 cursor-pointer hover:scale-90 transition"
           />
         </h2>
