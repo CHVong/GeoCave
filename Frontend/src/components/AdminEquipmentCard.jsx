@@ -5,6 +5,8 @@ import {
   faFloppyDisk,
   faFileArrowUp,
   faTrashCan,
+  faCheck,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckboxForEditEquipment from "./CheckboxForEditEquipment";
@@ -38,6 +40,7 @@ const AdminEquipmentCard = ({
 
   const [checkedJobs, setCheckedJobs] = useState([]);
   const [expandName, setExpandName] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   const handleCheckboxChange = (e) => {
     const { value } = e.target;
@@ -124,14 +127,37 @@ const AdminEquipmentCard = ({
               </div>
             </div>
           )}
-          <FontAwesomeIcon
-            icon={faTrashCan}
-            size="sm"
-            className="hover:text-red-500 cursor-pointer hover:scale-90 transition"
-            onClick={() => {
-              deleteItem(id);
-            }}
-          />
+          <div className="flex flex-row gap-2">
+            {showConfirmDelete ? (
+              <>
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  size="sm"
+                  className="hover:text-gray-500 cursor-pointer hover:scale-90 transition"
+                  onClick={() => {
+                    setShowConfirmDelete(false);
+                  }}
+                />
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  size="sm"
+                  className="hover:text-green-500 cursor-pointer hover:scale-90 transition"
+                  onClick={() => {
+                    deleteItem(id);
+                  }}
+                />
+              </>
+            ) : (
+              <FontAwesomeIcon
+                icon={faTrashCan}
+                size="sm"
+                className="hover:text-red-500 cursor-pointer hover:scale-90 transition"
+                onClick={() => {
+                  setShowConfirmDelete(true);
+                }}
+              />
+            )}
+          </div>
         </h2>
         <div className="flex justify-around items-center w-full h-full">
           <div className="text-left p-4  h-full w-[50%]">
