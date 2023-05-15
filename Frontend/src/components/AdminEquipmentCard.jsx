@@ -70,9 +70,9 @@ const AdminEquipmentCard = ({
   return (
     <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
       <div className="flex flex-col justify-stretch items-center">
-        <h2 className="text-2xl font-bold bg-slate-800 w-full p-1">
+        <h2 className="text-2xl font-bold bg-slate-800 w-full p-1 flex items-center justify-between">
           {editName ? (
-            <>
+            <div className="flex items-center flex-wrap">
               <input
                 type="text"
                 name="name"
@@ -97,9 +97,9 @@ const AdminEquipmentCard = ({
                   className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
                 />
               </div>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="flex items-center flex-wrap">
               <span className="animate-fadeIn">
                 {name.length > 15 ? `${name.substring(0, 15)}...` : name}
               </span>
@@ -112,8 +112,12 @@ const AdminEquipmentCard = ({
                   className="hover:scale-95 hover:text-gray-500 transition"
                 />
               </div>
-            </>
+            </div>
           )}
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className="hover:text-red-500 cursor-pointer hover:scale-90 transition"
+          />
         </h2>
         <div className="flex justify-around items-center w-full h-full">
           <div className="text-left p-4  h-full w-[50%]">
