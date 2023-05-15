@@ -27,14 +27,13 @@ const AdminEquipmentCard = ({
   const [editLocation, setEditLocation] = useState(false);
   const [editJobs, setEditJobs] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
-  const [editImage, setEditImage] = useState(false);
+  const [editName, setEditName] = useState(false);
 
   const [stockNumber, setStockNumber] = useState(stock);
   const [vendorText, setVendorText] = useState(vendor);
   const [locationText, setLocationText] = useState(location);
-  const [jobsArray, setJobsArray] = useState(job);
   const [descriptionText, setDescriptionText] = useState(description);
-  const [imagePicture, setImagePicture] = useState(image);
+  const [nameText, setNameText] = useState(name);
 
   const [checkedJobs, setCheckedJobs] = useState([]);
 
@@ -71,7 +70,51 @@ const AdminEquipmentCard = ({
   return (
     <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
       <div className="flex flex-col justify-stretch items-center">
-        <h2 className="text-2xl font-bold bg-slate-800 w-full p-1">{name}</h2>
+        <h2 className="text-2xl font-bold bg-slate-800 w-full p-1">
+          {editName ? (
+            <>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                autoComplete="off"
+                placeholder={name}
+                required
+                className={`rounded px-2 py-0 bg-black outline-none ring-1 w-max animate-fadeIn mt-1`}
+                onChange={(e) => {
+                  setNameText(e.target.value);
+                }}
+              />
+              <div
+                className="inline p-2 cursor-pointer"
+                onClick={(e) => {
+                  setEditName(!editName);
+                  updateItem(e, id, "name", nameText, "/equipment");
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faFloppyDisk}
+                  className="animate-fadeIn text-green-500 hover:scale-95 transition hover:text-green-600"
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="animate-fadeIn">
+                {name.length > 15 ? `${name.substring(0, 15)}...` : name}
+              </span>
+              <div
+                className="inline p-2 cursor-pointer animate-fadeIn"
+                onClick={(e) => setEditName(!editName)}
+              >
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
+                  className="hover:scale-95 hover:text-gray-500 transition"
+                />
+              </div>
+            </>
+          )}
+        </h2>
         <div className="flex justify-around items-center w-full h-full">
           <div className="text-left p-4  h-full w-[50%]">
             <h2>
