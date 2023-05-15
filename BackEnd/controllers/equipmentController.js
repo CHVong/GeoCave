@@ -140,7 +140,7 @@ module.exports = {
   createEquipment: async (req, res) => {
     try {
       // console.log(req.body);
-      // console.log(req.file);
+      console.log(req.file);
       // console.log(req.file.path);
       let uploadedImage = {};
       if (req.file) {
@@ -226,6 +226,47 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  updatePicture: async (req, res) => {
+    console.log(req.file);
+
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "Picture data is required" });
+      }
+
+      const { id } = req.body;
+
+      const uploadedImage = await cloudinary.uploader.upload(req.file.path);
+
+      if (!id) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+
+      const equipment = await equipmentModel.findById(id);
+      if (!equipment) {
+        return res.status(404).json({ message: "Equipment not found" });
+      }
+
+      const updatedEquipment = await equipmentModel.findOneAndUpdate(
+        { _id: id },
+        {
+          image: uploadedImage.secure_url,
+          cloudinaryId: uploadedImage.public_id,
+        },
+        { new: true }
+      );
+
+      //check if item has an image to begin with then delete on cloudinary
+      if (equipment.cloudinaryId) {
+        await cloudinary.uploader.destroy(equipment.cloudinaryId);
+      }
+      res.json(updatedEquipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+
   deleteEquipment: async (req, res) => {
     try {
       const { id } = req.body;

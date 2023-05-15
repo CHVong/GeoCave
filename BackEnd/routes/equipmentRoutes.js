@@ -24,6 +24,7 @@ router.post("/", upload.single("imgUpload"), equipmentController.createEquipment
 // PATCH
 // router.patch("/", equipmentController.updateEquipment);
 router.patch("/", equipmentController.updateItem);
+router.patch("/picture", upload.single("file"), equipmentController.updatePicture);
 // router.patch("/stock", equipmentController.updateStock);
 // router.patch("/vendor", equipmentController.updateVendor);
 

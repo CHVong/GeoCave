@@ -106,12 +106,39 @@ const AdminEquipment = () => {
         {
           headers: {
             "Content-Type": "application/json",
-
             Authorization: `Bearer ${auth.accessToken}`,
           },
           withCredentials: true,
         }
       );
+      console.log(response.data);
+      setData((prevData) => {
+        const newData = [...prevData];
+        const index = newData.findIndex((item) => item._id === response.data._id);
+        newData[index] = response.data;
+        return newData;
+      });
+    } catch (error) {
+      console.error("Error Updating Data:", error);
+    }
+  };
+  const updatePicture = async (e, id, file) => {
+    if (e) {
+      e.preventDefault();
+    }
+    const formData = new FormData();
+    formData.append("id", id);
+    formData.append("file", file);
+    console.log(id, formData.file);
+
+    try {
+      const response = await axios.patch("/equipment/picture", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
       console.log(response.data);
       setData((prevData) => {
         const newData = [...prevData];
@@ -154,6 +181,7 @@ const AdminEquipment = () => {
           currentItems.map((e, index) => (
             <AdminEquipmentCard
               updateItem={updateItem}
+              updatePicture={updatePicture}
               key={e._id}
               id={e._id}
               stock={e.stock}

@@ -3,6 +3,8 @@ import {
   faUpRightFromSquare,
   faPenToSquare,
   faFloppyDisk,
+  faFileArrowUp,
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckboxForEditEquipment from "./CheckboxForEditEquipment";
@@ -18,6 +20,7 @@ const AdminEquipmentCard = ({
   location,
   id,
   updateItem,
+  updatePicture,
 }) => {
   const [editStock, setEditStock] = useState(false);
   const [editVendor, setEditVendor] = useState(false);
@@ -41,6 +44,27 @@ const AdminEquipmentCard = ({
       setCheckedJobs([...checkedJobs, value]);
     } else {
       setCheckedJobs(checkedJobs.filter((job) => job !== value));
+    }
+  };
+
+  const handleFileUpload = async (e, id) => {
+    const inputElement = document.getElementById("imgUpload");
+
+    // Clear the value of the file input element
+    inputElement.value = null;
+
+    // Open the file selection dialog
+    inputElement.click();
+
+    // Wait for the user to select a file
+    await new Promise((resolve) => {
+      inputElement.addEventListener("change", resolve, { once: true });
+    });
+
+    // Access the selected file
+    const file = inputElement.files[0];
+    if (file) {
+      updatePicture(e, id, file);
     }
   };
 
@@ -190,7 +214,7 @@ const AdminEquipmentCard = ({
                 <img
                   src={`${image}`}
                   alt={`Image of ${name}`}
-                  className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2"
+                  className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2 inline"
                   onClick={() => window.open(image, "_blank")}
                 />
                 <div
@@ -226,6 +250,29 @@ const AdminEquipmentCard = ({
                 </div>
               </div>
             )}
+            <div className="flex gap-6 justify-end pr-4">
+              <label htmlFor="imgUpload" className="font-bold p-2"></label>
+              <input
+                name="imgUpload"
+                id="imgUpload"
+                type="file"
+                accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG,"
+                className="hidden" // hide the input element
+              />
+              <FontAwesomeIcon
+                icon={faFileArrowUp}
+                className="hover:scale-95 hover:text-sky-500 transition cursor-pointer"
+                onClick={(e) => handleFileUpload(e, id)} // trigger file upload on click
+              />
+              {/* <FontAwesomeIcon
+                icon={faFileArrowUp}
+                className="hover:scale-95 hover:text-sky-500 transition cursor-pointer"
+              /> */}
+              {/* <FontAwesomeIcon
+                icon={faTrashCan}
+                className="hover:scale-95 hover:text-red-500 transition cursor-pointer"
+              /> */}
+            </div>
           </div>
         </div>
       </div>

@@ -21,6 +21,10 @@ const AddEquipmentForm = ({ fetch }) => {
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
     // console.log(payload.imgUpload);
+    // console.log(e);
+    // console.log(e.file);
+    // console.log(payload.file);
+    // console.log(payload);
 
     payload.user = username;
     payload.job = checkedJobs;

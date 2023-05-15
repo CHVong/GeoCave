@@ -84,7 +84,7 @@ const EquipmentCard = ({
                 <img
                   src={`${image}`}
                   alt={`Image of ${name}`}
-                  className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2"
+                  className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2 inline"
                   onClick={() => window.open(image, "_blank")}
                 />
                 <div
