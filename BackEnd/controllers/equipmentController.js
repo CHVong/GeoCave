@@ -278,8 +278,17 @@ module.exports = {
       if (!equipment) {
         return res.status(400).json({ message: "Equipment not found" });
       }
+
+      if (equipment.cloudinaryId) {
+        await cloudinary.uploader.destroy(equipment.cloudinaryId);
+      }
+
       const result = await equipment.deleteOne();
-      res.json(`Equipment(${result.name}) has been deleted`);
+      console.log(result);
+      res.json({
+        message: `Equipment (${equipment.name}) has been deleted`,
+        deletedEquipment: result,
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });

@@ -154,6 +154,26 @@ const AdminEquipment = () => {
   const deleteItem = async (id) => {
     console.log("delete item");
     console.log(id);
+    try {
+      const response = await axios.delete(`/equipment`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        data: {
+          id: id,
+        },
+        withCredentials: true,
+      });
+
+      console.log(response.data);
+      setData((prevData) => {
+        return prevData.filter((item) => item._id !== response.data.deletedEquipment._id);
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    }
   };
 
   useEffect(() => {

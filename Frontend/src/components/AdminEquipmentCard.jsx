@@ -114,7 +114,11 @@ const AdminEquipmentCard = ({
                   expandName ? "text-wrap" : "text-ellipsis"
                 }`}
               >
-                {expandName ? name : name.length > 15 ? `${name.substring(0, 15)}...` : name}
+                {expandName
+                  ? name
+                  : name && name.length > 15
+                  ? `${name.substring(0, 15)}...`
+                  : name}
               </span>
               <div
                 className="inline p-2 cursor-pointer animate-fadeIn"
@@ -422,7 +426,7 @@ const AdminEquipmentCard = ({
             </>
           ) : (
             <>
-              <span className="animate-fadeIn"> {job.join(", ")}</span>
+              <span className="animate-fadeIn"> {job && job.join(", ")}</span>
               <div
                 className="inline p-2 cursor-pointer animate-fadeIn"
                 onClick={(e) => setEditJobs(!editJobs)}
