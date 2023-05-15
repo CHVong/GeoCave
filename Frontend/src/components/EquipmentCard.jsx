@@ -20,11 +20,26 @@ const EquipmentCard = ({
 }) => {
   const [editStock, setEditStock] = useState(false);
   const [stockNumber, setStockNumber] = useState(stock);
+  const [expandName, setExpandName] = useState(false);
 
   return (
     <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
       <div className="flex flex-col justify-stretch items-center">
-        <h2 className="text-2xl font-bold bg-slate-800 w-full p-1">{name}</h2>
+        <h2
+          className="text-2xl font-bold bg-slate-800 w-full p-1 flex items-center justify-center"
+          onMouseEnter={() => setExpandName(true)}
+          onMouseLeave={() => setExpandName(false)}
+        >
+          <div className="flex items-center flex-wrap text-start">
+            <span
+              className={`animate-fadeIn flex-1 break-all ${
+                expandName ? "text-wrap" : "text-ellipsis"
+              }`}
+            >
+              {expandName ? name : name && name.length > 15 ? `${name.substring(0, 15)}...` : name}
+            </span>
+          </div>
+        </h2>
         <div className="flex justify-around items-center w-full h-full">
           <div className="text-left p-4  h-full w-[50%]">
             <h2>
