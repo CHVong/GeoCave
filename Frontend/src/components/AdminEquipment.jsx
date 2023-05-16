@@ -177,7 +177,7 @@ const AdminEquipment = () => {
   };
 
   useEffect(() => {
-    document.title = "GeoCave - Equipment";
+    document.title = "GeoCave - Manage Equipment";
     fetchData();
   }, []);
 
@@ -187,7 +187,7 @@ const AdminEquipment = () => {
 
   return (
     <div className="animate-fadeIn" id="scroller">
-      <PageHeading heading={"Equipment"} />
+      <PageHeading heading={"Manage Equipment"} />
       <button
         onClick={handleToggle}
         className={`bg-green-700 hover:bg-green-600 text-secondary font-bold py-2 px-4 rounded-lg cursor-pointer block m-4 ml-auto ${

@@ -1,7 +1,6 @@
 import React from "react";
 import BackButton from "./BackButton";
 import AdminEquipment from "./AdminEquipment";
-import Equipment from "../pages/content/Equipment";
 
 const ManageEquipment = ({ onClick }) => {
   return (
