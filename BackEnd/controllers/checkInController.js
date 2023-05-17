@@ -59,4 +59,26 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  deleteCheckInItem: async (req, res) => {
+    try {
+      const { id } = req.body;
+
+      if (!id) {
+        return res.status(400).json({ message: "Check-In ID required" });
+      }
+      const checkin = await checkInModel.findById(id).exec();
+      if (!checkin) {
+        return res.status(400).json({ message: "Check-In not found" });
+      }
+
+      const result = await checkin.deleteOne();
+      res.json({
+        message: `Safety incident (${result.name}) has been deleted`,
+        deletedCheckIn: result,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 };

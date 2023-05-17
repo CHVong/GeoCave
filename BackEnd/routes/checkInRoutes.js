@@ -8,6 +8,6 @@ router.use(verifyJWT);
 router.get("/", checkInController.getCheckInItems);
 router.post("/", checkInController.createCheckInItem);
 // router.patch("/", checkInController.updateCheckInItem);
-// router.delete("/", checkInController.deleteCheckInItem);
+router.delete("/", checkInController.deleteCheckInItem);
 
 module.exports = router;

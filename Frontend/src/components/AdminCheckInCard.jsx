@@ -19,6 +19,7 @@ const AdminCheckInCard = ({
   summary,
   weeksOutForFieldWorkNonLocal,
   createdAt,
+  deleteItem,
 }) => {
   const createdAtMoment = moment(createdAt);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);

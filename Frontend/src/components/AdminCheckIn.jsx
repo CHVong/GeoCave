@@ -54,7 +54,7 @@ const AdminCheckIn = () => {
 
       console.log(response.data);
       setData((prevData) => {
-        return prevData.filter((item) => item._id !== response.data.deletedSafety._id);
+        return prevData.filter((item) => item._id !== response.data.deletedCheckIn._id);
       });
     } catch (error) {
       console.error("Error fetching data:", error);
