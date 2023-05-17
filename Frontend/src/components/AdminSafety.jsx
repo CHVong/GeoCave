@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PageHeading from "./PageHeading";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import AdminSafetyCard from "./AdminSafetyCard";
 import Loading from "./Loading";
+import Pagination from "./Pagination";
 
 const SAFETY_URL = "/safety";
 
@@ -14,31 +13,16 @@ const AdminSafety = () => {
   const { auth } = useAuth();
   const [data, setData] = useState([]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  let pageNumbers = [];
-  if (totalPages <= 3) {
-    pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-  } else if (currentPage === 1) {
-    pageNumbers = [1, 2, 3];
-  } else if (currentPage === totalPages) {
-    pageNumbers = [totalPages - 2, totalPages - 1, totalPages];
-  } else {
-    pageNumbers = [currentPage - 1, currentPage, currentPage + 1];
-  }
+  const [currentItems, setCurrentItems] = useState([]);
+
+  const handleCurrentItems = useCallback((currentItems) => {
+    setCurrentItems(currentItems);
+  }, []);
 
   useEffect(() => {
     document.title = "GeoCave - Manage Safety";
     fetchData();
   }, []);
-
-  useEffect(() => {
-    document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
-  }, [currentPage]);
 
   const fetchData = async () => {
     try {
@@ -112,39 +96,8 @@ const AdminSafety = () => {
           </div>
         </>
       )}
-      <div className="flex justify-center mt-4 col-span-full">
-        {currentPage > 1 && data && (
-          <button
-            className="mr-2 bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            <FontAwesomeIcon icon={faCaretLeft} />
-          </button>
-        )}
 
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            className={`mr-2 ${
-              number === currentPage
-                ? "bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
-                : "bg-blue-100 hover:bg-blue-200 text-gray-800 font-bold py-2 px-4 rounded"
-            }`}
-            onClick={() => setCurrentPage(number)}
-          >
-            {number}
-          </button>
-        ))}
-
-        {currentPage < totalPages && (
-          <button
-            className="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            <FontAwesomeIcon icon={faCaretRight} />
-          </button>
-        )}
-      </div>
+      <Pagination data={data} handleCurrentItems={handleCurrentItems} />
     </div>
   );
 };
