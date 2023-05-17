@@ -3,13 +3,13 @@ import PageHeading from "./PageHeading";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 
-import AdminSafetyCard from "./AdminSafetyCard";
+import AdminCheckInCard from "./AdminCheckInCard";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
 
-const SAFETY_URL = "/safety";
+const CHECKIN_URL = "/checkin";
 
-const AdminSafety = () => {
+const AdminCheckIn = () => {
   const { auth } = useAuth();
   const [data, setData] = useState([]);
 
@@ -19,14 +19,9 @@ const AdminSafety = () => {
     setCurrentItems(currentItems);
   }, []);
 
-  useEffect(() => {
-    document.title = "GeoCave - Manage Safety";
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
-      const response = await axios.get(SAFETY_URL, {
+      const response = await axios.get(CHECKIN_URL, {
         headers: {
           "Content-Type": "application/json",
 
@@ -46,7 +41,7 @@ const AdminSafety = () => {
     console.log("delete item");
     console.log(id);
     try {
-      const response = await axios.delete(SAFETY_URL, {
+      const response = await axios.delete(CHECKIN_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth.accessToken}`,
@@ -67,25 +62,29 @@ const AdminSafety = () => {
     }
   };
 
+  useEffect(() => {
+    document.title = "GeoCave - Manage Check-Ins";
+    fetchData();
+  }, []);
   return (
     <div id="scroller">
-      <PageHeading heading={"All Submitted Safety Incidents"} />
-
+      <PageHeading heading={"All Submitted Check-Ins"} />
       {data.length !== 0 ? (
         <div className="grid gap-8">
           {currentItems.map((e, index) => (
-            <AdminSafetyCard
+            <AdminCheckInCard
               deleteItem={deleteItem}
               key={e._id}
               id={e._id}
-              projectName={e.projectName}
-              image={e.image}
-              projectNumber={e.projectNumber}
-              hazards={e.hazards}
-              suggestiveAction={e.suggestiveAction}
+              user={e.user}
+              currentWorkload={e.currentWorkload}
+              happyHours={e.happyHours}
+              hoursLastWeek={e.hoursLastWeek}
+              hoursThisWeek={e.hoursThisWeek}
+              needBreak={e.needBreak}
+              summary={e.summary}
+              weeksOutForFieldWorkNonLocal={e.weeksOutForFieldWorkNonLocal}
               createdAt={e.createdAt}
-              description={e.description}
-              createdByUser={e.createdByUser}
             />
           ))}
         </div>
@@ -102,4 +101,4 @@ const AdminSafety = () => {
   );
 };
 
-export default AdminSafety;
+export default AdminCheckIn;
