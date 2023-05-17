@@ -53,85 +53,72 @@ const AdminCheckInCard = ({
             />
           )}
         </div>
-        <div className="grid grid-cols-2 pb-6">
-          <h2 className="text-lg text-slate-300">
-            Project Name: <span className="text-base text-slate-400">{projectName}</span>
+        <h2 className="text-lg text-slate-300">
+          Weeks Away:{" "}
+          <span
+            className={`text-base ${
+              weeksOutForFieldWorkNonLocal === "3 Weeks"
+                ? "text-orange-400"
+                : weeksOutForFieldWorkNonLocal === "4+ Weeks"
+                ? "text-red-400"
+                : "text-green-400"
+            }`}
+          >
+            {weeksOutForFieldWorkNonLocal}
+          </span>
+        </h2>
+        <h2 className="text-lg text-slate-300">
+          Hours Last Week:{" "}
+          <span
+            className={`text-base ${
+              hoursLastWeek === "41 to 45" || hoursLastWeek === "46 to 50"
+                ? "text-orange-400"
+                : hoursLastWeek === "51 to 55" || hoursLastWeek === "56+"
+                ? "text-red-400"
+                : "text-green-400"
+            }`}
+          >
+            {hoursLastWeek}
+          </span>
+        </h2>
+
+        <h2 className="text-lg text-slate-300">
+          Hours This Week:{" "}
+          <span
+            className={`text-base ${
+              hoursThisWeek === "41 to 45" || hoursThisWeek === "46 to 50"
+                ? "text-orange-400"
+                : hoursThisWeek === "51 to 55" || hoursThisWeek === "56+"
+                ? "text-red-400"
+                : "text-green-400"
+            }`}
+          >
+            {hoursThisWeek}
+          </span>
+        </h2>
+
+        <h2 className="text-lg text-slate-300">
+          Happy With Current Hours: <span className="text-base text-slate-400">{happyHours}</span>
+        </h2>
+        <h2 className="text-lg text-slate-300">
+          Need a Break: <span className="text-base text-slate-400">{needBreak}</span>
+        </h2>
+
+        <div className="pt-4">
+          <h2 className="pb-2 text-xl text-slate-400">
+            Current Workload:
+            <span className="text-base text-slate-500"> {currentWorkload}</span>
           </h2>
-          <h2 className="row-span-2 text-end text-lg text-slate-300">
-            Hazards{" "}
-            <div className="bg-gradient-to-l from-slate-800 rounded-lg">
-              {hazards.length > 0
-                ? hazards.map((e, index) => (
-                    <span
-                      key={index}
-                      className={`p-1 rounded-md inline-block text-base ${
-                        e === "Biological"
-                          ? "text-green-600"
-                          : e === "Chemical"
-                          ? "text-red-500"
-                          : e === "Electrical"
-                          ? "text-yellow-600"
-                          : e === "Mechanical"
-                          ? "text-blue-600"
-                          : e === "Physical"
-                          ? "text-slate-400"
-                          : ""
-                      }`}
-                    >
-                      {e}
-                      {/* <span className="text-secondary"> | </span> */}
-                    </span>
-                  ))
-                : "No reported hazard tags"}
-            </div>
-          </h2>
-          <h2 className="text-lg text-slate-300">
-            Project Number: <span className="text-base text-slate-400">{projectNumber}</span>
+          <h2 className="pb-2 text-xl text-slate-400">
+            Issues, suggestions, and comments:
+            <span className="text-base text-slate-500"> {summary}</span>
           </h2>
         </div>
-
-        <h2 className="pb-6 text-xl text-slate-400">
-          Incident Description: <span className="text-base text-slate-500">{description}</span>
-        </h2>
-        <h2 className="pb-6 text-xl text-slate-400">
-          Suggestive Action: <span className="text-base text-slate-500">{suggestiveAction}</span>
-        </h2>
-
-        {/* <div className="relative group w-full lg:w-80 m-auto p-4">
-          <img
-            src={`${
-              image ||
-              "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png"
-            }`}
-            alt={`Image of ${projectName}`}
-            className=" object-scale-down group-hover:scale-95 cursor-pointer border-primary transition rounded-xl"
-            onClick={() =>
-              window.open(
-                image ||
-                  "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png",
-                "_blank"
-              )
-            }
-          />
-          <div
-            className="absolute inset-0 bg-gray-800 opacity-0 hover:opacity-50 transition duration-300 flex items-center justify-center group-hover:scale-95 cursor-pointer rounded-lg"
-            onClick={() =>
-              window.open(
-                image ||
-                  "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png",
-                "_blank"
-              )
-            }
-          >
-            <FontAwesomeIcon icon={faUpRightFromSquare} size="xl" />
-          </div>
-        </div> */}
-
         <div className="text-xs text-slate-500 absolute bottom-0 right-0 p-2">
           {/* Show the relative time */}
           Submitted <span className="text-slate-400 italic">
             {moment(createdAt).fromNow()}
-          </span> by <span className="text-slate-400 font-bold">{createdByUser}</span>
+          </span> by <span className="text-slate-400 font-bold">{user}</span>
         </div>
       </div>
     </div>
