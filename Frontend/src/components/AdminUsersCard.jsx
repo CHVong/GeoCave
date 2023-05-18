@@ -3,6 +3,8 @@ import moment from "moment";
 import { faPenToSquare, faFloppyDisk, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const availableRoles = ["Employee", "Admin", "Manager"];
+
 const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt }) => {
   const [editRoles, setEditRoles] = useState(false);
   return (
@@ -43,21 +45,45 @@ const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt }) =
         </div>
 
         <div className="flex gap-2 flex-wrap p-2">
-          {roles.map((e, i) => {
-            return (
-              <div
-                className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
-                  e === "Employee"
-                    ? "bg-blue-900 border-blue-500 hover:border-blue-400"
-                    : e === "Admin"
-                    ? "bg-red-900 border-red-500 hover:border-red-400"
-                    : ""
-                }`}
-              >
-                {e}
-              </div>
-            );
-          })}
+          {!editRoles &&
+            roles.map((e, i) => {
+              return (
+                <div
+                  key={i}
+                  className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
+                    e === "Employee"
+                      ? "bg-blue-900 border-blue-500 hover:border-blue-400"
+                      : e === "Admin"
+                      ? "bg-red-900 border-red-500 hover:border-red-400"
+                      : e === "Manager" && roles.includes("Manager")
+                      ? "bg-orange-900 border-orange-500 hover:border-orange-400"
+                      : "bg-teal-900 border-teal-500 hover:border-teal-400"
+                  }`}
+                >
+                  {e}
+                </div>
+              );
+            })}
+          {editRoles &&
+            [...new Set([...availableRoles, ...roles])].map((e, i) => {
+              return (
+                <div
+                  className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
+                    e === "Employee" && roles.includes("Employee")
+                      ? "bg-blue-900 border-blue-500 hover:border-blue-400"
+                      : e === "Admin" && roles.includes("Admin")
+                      ? "bg-red-900 border-red-500 hover:border-red-400"
+                      : e === "Manager" && roles.includes("Manager")
+                      ? "bg-orange-900 border-orange-500 hover:border-orange-400"
+                      : !roles.includes(e)
+                      ? "bg-gray-900 border-gray-500 hover:border-gray-400"
+                      : "bg-teal-900 border-teal-500 hover:border-teal-400"
+                  }`}
+                >
+                  {e}
+                </div>
+              );
+            })}
         </div>
       </div>
       <div className="text-start mr-auto group/active">
