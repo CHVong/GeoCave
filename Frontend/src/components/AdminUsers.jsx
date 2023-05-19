@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import Pagination from "./Pagination";
 
 const USER_URL = "/user";
+const UPDATE_ROLE_URL = "/user/updateRole";
 
 const AdminUsers = () => {
   const { auth } = useAuth();
@@ -42,6 +43,33 @@ const AdminUsers = () => {
     }
   };
 
+  const addRole = async (id, role) => {
+    try {
+      const response = await axios.patch(
+        UPDATE_ROLE_URL,
+        { id: id, role: role },
+        {
+          headers: {
+            "Content-Type": "application/json",
+
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      setData((prevData) => {
+        const newData = [...prevData];
+        const index = newData.findIndex((item) => item._id === response.data.updatedResult._id);
+        newData[index] = response.data.updatedResult;
+        return newData;
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    }
+  };
+
   return (
     <div>
       <PageHeading heading={"Manage All Users"} />
@@ -50,6 +78,7 @@ const AdminUsers = () => {
         <div className="grid gap-8">
           {currentItems.map((e, index) => (
             <AdminUsersCard
+              addRole={addRole}
               key={e._id}
               id={e._id}
               username={e.username}

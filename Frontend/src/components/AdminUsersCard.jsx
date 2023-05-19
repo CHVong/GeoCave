@@ -1,12 +1,28 @@
 import { useState } from "react";
 import moment from "moment";
-import { faPenToSquare, faFloppyDisk, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faFloppyDisk,
+  faCheck,
+  faXmark,
+  faRotateLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const availableRoles = ["Employee", "Manager", "Admin"];
 
-const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt }) => {
+const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt, addRole }) => {
   const [editRoles, setEditRoles] = useState(false);
+
+  const handleKeyDown = (e) => {
+    if (e.target.value === "") {
+      return;
+    }
+    if (e.keyCode === 13) {
+      addRole(id, e.target.value);
+      e.target.value = "";
+    }
+  };
   return (
     <div className="border-b border-slate-700 px-10 grid sm:grid-cols-4 ">
       <div className="text-start group/username">
@@ -32,7 +48,7 @@ const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt }) =
                 )}
                 {editRoles ? (
                   <FontAwesomeIcon
-                    icon={faFloppyDisk}
+                    icon={faRotateLeft}
                     className="hover:scale-90 hover:cursor-pointer transition hover:text-green-600"
                     onClick={() => setEditRoles(false)}
                   />
@@ -94,7 +110,8 @@ const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt }) =
                   autoComplete="off"
                   placeholder="Custom Role"
                   required
-                  className={`rounded-3xl bg-black outline-none ring-1 text-xs font-medium w-28 h-5 hover:cursor-pointer`}
+                  className={`rounded-3xl bg-black outline-none ring-1 text-xs font-medium w-28 h-5 hover:cursor-pointer hover:ring-blue-500 text-center`}
+                  onKeyDown={handleKeyDown}
                 />
               </div>
             </>

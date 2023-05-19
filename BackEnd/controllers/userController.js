@@ -94,4 +94,33 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  updateRole: async (req, res) => {
+    try {
+      const { id, role } = req.body;
+
+      if (role === "") {
+        return;
+      }
+
+      if (!id) {
+        return res.status(400).json({ message: "User ID required" });
+      }
+
+      let user = await userModel.findById(id).exec();
+      if (!user) {
+        return res.status(400).json({ message: "User not found" });
+      }
+
+      user.roles.push(role);
+      await user.save();
+
+      res.json({
+        message: `Roles(${user?.username}) has been updated`,
+        updatedResult: user,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 };
