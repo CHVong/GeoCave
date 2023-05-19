@@ -66,7 +66,6 @@ const AdminUsers = () => {
       });
     } catch (error) {
       console.error("Error fetching data:", error);
-      setData([]);
     }
   };
 

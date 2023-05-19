@@ -98,7 +98,8 @@ module.exports = {
     try {
       const { id, role } = req.body;
 
-      if (role === "") {
+      if (role.trim() === "") {
+        // Check if the trimmed role is empty
         return;
       }
 
@@ -107,8 +108,13 @@ module.exports = {
       }
 
       let user = await userModel.findById(id).exec();
+
       if (!user) {
         return res.status(400).json({ message: "User not found" });
+      }
+
+      if (user.roles.includes(role)) {
+        return res.status(409).json({ message: "Role already assigned to the user" });
       }
 
       user.roles.push(role);

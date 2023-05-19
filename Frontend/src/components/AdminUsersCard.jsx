@@ -15,11 +15,13 @@ const AdminUsersCard = ({ id, username, roles, active, createdAt, updatedAt, add
   const [editRoles, setEditRoles] = useState(false);
 
   const handleKeyDown = (e) => {
-    if (e.target.value === "") {
+    if (e.target.value.trim() === "") {
+      // Check if the trimmed value is empty
       return;
     }
+
     if (e.keyCode === 13) {
-      addRole(id, e.target.value);
+      addRole(id, e.target.value.trim()); // Trim the value before adding the role
       e.target.value = "";
     }
   };
