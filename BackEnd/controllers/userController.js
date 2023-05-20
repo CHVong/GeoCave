@@ -129,4 +129,35 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  updateStatus: async (req, res) => {
+    try {
+      const { id, status } = req.body;
+
+      if (!id) {
+        return res.status(400).json({ message: "User ID required" });
+      }
+
+      let user = await userModel.findById(id).exec();
+
+      if (!user) {
+        return res.status(400).json({ message: "User not found" });
+      }
+
+      const updatedStatus = await userModel.findOneAndUpdate(
+        { _id: id },
+        {
+          active: status,
+        },
+        { new: true }
+      );
+
+      res.json({
+        message: `Roles(${user?.username}) has been updated`,
+        updatedResult: updatedStatus,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 };
