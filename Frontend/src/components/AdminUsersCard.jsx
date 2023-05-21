@@ -23,6 +23,7 @@ const AdminUsersCard = ({
   updatedAt,
   addRole,
   updateStatus,
+  updateRole,
 }) => {
   const [editRoles, setEditRoles] = useState(false);
   const newRoles = [...roles];
@@ -42,9 +43,14 @@ const AdminUsersCard = ({
     setUpdatedRoles([...updatedRoles]);
     // Trigger re-render by updating the state with the modified array
     console.log(updatedRoles);
+    updateRole(id, updatedRoles);
   };
 
   const handleKeyDown = (e) => {
+    if (e.target.value.toLowerCase() === "admin" || e.target.value.toLowerCase() === "manager") {
+      return;
+    }
+
     if (e.target.value.trim() === "") {
       // Check if the trimmed value is empty
       return;

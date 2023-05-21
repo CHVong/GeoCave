@@ -70,11 +70,11 @@ const AdminUsers = () => {
       console.error("Error fetching data:", error);
     }
   };
-  const updateRole = async (id, role) => {
+  const updateRole = async (id, roles) => {
     try {
       const response = await axios.patch(
         UPDATE_ROLE_URL,
-        { id: id, role: role },
+        { id: id, roles: roles },
         {
           headers: {
             "Content-Type": "application/json",
@@ -132,6 +132,7 @@ const AdminUsers = () => {
             <AdminUsersCard
               updateStatus={updateStatus}
               addRole={addRole}
+              updateRole={updateRole}
               key={e._id}
               id={e._id}
               username={e.username}
