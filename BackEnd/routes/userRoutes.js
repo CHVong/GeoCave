@@ -7,7 +7,7 @@ router.post("/", userController.createNewUser);
 router.use(verifyJWT);
 router.get("/", userController.getAllUsers);
 // router.patch("/", userController.updateUser);
-router.patch("/updateRole", userController.updateRole);
+router.patch("/addRole", userController.addRole);
 router.patch("/updateStatus", userController.updateStatus);
 router.delete("/", userController.deleteUser);
 

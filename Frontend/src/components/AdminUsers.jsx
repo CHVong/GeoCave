@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import Pagination from "./Pagination";
 
 const USER_URL = "/user";
+const ADD_ROLE_URL = "/user/addRole";
 const UPDATE_ROLE_URL = "/user/updateRole";
 const UPDATE_STATUS_URL = "/user/updateStatus";
 
@@ -45,6 +46,31 @@ const AdminUsers = () => {
   };
 
   const addRole = async (id, role) => {
+    try {
+      const response = await axios.patch(
+        ADD_ROLE_URL,
+        { id: id, role: role },
+        {
+          headers: {
+            "Content-Type": "application/json",
+
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      setData((prevData) => {
+        const newData = [...prevData];
+        const index = newData.findIndex((item) => item._id === response.data.updatedResult._id);
+        newData[index] = response.data.updatedResult;
+        return newData;
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  const updateRole = async (id, role) => {
     try {
       const response = await axios.patch(
         UPDATE_ROLE_URL,

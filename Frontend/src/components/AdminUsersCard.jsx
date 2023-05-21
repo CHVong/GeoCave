@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import {
   faPenToSquare,
@@ -26,6 +26,23 @@ const AdminUsersCard = ({
 }) => {
   const [editRoles, setEditRoles] = useState(false);
   const newRoles = [...roles];
+  const [updatedRoles, setUpdatedRoles] = useState(newRoles);
+  useEffect(() => {
+    setUpdatedRoles(newRoles);
+  }, [roles]);
+
+  const handleClick = (e) => {
+    console.log(updatedRoles);
+    if (updatedRoles.includes(e)) {
+      const index = updatedRoles.indexOf(e);
+      updatedRoles.splice(index, 1);
+    } else if (!updatedRoles.includes(e)) {
+      updatedRoles.push(e);
+    }
+    setUpdatedRoles([...updatedRoles]);
+    // Trigger re-render by updating the state with the modified array
+    console.log(updatedRoles);
+  };
 
   const handleKeyDown = (e) => {
     if (e.target.value.trim() === "") {
@@ -42,6 +59,7 @@ const AdminUsersCard = ({
       e.target.value = "";
     }
   };
+
   return (
     <div className="border-b border-slate-700 px-10 grid sm:grid-cols-4 gap-2">
       <div className="text-start group/username">
@@ -103,7 +121,12 @@ const AdminUsersCard = ({
             <>
               {[...new Set([...availableRoles, ...roles])].map((e, i) => {
                 return (
-                  <ManageRoles key={i} newRoles={newRoles} roles={roles} e={e} />
+                  <ManageRoles
+                    key={i}
+                    e={e}
+                    handleClick={handleClick}
+                    updatedRoles={updatedRoles}
+                  />
                   // <div
                   //   key={i}
                   //   className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
@@ -151,7 +174,7 @@ const AdminUsersCard = ({
       <div className="text-start mr-auto group/active">
         <div className="flex flex-row gap-2 text-sm text-slate-500">
           <div className="group-hover/active:text-slate-300 transition">Status</div>
-          <div>
+          <div className="transition">
             {roles.includes("Admin") ? (
               ""
             ) : (

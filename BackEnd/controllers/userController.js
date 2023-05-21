@@ -94,7 +94,7 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
-  updateRole: async (req, res) => {
+  addRole: async (req, res) => {
     try {
       const { id, role } = req.body;
 

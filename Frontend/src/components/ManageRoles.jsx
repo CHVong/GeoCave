@@ -1,27 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const ManageRoles = ({ newRoles, roles, e }) => {
+const ManageRoles = ({ e, handleClick, updatedRoles }) => {
   const [assigned, setAssigned] = useState(false);
-  const [updatedRoles, setUpdatedRoles] = useState([...newRoles]);
-
-  const handleClick = () => {
-    // console.log(updatedRoles);
-    // console.log(e);
-    if (updatedRoles.includes(e)) {
-      const index = updatedRoles.indexOf(e);
-
-      updatedRoles.splice(index, 1);
-
-      setAssigned(false);
-    } else if (!updatedRoles.includes(e)) {
-      updatedRoles.push(e);
-      setAssigned(true);
-    }
-
-    setUpdatedRoles([...updatedRoles]); // Trigger re-render by updating the state with the modified array
-    console.log(updatedRoles);
-  };
-
+  useEffect(() => {
+    setAssigned(updatedRoles.includes(e));
+  }, [updatedRoles, e]);
   return (
     <>
       <div
@@ -36,7 +19,14 @@ const ManageRoles = ({ newRoles, roles, e }) => {
             ? "bg-gray-900 border-gray-500 hover:border-gray-400"
             : "bg-teal-900 border-teal-500 hover:border-teal-400"
         }`}
-        onClick={handleClick}
+        onClick={() => {
+          handleClick(e);
+          if (updatedRoles.includes(e)) {
+            setAssigned(false);
+          } else if (!updatedRoles.includes(e)) {
+            setAssigned(true);
+          }
+        }}
       >
         {e}
       </div>
