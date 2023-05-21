@@ -6,11 +6,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const FormCheck = ({ id, title }) => {
+const FormCheck = ({ id, title, imgUrl, link }) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const toggleInfo = () => {
     setShowInfo(!showInfo);
+  };
+
+  const handleClick = () => {
+    if (link) {
+      window.open(link, "_blank");
+    }
   };
   return (
     <div className="text-left animate-fadeIn flex flex-row items-center gap-2 md:gap-4 m-2">
@@ -26,21 +32,41 @@ const FormCheck = ({ id, title }) => {
         {title}
       </label>
       <div className="relative">
-        <FontAwesomeIcon
-          icon={showInfo ? faCircleXmark : faInfoCircle}
-          className={`cursor-pointer hover:opacity-80 ${showInfo ? "text-yellow-400" : ""}`}
-          onClick={toggleInfo}
-        />
+        {showInfo ? (
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            className={`cursor-pointer hover:opacity-80 text-yellow-400`}
+            onClick={toggleInfo}
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon={faInfoCircle}
+            className={`cursor-pointer hover:opacity-80 ${
+              imgUrl ? "hover:text-green-400" : "hover:text-red-400"
+            }`}
+            onClick={toggleInfo}
+          />
+        )}
         <div
-          className={`animate-fadeIn absolute right-full bottom-full border-blue-400 border rounded-md bg-gray-600 ${
+          className={`animate-fadeIn absolute right-full bottom-full border-blue-500 border-2 rounded-md  w-40 ${
             showInfo ? "absolute" : "hidden"
           }`}
         >
-          SHOWING PICTURES
+          {imgUrl ? (
+            <img src={imgUrl} alt={`Image of ${title}`} className="rounded" />
+          ) : (
+            <p className="text-center">Pictures Currently Unavailable</p>
+          )}
         </div>
       </div>
 
-      <FontAwesomeIcon icon={faUpRightFromSquare} className="cursor-pointer hover:opacity-80" />
+      <FontAwesomeIcon
+        icon={faUpRightFromSquare}
+        className={`cursor-pointer hover:opacity-80 ${
+          link ? "hover:text-green-400" : "hover:text-red-400"
+        }`}
+        onClick={handleClick}
+      />
     </div>
   );
 };
