@@ -226,6 +226,33 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  updateStock: async (req, res) => {
+    try {
+      const { id, stock } = req.body;
+
+      if (stock === "") {
+        return;
+      }
+
+      if (!id || !stock) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      const equipment = await equipmentModel.findById(id).exec();
+      if (!equipment) {
+        return res.status(400).json({ message: "Equipment not found" });
+      }
+
+      const updatedEquipment = await equipmentModel.findOneAndUpdate(
+        { _id: id },
+        { stock: stock },
+        { new: true }
+      );
+      res.json(updatedEquipment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   updatePicture: async (req, res) => {
     console.log(req.file);
 
