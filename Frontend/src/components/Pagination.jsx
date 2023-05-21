@@ -16,8 +16,12 @@ const Pagination = ({ data, handleCurrentItems }) => {
   }, [data, currentPage, itemsPerPage, handleCurrentItems]);
 
   useEffect(() => {
+    setCurrentPage((prevCurrentPage) => Math.min(prevCurrentPage, totalPages));
+  }, [data, totalPages]);
+
+  useEffect(() => {
     setCurrentPage(1);
-  }, [data]);
+  }, []);
 
   useEffect(() => {
     document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });

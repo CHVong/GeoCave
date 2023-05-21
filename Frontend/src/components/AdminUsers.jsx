@@ -6,6 +6,8 @@ import useAuth from "../hooks/useAuth";
 import AdminUsersCard from "./AdminUsersCard";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const USER_URL = "/user";
 const ADD_ROLE_URL = "/user/addRole";
@@ -15,7 +17,6 @@ const UPDATE_STATUS_URL = "/user/updateStatus";
 const AdminUsers = () => {
   const { auth } = useAuth();
   const [data, setData] = useState([]);
-
   const [currentItems, setCurrentItems] = useState([]);
 
   const handleCurrentItems = useCallback((currentItems) => {
@@ -123,7 +124,7 @@ const AdminUsers = () => {
   };
 
   return (
-    <div>
+    <div id="scroller">
       <PageHeading heading={"Manage All Users"} />
 
       {data.length !== 0 ? (
