@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
+import useAuth from "../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 import {
   faPenToSquare,
   faFloppyDisk,
@@ -25,6 +27,10 @@ const AdminUsersCard = ({
   updateStatus,
   updateRole,
 }) => {
+  const { auth } = useAuth();
+  const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
+  const USER = decoded?.UserInfo.username || [];
+  console.log(USER);
   const [editRoles, setEditRoles] = useState(false);
   const newRoles = [...roles];
   const [updatedRoles, setUpdatedRoles] = useState(newRoles);
@@ -78,7 +84,7 @@ const AdminUsersCard = ({
         <div className="flex gap-2 items-center text-sm text-slate-500">
           <div className="group-hover/roles:text-slate-300 transition">Roles</div>
           <div>
-            {roles.includes("Admin") ? (
+            {roles.includes("Admin") && username !== USER ? (
               ""
             ) : (
               <>
