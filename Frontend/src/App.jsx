@@ -26,6 +26,7 @@ import Permits from "./pages/content/Permits";
 import SOPs from "./pages/content/SOPs";
 import DataAnalysis from "./pages/content/DataAnalysis";
 import Tests from "./pages/content/Tests";
+import InactiveAccount from "./pages/InactiveAccount";
 
 const App = () => {
   return (
@@ -43,10 +44,11 @@ const App = () => {
           </Route>
 
           <Route path="unauthorized" element={<Unauthorized />} />
+          <Route path="inactiveaccount" element={<InactiveAccount />} />
 
           {/* PRIVATE ROUTES */}
           <Route element={<PersistLogin />}>
-            <Route element={<RequireAuth allowedRoles={["Employee"]} />}>
+            <Route element={<RequireAuth allowedRoles={["Employee"]} allowedStatus={true} />}>
               <Route path="dash" element={<DashLayout />}>
                 <Route index element={<Welcome />} />
                 <Route path="checklist">
@@ -94,7 +96,7 @@ const App = () => {
               </Route>
             </Route>
 
-            <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+            <Route element={<RequireAuth allowedRoles={["Admin"]} allowedStatus={true} />}>
               <Route path="dash" element={<DashLayout />}>
                 <Route path="admin" element={<Admin />} />
               </Route>

@@ -6,6 +6,7 @@ const verifyJWT = require("../middlewares/verifyJWT");
 router.post("/", userController.createNewUser);
 router.use(verifyJWT);
 router.get("/", userController.getAllUsers);
+router.get("/singleUser", userController.getSingleUser);
 // router.patch("/", userController.updateUser);
 router.patch("/addRole", userController.addRole);
 router.patch("/updateRole", userController.updateRole);

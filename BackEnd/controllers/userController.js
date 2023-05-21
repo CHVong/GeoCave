@@ -15,6 +15,19 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  getSingleUser: async (req, res) => {
+    const { username } = req.query;
+    try {
+      const user = await userModel.findOne({ username: username }).select("active").lean();
+      if (!user) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   createNewUser: async (req, res) => {
     try {
       const { username, password, roles } = req.body;
