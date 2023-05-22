@@ -77,7 +77,7 @@ const AdminUsersCard = ({
         <div className="text-sm text-slate-500 group-hover/username:text-slate-300 transition">
           Username
         </div>
-        <div className="text-lg font-bold">{username}</div>
+        <div className="text-lg font-bold animate-fadeIn">{username}</div>
       </div>
       <div className="text-start mr-auto group/roles">
         <div className="flex gap-2 items-center text-sm text-slate-500">
@@ -117,7 +117,7 @@ const AdminUsersCard = ({
               return (
                 <div
                   key={i}
-                  className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
+                  className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all animate-fadeIn ${
                     e === "Employee"
                       ? "bg-blue-900 border-blue-500 hover:border-blue-400"
                       : e === "Admin"
@@ -220,7 +220,7 @@ const AdminUsersCard = ({
 
         <div className="flex gap-2 flex-wrap p-2">
           <div
-            className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
+            className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all animate-fadeIn ${
               active
                 ? "bg-green-900 border-green-500 hover:border-green-400"
                 : !active
@@ -236,7 +236,7 @@ const AdminUsersCard = ({
         <div className="text-sm text-slate-500 group-hover/created:text-slate-300 transition">
           Created
         </div>
-        <div className="font-bold">{moment(createdAt).format("LLL")}</div>
+        <div className="font-bold animate-fadeIn">{moment(createdAt).format("LLL")}</div>
       </div>
     </div>
   );

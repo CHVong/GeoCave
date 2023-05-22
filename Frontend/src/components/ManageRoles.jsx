@@ -8,7 +8,7 @@ const ManageRoles = ({ e, handleClick, updatedRoles }) => {
   return (
     <>
       <div
-        className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all ${
+        className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all animate-fadeIn ${
           e === "Employee" && updatedRoles.includes("Employee")
             ? "bg-blue-900 border-blue-500 hover:border-blue-400"
             : e === "Admin" && updatedRoles.includes("Admin")

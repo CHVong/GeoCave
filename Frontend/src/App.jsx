@@ -27,6 +27,7 @@ import SOPs from "./pages/content/SOPs";
 import DataAnalysis from "./pages/content/DataAnalysis";
 import Tests from "./pages/content/Tests";
 import InactiveAccount from "./pages/InactiveAccount";
+import Contact from "./pages/Contact";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
 
           <Route path="unauthorized" element={<Unauthorized />} />
           <Route path="inactiveaccount" element={<InactiveAccount />} />
+          <Route path="contact" element={<Contact />} />
 
           {/* PRIVATE ROUTES */}
           <Route element={<PersistLogin />}>
