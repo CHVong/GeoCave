@@ -14,12 +14,17 @@ module.exports = {
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-in-out",
+        fadeOut: "fadeOut 8s ease-out",
         loader: "loader 0.6s infinite alternate",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
+        },
+        fadeOut: {
+          "50%": { opacity: 1 },
+          "100%": { opacity: 0 },
         },
         loader: {
           to: {
