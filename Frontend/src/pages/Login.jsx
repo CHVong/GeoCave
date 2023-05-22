@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
 import axios from "../api/axios";
+import mountainbgIcon from "../assets/images/mountainbgfavicon2.svg";
 
 const LOGIN_URL = "/auth";
 
@@ -83,6 +84,14 @@ const Login = () => {
 
   return (
     <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3 p-6">
+      <img
+        src={mountainbgIcon}
+        alt="SVG image of a mountain top"
+        className="w-14 p-2 cursor-pointer hoverScale hover:bg-primary rounded-lg m-auto mb-4"
+        onClick={() => {
+          navigate("/");
+        }}
+      />
       <p
         ref={errRef}
         className={

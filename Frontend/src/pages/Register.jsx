@@ -1,15 +1,19 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import LinkButton from "../components/LinkButton";
 import { Link } from "react-router-dom";
+import mountainbgIcon from "../assets/images/mountainbgfavicon2.svg";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 const REGISTER_URL = "/user";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -91,6 +95,14 @@ const Register = () => {
     <>
       {success ? (
         <section className="relative flex flex-col gap-8 md:mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3 p-6">
+          <img
+            src={mountainbgIcon}
+            alt="SVG image of a mountain top"
+            className="w-14 p-2 cursor-pointer hoverScale hover:bg-primary rounded-lg m-auto mb-4"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <h1 className="animate-fadeIn text-2xl text-green-500 font-medium">
             Account successfully created!
           </h1>
@@ -104,6 +116,14 @@ const Register = () => {
         </section>
       ) : (
         <section className="relative animate-fadeIn flex flex-col gap-8 md:mx-auto md:w-3/4 lg:w-1/2 xl:w-1/3 p-6">
+          <img
+            src={mountainbgIcon}
+            alt="SVG image of a mountain top"
+            className="w-14 p-2 cursor-pointer hoverScale hover:bg-primary rounded-lg m-auto mb-4"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <p
             ref={errRef}
             className={
