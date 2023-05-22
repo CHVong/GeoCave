@@ -16,8 +16,16 @@ module.exports = {
 
       const foundUser = await User.findOne({ username }).exec();
 
-      if (!foundUser || !foundUser.active) {
+      if (!foundUser) {
         return res.status(401).json({ message: "Unauthorized" });
+      }
+      if (!foundUser.active) {
+        return res
+          .status(403)
+          .json({
+            message:
+              "Your account no longer has access, please contact an admin to resolve this issue.",
+          });
       }
 
       const match = await bcrypt.compare(password, foundUser.password);

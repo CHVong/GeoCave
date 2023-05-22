@@ -34,6 +34,7 @@ const Public = () => {
             <LinkButton path={"login"} name={"Login"} />
             <LinkButton path={"register"} name={"Register"} />
             <LinkButton path={"guestdemo"} name={"Guest Demo"} />
+            <LinkButton path={"contact"} name={"Contact Us"} />
           </div>
         )}
       </section>

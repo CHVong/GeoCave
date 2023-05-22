@@ -7,7 +7,7 @@ const InactiveAccount = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-10 animate-fadeIn">
+    <div className="flex flex-col items-center gap-10 animate-fadeIn p-4">
       <h1 className="text-5xl font-bold">Error 403: Forbidden</h1>
       <h2>
         Sorry, your account has been marked as inactive and you do not have authorization to access

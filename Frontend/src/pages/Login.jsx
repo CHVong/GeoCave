@@ -61,6 +61,10 @@ const Login = () => {
         setErrMsg("Missing Username or Password");
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized: Incorrect Login");
+      } else if (err.response?.status === 403) {
+        setErrMsg(
+          "Unauthorized: Your account no longer has access, please contact an admin to resolve this issue."
+        );
       } else if (err.response?.status === 429) {
         setErrMsg("Too many failed requests (Timed out: 60sec)");
       } else {
