@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PageHeading from "../components/PageHeading";
 import SubmitButton from "../components/SubmitButton";
 import LinkButton from "../components/LinkButton";
@@ -11,6 +12,11 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "GeoCave - Contact Us";
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -74,8 +80,7 @@ const Contact = () => {
         alt="SVG image of a mountain top"
         className="w-14 p-2 cursor-pointer hoverScale hover:bg-primary rounded-lg m-auto mb-4"
         onClick={() => {
-          navigate("/dash");
-          handleLinkClick();
+          navigate("/");
         }}
       />
       <form
