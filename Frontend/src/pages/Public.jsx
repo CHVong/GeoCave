@@ -1,15 +1,57 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
 import mountainbg from "../assets/images/mountainbg2.svg";
 import useAuth from "../hooks/useAuth";
+import axios from "../api/axios";
 import LogOutButton from "../components/LogOutButton";
 
 const Public = () => {
-  const { auth } = useAuth();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
+  const { auth, setAuth, persist, setPersist, username, setUsername } = useAuth();
   useEffect(() => {
     document.title = "GeoCave";
   }, []);
+
+  const guestLogin = async () => {
+    try {
+      const response = await axios.post(
+        "/auth",
+        JSON.stringify({ username: "Guest", password: "Guest123" }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      const accessToken = response?.data?.accessToken;
+      setAuth({ accessToken });
+      setUsername("Guest");
+      if (from === "/") {
+        navigate("/dash", { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
+    } catch (err) {
+      if (!err?.response) {
+        console.log("No Server Response", err);
+      } else if (err.response?.status === 400) {
+        console.log("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        console.log("Unauthorized: Incorrect Login");
+      } else if (err.response?.status === 403) {
+        console.log(
+          "Unauthorized: Your account no longer has access, please contact an admin to resolve this issue."
+        );
+      } else if (err.response?.status === 429) {
+        console.log("Too many failed requests (Timed out: 60sec)");
+      } else {
+        console.log("Login Failed");
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col gap-10 animate-fadeIn items-center p-6">
       <img src={mountainbg} alt="SVG image of a mountain top" className="w-48" />
@@ -33,7 +75,7 @@ const Public = () => {
           <div className="flex flex-col gap-4 lg:flex-row justify-center items-center animate-fadeIn">
             <LinkButton path={"login"} name={"Login"} />
             <LinkButton path={"register"} name={"Register"} />
-            <LinkButton path={"guestdemo"} name={"Guest Demo"} />
+            <LinkButton path={""} name={"Guest Demo"} onClick={guestLogin} />
             <LinkButton path={"contact"} name={"Contact Us"} />
           </div>
         )}
