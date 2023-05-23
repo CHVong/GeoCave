@@ -29,7 +29,7 @@ const RequireAuth = ({ allowedRoles, allowedStatus }) => {
             withCredentials: true,
           });
           setStatus(response.data.active);
-          console.log(response.data);
+          // console.log(response.data);
         }
         setIsLoading(false);
       } catch (error) {

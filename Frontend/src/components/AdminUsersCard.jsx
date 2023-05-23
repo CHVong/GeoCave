@@ -30,7 +30,6 @@ const AdminUsersCard = ({
   const { auth } = useAuth();
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
   const USER = decoded?.UserInfo.username || [];
-  console.log(USER);
   const [editRoles, setEditRoles] = useState(false);
   const newRoles = [...roles];
   const [updatedRoles, setUpdatedRoles] = useState(newRoles);

@@ -48,6 +48,28 @@ const Checklist = () => {
 
   const fetchData = async () => {
     try {
+      // setIsLoading(true);
+      const response = await axios.get(CHECKLIST_URL, {
+        params: { user: username, job: task },
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
+      setData(response.data?.map((e) => e));
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
+  const initialFetchData = async () => {
+    setData([]);
+    try {
       setIsLoading(true);
       const response = await axios.get(CHECKLIST_URL, {
         params: { user: username, job: task },
@@ -74,7 +96,7 @@ const Checklist = () => {
 
   useEffect(() => {
     if (task === null || task === "") return;
-    fetchData();
+    initialFetchData();
   }, [task]);
 
   const handleTaskChange = (event) => {
@@ -165,7 +187,9 @@ const Checklist = () => {
                     onClick={handleDelete}
                   />
                 ))
-              : "You currently do not have any optional items for this task"}
+              : isLoading === false
+              ? "You currently do not have any optional items for this task"
+              : ""}
           </div>
           <form onSubmit={handleSubmit}>
             <div className="relative flex flex-col gap-2 p-2">
