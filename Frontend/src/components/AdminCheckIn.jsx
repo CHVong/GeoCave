@@ -30,7 +30,7 @@ const AdminCheckIn = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -38,8 +38,8 @@ const AdminCheckIn = () => {
   };
 
   const deleteItem = async (id) => {
-    console.log("delete item");
-    console.log(id);
+    // console.log("delete item");
+    // console.log(id);
     try {
       const response = await axios.delete(CHECKIN_URL, {
         headers: {
@@ -52,7 +52,7 @@ const AdminCheckIn = () => {
         withCredentials: true,
       });
 
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         return prevData.filter((item) => item._id !== response.data.deletedCheckIn._id);
       });

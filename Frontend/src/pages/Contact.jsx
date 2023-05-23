@@ -45,7 +45,7 @@ const Contact = () => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Thanks for your submission!");
+          // console.log("Thanks for your submission!");
           setName("");
           setEmail("");
           setSubject("");

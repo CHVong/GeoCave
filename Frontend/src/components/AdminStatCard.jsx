@@ -52,7 +52,7 @@ const AdminStatCard = ({ title, url, icon, onClick }) => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);

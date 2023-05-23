@@ -52,7 +52,7 @@ const AdminEquipment = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -70,7 +70,7 @@ const AdminEquipment = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -87,7 +87,7 @@ const AdminEquipment = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -98,7 +98,7 @@ const AdminEquipment = () => {
     if (e) {
       e.preventDefault();
     }
-    console.log(id, fieldToUpdate, contentToUpdate, url);
+    // console.log(id, fieldToUpdate, contentToUpdate, url);
     try {
       const response = await axios.patch(
         url,
@@ -111,7 +111,7 @@ const AdminEquipment = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         const newData = [...prevData];
         const index = newData.findIndex((item) => item._id === response.data._id);
@@ -129,7 +129,7 @@ const AdminEquipment = () => {
     const formData = new FormData();
     formData.append("id", id);
     formData.append("file", file);
-    console.log(id, formData.file);
+    // console.log(id, formData.file);
 
     try {
       const response = await axios.patch("/equipment/picture", formData, {
@@ -139,7 +139,7 @@ const AdminEquipment = () => {
         },
         withCredentials: true,
       });
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         const newData = [...prevData];
         const index = newData.findIndex((item) => item._id === response.data._id);
@@ -152,8 +152,8 @@ const AdminEquipment = () => {
   };
 
   const deleteItem = async (id) => {
-    console.log("delete item");
-    console.log(id);
+    // console.log("delete item");
+    // console.log(id);
     try {
       const response = await axios.delete(`/equipment`, {
         headers: {
@@ -166,7 +166,7 @@ const AdminEquipment = () => {
         withCredentials: true,
       });
 
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         return prevData.filter((item) => item._id !== response.data.deletedEquipment._id);
       });

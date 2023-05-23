@@ -38,7 +38,7 @@ const AdminUsersCard = ({
   }, [roles]);
 
   const handleClick = (e) => {
-    console.log(updatedRoles);
+    // console.log(updatedRoles);
     if (updatedRoles.includes(e)) {
       const index = updatedRoles.indexOf(e);
       updatedRoles.splice(index, 1);
@@ -47,7 +47,7 @@ const AdminUsersCard = ({
     }
     setUpdatedRoles([...updatedRoles]);
     // Trigger re-render by updating the state with the modified array
-    console.log(updatedRoles);
+    // console.log(updatedRoles);
   };
 
   const handleKeyDown = (e) => {

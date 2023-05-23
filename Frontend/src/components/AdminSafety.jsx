@@ -35,7 +35,7 @@ const AdminSafety = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -57,7 +57,7 @@ const AdminSafety = () => {
         withCredentials: true,
       });
 
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         return prevData.filter((item) => item._id !== response.data.deletedSafety._id);
       });

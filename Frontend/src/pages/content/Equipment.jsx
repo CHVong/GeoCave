@@ -51,7 +51,7 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -69,7 +69,7 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -86,7 +86,7 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -97,7 +97,7 @@ const Equipment = () => {
     if (e) {
       e.preventDefault();
     }
-    console.log(id, stockNumber);
+    // console.log(id, stockNumber);
     try {
       const response = await axios.patch(
         UPDATE_STOCK_URL,

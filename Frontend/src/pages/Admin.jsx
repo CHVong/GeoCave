@@ -24,7 +24,7 @@ const Admin = () => {
 
   const changeManage = (title) => {
     setShowManage(title);
-    console.log(showManage);
+    // console.log(showManage);
   };
 
   return (

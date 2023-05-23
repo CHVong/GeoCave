@@ -39,7 +39,7 @@ const AdminUsers = () => {
         withCredentials: true,
       });
       setData(response.data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -60,7 +60,7 @@ const AdminUsers = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         const newData = [...prevData];
         const index = newData.findIndex((item) => item._id === response.data.updatedResult._id);
@@ -85,7 +85,7 @@ const AdminUsers = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         const newData = [...prevData];
         const index = newData.findIndex((item) => item._id === response.data.updatedResult._id);
@@ -111,7 +111,7 @@ const AdminUsers = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData((prevData) => {
         const newData = [...prevData];
         const index = newData.findIndex((item) => item._id === response.data.updatedResult._id);

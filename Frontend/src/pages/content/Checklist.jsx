@@ -59,7 +59,7 @@ const Checklist = () => {
         withCredentials: true,
       });
       setData(response.data?.map((e) => e));
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -81,7 +81,7 @@ const Checklist = () => {
         withCredentials: true,
       });
       setData(response.data?.map((e) => e));
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
@@ -109,7 +109,7 @@ const Checklist = () => {
     const payload = Object.fromEntries(formData);
     payload.user = username;
     payload.job = task;
-    console.log(JSON.stringify(payload));
+    // console.log(JSON.stringify(payload));
 
     try {
       const response = await axios.post(CHECKLIST_URL, JSON.stringify(payload), {

@@ -47,7 +47,7 @@ const AddEquipmentForm = ({ fetch }) => {
         withCredentials: true,
       });
       fetch();
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       if (!err?.response) {
         // setErrMsg("No Server Response");

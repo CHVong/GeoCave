@@ -19,8 +19,9 @@ const DashHeader = () => {
     setShowMenu(false);
   };
   const signOut = async () => {
-    await logout();
     navigate("/");
+    // place naviate before logout here. For some reason if you dont, it logs you out and hangs on login page before going to the home page. Was able to see this in slow 3g network when testing
+    await logout();
   };
 
   const { auth } = useAuth();

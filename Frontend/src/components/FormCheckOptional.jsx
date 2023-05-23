@@ -29,8 +29,8 @@ const FormCheckOptional = ({ id, title, job, onClick }) => {
       },
       withCredentials: true,
     });
-    console.log(response);
-    console.log(response.data);
+    // console.log(response);
+    // console.log(response.data);
   };
 
   const handleDelete = async () => {
@@ -73,7 +73,7 @@ const FormCheckOptional = ({ id, title, job, onClick }) => {
       );
       fetchData();
       toggleInfo();
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error Updating Data:", error);
     }

@@ -25,7 +25,7 @@ const AddSafetyIncidentForm = ({ fetch }) => {
     payload.user = username;
     payload.hazards = checkedHazards;
 
-    console.log(payload);
+    // console.log(payload);
 
     try {
       const response = await axios.post(SAFETY_URL, payload, {
@@ -45,7 +45,7 @@ const AddSafetyIncidentForm = ({ fetch }) => {
         withCredentials: true,
       });
       fetch();
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       if (!err?.response) {
         // setErrMsg("No Server Response");
