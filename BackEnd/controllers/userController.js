@@ -34,7 +34,12 @@ module.exports = {
       if (!username || !password || !Array.isArray(roles) || !roles.length) {
         return res.status(400).json({ message: "All fields are required" });
       }
-      const duplicate = await userModel.findOne({ username }).lean().exec();
+      // const duplicate = await userModel.findOne({ username }).lean().exec();
+      const duplicate = await userModel
+        .findOne({ username: { $regex: new RegExp(`^${username}$`, "i") } })
+        .lean()
+        .exec();
+
       if (duplicate) {
         return res
           .status(409)
