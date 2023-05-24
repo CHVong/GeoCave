@@ -17,6 +17,8 @@ const UPDATE_STOCK_URL = "/equipment/stock";
 const Equipment = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -51,10 +53,12 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
+      setLoading(false);
       // console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
+      setLoading(true);
     }
   };
   const fetchSearch = async (searchText) => {
@@ -69,10 +73,12 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
+      setLoading(false);
       // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
+      setLoading(false);
     }
   };
   const fetchFilter = async (filter) => {
@@ -86,10 +92,12 @@ const Equipment = () => {
         withCredentials: true,
       });
       setData(response.data);
+      setLoading(false);
       // console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
+      setLoading(true);
     }
   };
 
@@ -148,7 +156,11 @@ const Equipment = () => {
         <EquipmentFilter fetch={fetchFilter} />
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-2">
-        {data.length !== 0 ? (
+        {loading ? ( // Show loading when loading is true
+          <div className="col-span-full">
+            <Loading />
+          </div>
+        ) : currentItems.length !== 0 ? (
           currentItems.map((e, index) => (
             <EquipmentCard
               updateStock={updateStock}
@@ -165,11 +177,9 @@ const Equipment = () => {
             />
           ))
         ) : (
-          <>
-            <div className="col-span-full">
-              <Loading />
-            </div>
-          </>
+          <div className="col-span-full">
+            No results were found for equipment with that search query.
+          </div>
         )}
         {/* CONSIDER ADDING PAGINATION? */}
         <div className="flex justify-center mt-4 col-span-full">

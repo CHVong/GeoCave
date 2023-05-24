@@ -7,6 +7,7 @@ router.post("/", userController.createNewUser);
 router.use(verifyJWT);
 router.get("/", userController.getAllUsers);
 router.get("/singleUser", userController.getSingleUser);
+router.get("/searchUsername", userController.searchUsername);
 // router.patch("/", userController.updateUser);
 router.patch("/addRole", userController.addRole);
 router.patch("/updateRole", userController.updateRole);

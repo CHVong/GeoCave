@@ -28,6 +28,30 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  searchUsername: async (req, res) => {
+    try {
+      const { searchText } = req.query; // Get the search query from the request query parameters
+      const searchRegex = new RegExp(searchText, "i"); // Create a regex pattern for case-insensitive search
+
+      const user = await userModel
+        .find({
+          $or: [
+            { username: searchRegex },
+            { roles: { $in: [searchRegex] } }, // Use $in operator to search for an array of values
+          ],
+        })
+        .sort({ updatedAt: -1 })
+        .lean();
+
+      if (!user?.length) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   createNewUser: async (req, res) => {
     try {
       const { username, password, roles } = req.body;
