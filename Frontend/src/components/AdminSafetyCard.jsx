@@ -19,6 +19,7 @@ const AdminSafetyCard = ({
   createdAt,
   createdByUser,
   deleteItem,
+  cloudinaryId,
 }) => {
   const createdAtMoment = moment(createdAt);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -101,8 +102,8 @@ const AdminSafetyCard = ({
         <div className="relative group w-full lg:w-80 m-auto p-4">
           <img
             src={`${
-              image ||
-              "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png"
+              `https://res.cloudinary.com/dq9umvpmv/image/upload/q_50/${cloudinaryId}` ||
+              "https://res.cloudinary.com/dq9umvpmv/image/upload/q_50/v1681857805/PictureNotAvailable_qj29ng.png"
             }`}
             alt={`Image of ${projectName}`}
             className=" object-scale-down group-hover:scale-95 cursor-pointer border-primary transition rounded-xl"

@@ -174,6 +174,7 @@ const Equipment = () => {
               location={e.location}
               description={e.description}
               createdByUser={e.createdByUser}
+              cloudinaryId={e.cloudinaryId}
             />
           ))
         ) : (

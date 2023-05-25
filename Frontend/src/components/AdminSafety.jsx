@@ -86,6 +86,7 @@ const AdminSafety = () => {
               createdAt={e.createdAt}
               description={e.description}
               createdByUser={e.createdByUser}
+              cloudinaryId={e.cloudinaryId}
             />
           ))}
         </div>

@@ -62,8 +62,8 @@ const RecentSafetyIncident = ({ data }) => {
           <div className="relative group w-full lg:w-80 m-auto p-4">
             <img
               src={`${
-                data[0].image ||
-                "https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png"
+                `https://res.cloudinary.com/dq9umvpmv/image/upload/q_50/${data[0].cloudinaryId}` ||
+                "https://res.cloudinary.com/dq9umvpmv/image/upload/q_50/v1681857805/PictureNotAvailable_qj29ng.png"
               }`}
               alt={`Image of ${data[0].projectName}`}
               className=" object-scale-down group-hover:scale-95 cursor-pointer border-primary transition rounded-xl"

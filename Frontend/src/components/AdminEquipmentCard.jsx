@@ -24,6 +24,7 @@ const AdminEquipmentCard = ({
   updateItem,
   updatePicture,
   deleteItem,
+  cloudinaryId,
 }) => {
   const [editStock, setEditStock] = useState(false);
   const [editVendor, setEditVendor] = useState(false);
@@ -303,7 +304,7 @@ const AdminEquipmentCard = ({
             {image ? (
               <div className="relative group ">
                 <img
-                  src={`${image}`}
+                  src={`https://res.cloudinary.com/dq9umvpmv/image/upload/q_10/${cloudinaryId}`}
                   alt={`Image of ${name}`}
                   className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2 inline"
                   onClick={() => window.open(image, "_blank")}
@@ -318,7 +319,7 @@ const AdminEquipmentCard = ({
             ) : (
               <div className="relative group ">
                 <img
-                  src={`https://res.cloudinary.com/dq9umvpmv/image/upload/v1681857805/PictureNotAvailable_qj29ng.png`}
+                  src={`https://res.cloudinary.com/dq9umvpmv/image/upload/q_50/v1681857805/PictureNotAvailable_qj29ng.png`}
                   alt={`Placeholder image`}
                   className="w-56 h-40 object-scale-down group-hover:scale-95 cursor-pointer border-primary transition p-2"
                   onClick={() =>

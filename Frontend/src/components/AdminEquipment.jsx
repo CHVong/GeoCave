@@ -230,6 +230,7 @@ const AdminEquipment = () => {
               location={e.location}
               description={e.description}
               createdByUser={e.createdByUser}
+              cloudinaryId={e.cloudinaryId}
             />
           ))
         ) : (
