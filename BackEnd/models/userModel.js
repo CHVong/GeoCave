@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    ip: {
+      type: String, // Adjust the data type if necessary
+    },
     // createdDate: {
     //   type: Date,
     //   default: format(new Date(), "yyyy-MM-dd HH:mm:ss"),

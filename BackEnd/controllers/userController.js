@@ -70,7 +70,8 @@ module.exports = {
           .json({ message: "Cannot create a new user with duplicate username" });
       }
       const hasedPassword = await bcrypt.hash(password, 10);
-      const userObject = { username, password: hasedPassword, roles };
+      const userIP = req.ip;
+      const userObject = { username, password: hasedPassword, roles, ip: userIP };
       const newUser = await userModel.create(userObject);
       if (newUser) {
         res.status(201).json({ message: `New user (${username}) created` });
