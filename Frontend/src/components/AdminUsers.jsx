@@ -7,6 +7,7 @@ import AdminUsersCard from "./AdminUsersCard";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
 import Searchbar from "./Searchbar";
+import UsersFilter from "./UsersFilter";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -168,11 +169,36 @@ const AdminUsers = () => {
     }
   };
 
+  const fetchFilter = async (filter) => {
+    try {
+      const response = await axios.get(`/user/${filter}`, {
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
+      setData(response.data);
+      setLoading(false);
+      // console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+      setLoading(true);
+    }
+  };
+
+  useEffect(() => {
+    document.getElementById("scroller")?.scrollIntoView({ behavior: "smooth" });
+  }, [currentPage]);
+
   return (
     <div id="scroller">
       <PageHeading heading={"Manage All Users"} />
       <div className="flex items-end md:items-center flex-col-reverse md:flex-row justify-between m-4 gap-4">
         <Searchbar fetch={fetchSearch} />
+        <UsersFilter fetch={fetchFilter} />
       </div>
       {loading ? ( // Show loading when loading is true
         <div className="col-span-full">

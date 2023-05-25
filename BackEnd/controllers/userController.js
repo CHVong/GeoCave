@@ -44,7 +44,7 @@ module.exports = {
         .lean();
 
       if (!user?.length) {
-        return res.status(400).json({ message: "No equipment found" });
+        return res.status(400).json({ message: "No users found" });
       }
       res.json(user);
     } catch (error) {
@@ -231,6 +231,98 @@ module.exports = {
         message: `Roles(${user?.username}) has been updated`,
         updatedResult: updatedStatus,
       });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getRecentlyUpdated: async (req, res) => {
+    try {
+      const users = await userModel.find().sort({ updatedAt: -1 }).lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getNameAZ: async (req, res) => {
+    try {
+      const users = await userModel
+        .find()
+        .collation({ locale: "en", strength: 1 })
+        .sort({ username: 1 })
+        .lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getNameZA: async (req, res) => {
+    try {
+      const users = await userModel
+        .find()
+        .collation({ locale: "en", strength: 1 })
+        .sort({ username: -1 })
+        .lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getNewest: async (req, res) => {
+    try {
+      const users = await userModel.find().sort({ createdAt: -1 }).lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No user found" });
+      }
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getOldest: async (req, res) => {
+    try {
+      const users = await userModel.find().sort({ createdAt: 1 }).lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getActive: async (req, res) => {
+    try {
+      const users = await userModel.find().sort({ active: -1 }).lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+  getInactive: async (req, res) => {
+    try {
+      const users = await userModel.find().sort({ active: 1 }).lean();
+      if (!users?.length) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json(users);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
