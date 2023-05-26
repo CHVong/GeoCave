@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { faPenToSquare, faTrashCan, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faTrashCan,
+  faFloppyDisk,
+  faCheck,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import jwt_decode from "jwt-decode";
 import useAuth from "../hooks/useAuth";
@@ -10,6 +16,7 @@ const CHECKLIST_URL = "/checklist";
 const FormCheckOptional = ({ id, title, job, onClick }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [optionalInput, setOptionalInput] = useState(title);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const { auth } = useAuth();
 
   const decoded = auth?.accessToken ? jwt_decode(auth.accessToken) : undefined;
@@ -114,28 +121,52 @@ const FormCheckOptional = ({ id, title, job, onClick }) => {
           </label>
         </div>
       )}
-      {showEdit && (
-        <FontAwesomeIcon
-          icon={faTrashCan}
-          className="cursor-pointer hover:opacity-80 text-red-500 animate-fadeIn"
-          onClick={handleDelete}
-        />
+      {showConfirmDelete ? (
+        <>
+          <FontAwesomeIcon
+            icon={faXmark}
+            className="cursor-pointer hover:opacity-80 text-red-500 animate-fadeIn"
+            onClick={() => {
+              setShowConfirmDelete(false);
+            }}
+          />{" "}
+          <FontAwesomeIcon
+            icon={faCheck}
+            className="cursor-pointer hover:opacity-80 text-green-500 animate-fadeIn"
+            onClick={() => {
+              setShowConfirmDelete(false);
+              handleDelete();
+            }}
+          />
+        </>
+      ) : (
+        showEdit && (
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className="cursor-pointer hover:opacity-80 text-red-500 animate-fadeIn"
+            onClick={() => {
+              setShowConfirmDelete(true);
+            }}
+          />
+        )
       )}
-      <div className="relative">
-        <FontAwesomeIcon
-          icon={showEdit ? faFloppyDisk : faPenToSquare}
-          className={`cursor-pointer hover:opacity-80 ${
-            showEdit ? "text-green-500 animate-fadeIn" : ""
-          }`}
-          onClick={() => {
-            if (showEdit) {
-              handleSubmit();
-            } else {
-              toggleInfo();
-            }
-          }}
-        />
-      </div>
+      {!showConfirmDelete && (
+        <div className="relative">
+          <FontAwesomeIcon
+            icon={showEdit ? faFloppyDisk : faPenToSquare}
+            className={`cursor-pointer hover:opacity-80 ${
+              showEdit ? "text-green-500 animate-fadeIn" : ""
+            }`}
+            onClick={() => {
+              if (showEdit) {
+                handleSubmit();
+              } else {
+                toggleInfo();
+              }
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
