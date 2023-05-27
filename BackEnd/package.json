@@ -4,7 +4,7 @@
   "description": "GeoCave: An info center for geologists.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js && npx tailwindcss -i ./public/input.css -o ./public/output.css",
+    "start": "npx tailwindcss -i ./public/input.css -o ./public/output.css && node server.js",
     "dev": "concurrently \"npm run nodemon\" \"npm run tailwind\"",
     "nodemon": "nodemon server",
     "tailwind": "npx tailwindcss -i ./public/input.css -o ./public/output.css --watch"
