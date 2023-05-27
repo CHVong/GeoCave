@@ -92,18 +92,21 @@ const Login = () => {
           navigate("/");
         }}
       />
-      <p
-        ref={errRef}
-        className={
-          errMsg
-            ? "animate-fadeIn rounded-lg absolute bottom-full w-4/5 md:w-full bg-red-500 left-1/2 -translate-x-1/2"
-            : "absolute left-full"
-        }
-        aria-live="assertive"
-      >
-        {errMsg}
-      </p>
-      <h1 className="text-3xl underline text-tertiary font-medium">Sign In</h1>
+
+      <h1 className="text-3xl underline text-tertiary font-medium relative">
+        Sign In
+        <p
+          ref={errRef}
+          className={
+            errMsg
+              ? "animate-fadeIn rounded-lg absolute bottom-full w-full bg-red-500 left-1/2 -translate-x-1/2 text-base text-secondary"
+              : "absolute left-full"
+          }
+          aria-live="assertive"
+        >
+          {errMsg}
+        </p>
+      </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <label htmlFor="username" className="text-left italic">
           Username:

@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://geocaveapi.onrender.com";
+const BASE_URL = "https://geocave-api.cyclic.app";
 
 export default axios.create({
   baseURL: BASE_URL,
