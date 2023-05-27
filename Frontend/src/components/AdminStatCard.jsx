@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 
-const AdminStatCard = ({ title, url, icon, onClick }) => {
+const AdminStatCard = ({ title, url, icon, onClick, link }) => {
   const [data, setData] = useState([]);
   const [displayedNumber, setDisplayedNumber] = useState(0);
   const [animationDuration, setAnimationDuration] = useState(1000);
@@ -67,7 +67,7 @@ const AdminStatCard = ({ title, url, icon, onClick }) => {
 
       <h2
         className="bg-gray-700 w-max mx-auto rounded-lg px-3 py-1 cursor-pointer hover:scale-90 hover:text-gray-700 hover:bg-gray-300 transition hover:font-medium"
-        onClick={() => onClick(title)}
+        onClick={() => onClick(link)}
       >
         Manage
       </h2>

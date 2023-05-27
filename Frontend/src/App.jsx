@@ -28,6 +28,10 @@ import DataAnalysis from "./pages/content/DataAnalysis";
 import Tests from "./pages/content/Tests";
 import InactiveAccount from "./pages/InactiveAccount";
 import Contact from "./pages/Contact";
+import ManageCheckIn from "./components/ManageCheckIn";
+import ManageEquipment from "./components/ManageEquipment";
+import ManageSafety from "./components/ManageSafety";
+import ManageUsers from "./components/ManageUsers";
 
 const App = () => {
   return (
@@ -101,6 +105,10 @@ const App = () => {
             <Route element={<RequireAuth allowedRoles={["Admin"]} allowedStatus={true} />}>
               <Route path="dash" element={<DashLayout />}>
                 <Route path="admin" element={<Admin />} />
+                <Route path="admin/manageusers" element={<ManageUsers />} />
+                <Route path="admin/manageequipment" element={<ManageEquipment />} />
+                <Route path="admin/managesafety" element={<ManageSafety />} />
+                <Route path="admin/managecheckins" element={<ManageCheckIn />} />
               </Route>
             </Route>
           </Route>

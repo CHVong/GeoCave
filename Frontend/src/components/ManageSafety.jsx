@@ -2,10 +2,10 @@ import React from "react";
 import BackButton from "./BackButton";
 import AdminSafety from "./AdminSafety";
 
-const ManageSafety = ({ onClick }) => {
+const ManageSafety = () => {
   return (
     <div className="animate-fadeIn">
-      <BackButton onClick={onClick} />
+      <BackButton />
       <AdminSafety />
     </div>
   );

@@ -12,8 +12,11 @@ import ManageSafety from "../components/ManageSafety";
 import ManageUsers from "../components/ManageUsers";
 import ManageEquipment from "../components/ManageEquipment";
 import ManageCheckIn from "../components/ManageCheckIn";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
+  const navigate = useNavigate();
+
   const [showManage, setShowManage] = useState("");
 
   useEffect(() => {
@@ -25,10 +28,14 @@ const Admin = () => {
     // console.log(showManage);
   };
 
+  const navigateManage = (url) => {
+    navigate(`/dash/admin${url}`);
+  };
+
   return (
     <section>
       <PageHeading heading={"Admin Dashboard"} />
-      {showManage === "Users" ? (
+      {/* {showManage === "Users" ? (
         <ManageUsers onClick={changeManage} />
       ) : showManage === "Equipment" ? (
         <ManageEquipment onClick={changeManage} />
@@ -36,48 +43,48 @@ const Admin = () => {
         <ManageSafety onClick={changeManage} />
       ) : showManage === "Check-Ins" ? (
         <ManageCheckIn onClick={changeManage} />
-      ) : (
-        <div className="flex justify-center flex-wrap gap-8 p-1 animate-fadeIn">
-          <AdminStatCard
-            title={"Users"}
-            url={"/user"}
-            icon={
-              <FontAwesomeIcon
-                icon={faAddressCard}
-                size="lg"
-                className="group-hover:text-blue-500"
-              />
-            }
-            onClick={changeManage}
-          />
-          <AdminStatCard
-            title={"Equipment"}
-            url={"/equipment"}
-            icon={
-              <FontAwesomeIcon icon={faToolbox} size="lg" className="group-hover:text-orange-500" />
-            }
-            onClick={changeManage}
-          />
-          <AdminStatCard
-            title={"Safety Incidents"}
-            url={"/safety"}
-            icon={
-              <FontAwesomeIcon
-                icon={faHelmetSafety}
-                size="lg"
-                className="group-hover:text-yellow-500"
-              />
-            }
-            onClick={changeManage}
-          />
-          <AdminStatCard
-            title={"Check-Ins"}
-            url={"checkin"}
-            icon={<FontAwesomeIcon icon={faHeart} size="lg" className="group-hover:text-red-500" />}
-            onClick={changeManage}
-          />
-        </div>
-      )}
+      ) : ( */}
+      <div className="flex justify-center flex-wrap gap-8 p-1 animate-fadeIn">
+        <AdminStatCard
+          title={"Users"}
+          url={"/user"}
+          link={"/manageusers"}
+          icon={
+            <FontAwesomeIcon icon={faAddressCard} size="lg" className="group-hover:text-blue-500" />
+          }
+          onClick={navigateManage}
+        />
+        <AdminStatCard
+          title={"Equipment"}
+          url={"/equipment"}
+          link={"/manageequipment"}
+          icon={
+            <FontAwesomeIcon icon={faToolbox} size="lg" className="group-hover:text-orange-500" />
+          }
+          onClick={navigateManage}
+        />
+        <AdminStatCard
+          title={"Safety Incidents"}
+          url={"/safety"}
+          link={"/managesafety"}
+          icon={
+            <FontAwesomeIcon
+              icon={faHelmetSafety}
+              size="lg"
+              className="group-hover:text-yellow-500"
+            />
+          }
+          onClick={navigateManage}
+        />
+        <AdminStatCard
+          title={"Check-Ins"}
+          url={"/checkin"}
+          link={"/managecheckins"}
+          icon={<FontAwesomeIcon icon={faHeart} size="lg" className="group-hover:text-red-500" />}
+          onClick={navigateManage}
+        />
+      </div>
+      {/* )} */}
 
       {/* <br />
       <Users />
