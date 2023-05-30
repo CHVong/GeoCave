@@ -8,46 +8,58 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ManageSafety from "../components/ManageSafety";
-import ManageUsers from "../components/ManageUsers";
-import ManageEquipment from "../components/ManageEquipment";
-import ManageCheckIn from "../components/ManageCheckIn";
 import { useNavigate } from "react-router-dom";
+import axios from "../api/axios";
+import useAuth from "../hooks/useAuth";
+
+const COUNT_URL = "/count";
 
 const Admin = () => {
   const navigate = useNavigate();
 
   const [showManage, setShowManage] = useState("");
+  const [data, setData] = useState({});
+  const { auth } = useAuth();
 
   useEffect(() => {
     document.title = "GeoCave - Admin Dashboard";
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(COUNT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+        withCredentials: true,
+      });
+      setData(response.data);
+      // console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    }
+  };
 
   const changeManage = (title) => {
     setShowManage(title);
     // console.log(showManage);
   };
 
-  const navigateManage = (url) => {
-    navigate(`/dash/admin${url}`);
+  const navigateManage = (link) => {
+    navigate(`/dash/admin${link}`);
   };
 
   return (
     <section>
       <PageHeading heading={"Admin Dashboard"} />
-      {/* {showManage === "Users" ? (
-        <ManageUsers onClick={changeManage} />
-      ) : showManage === "Equipment" ? (
-        <ManageEquipment onClick={changeManage} />
-      ) : showManage === "Safety Incidents" ? (
-        <ManageSafety onClick={changeManage} />
-      ) : showManage === "Check-Ins" ? (
-        <ManageCheckIn onClick={changeManage} />
-      ) : ( */}
       <div className="flex justify-center flex-wrap gap-8 p-1 animate-fadeIn">
         <AdminStatCard
           title={"Users"}
-          url={"/user/usersCount"}
+          count={data.userCount}
           link={"/manageusers"}
           icon={
             <FontAwesomeIcon icon={faAddressCard} size="lg" className="group-hover:text-blue-500" />
@@ -56,7 +68,7 @@ const Admin = () => {
         />
         <AdminStatCard
           title={"Equipment"}
-          url={"/equipment/equipmentCount"}
+          count={data.equipmentCount}
           link={"/manageequipment"}
           icon={
             <FontAwesomeIcon icon={faToolbox} size="lg" className="group-hover:text-orange-500" />
@@ -65,7 +77,7 @@ const Admin = () => {
         />
         <AdminStatCard
           title={"Safety Incidents"}
-          url={"/safety/safetyCount"}
+          count={data.safetyCount}
           link={"/managesafety"}
           icon={
             <FontAwesomeIcon
@@ -78,7 +90,7 @@ const Admin = () => {
         />
         <AdminStatCard
           title={"Check-Ins"}
-          url={"/checkin/checkInCount"}
+          count={data.checkInCount}
           link={"/managecheckins"}
           icon={<FontAwesomeIcon icon={faHeart} size="lg" className="group-hover:text-red-500" />}
           onClick={navigateManage}

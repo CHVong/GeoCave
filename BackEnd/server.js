@@ -25,6 +25,7 @@ app.use("/checklist", require("./routes/checklistRoutes"));
 app.use("/equipment", require("./routes/equipmentRoutes"));
 app.use("/checkin", require("./routes/checkInRoutes"));
 app.use("/safety", require("./routes/safetyRoutes"));
+app.use("/count", require("./routes/countRoutes"));
 
 app.get("/healthz", (req, res) => {
   // Perform any necessary checks (e.g., database query, external service check)
