@@ -1,24 +1,15 @@
 import { useState, useEffect } from "react";
-import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
 
-const AdminStatCard = ({ title, url, icon, onClick, link }) => {
-  const [data, setData] = useState([]);
+const AdminStatCard = ({ title, count, icon, onClick, link }) => {
   const [displayedNumber, setDisplayedNumber] = useState(0);
   const [animationDuration, setAnimationDuration] = useState(1000);
 
-  const { auth } = useAuth();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   useEffect(() => {
     // Adjust the animation duration based on the target value
-    if (data.count > displayedNumber) {
+    if (count > displayedNumber) {
       const minDuration = 500; // Minimum duration (0.5 seconds)
       const maxDuration = 2000; // Maximum duration (2 seconds)
-      const targetValue = data.count;
+      const targetValue = count;
       const adjustedDuration = Math.max(
         minDuration,
         Math.min(
@@ -28,36 +19,18 @@ const AdminStatCard = ({ title, url, icon, onClick, link }) => {
       );
       setAnimationDuration(adjustedDuration);
     }
-  }, [data.count, displayedNumber]);
+  }, [count, displayedNumber]);
 
   useEffect(() => {
     // Animate the count-up effect
-    if (displayedNumber < data.count) {
+    if (displayedNumber < count) {
       const timer = setInterval(() => {
-        setDisplayedNumber((prevNumber) => Math.min(prevNumber + 1, data.count));
-      }, animationDuration / (data.count - displayedNumber)); // Adjust the divisor for desired animation speed
+        setDisplayedNumber((prevNumber) => Math.min(prevNumber + 1, count));
+      }, animationDuration / (count - displayedNumber)); // Adjust the divisor for desired animation speed
 
       return () => clearInterval(timer);
     }
-  }, [data.count, displayedNumber, animationDuration]);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-
-          Authorization: `Bearer ${auth.accessToken}`,
-        },
-        withCredentials: true,
-      });
-      setData(response.data);
-      // console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setData([]);
-    }
-  };
+  }, [count, displayedNumber, animationDuration]);
 
   return (
     <div className="h-40 w-64 rounded-lg flex flex-col justify-around bg-gray-800 shadow-2xl hover:ring hover:ring-gray-500 group p-2">
