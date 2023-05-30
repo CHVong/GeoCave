@@ -15,6 +15,18 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  getUsersCount: async (req, res) => {
+    try {
+      const count = await userModel.countDocuments();
+      if (count === 0) {
+        return res.status(400).json({ message: "No users found" });
+      }
+      res.json({ count });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   getSingleUser: async (req, res) => {
     const { username } = req.query;
     try {

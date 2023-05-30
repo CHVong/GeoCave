@@ -10,6 +10,7 @@ router.use(verifyJWT);
 // GET
 router.get("/", safetyController.getAllSafety);
 router.get("/latest", safetyController.getLatestSafety);
+router.get("/safetyCount", safetyController.getSafetyCount);
 
 // POST
 router.post("/", upload.single("imgUpload"), safetyController.createSafety);

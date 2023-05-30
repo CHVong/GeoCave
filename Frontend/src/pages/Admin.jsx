@@ -47,7 +47,7 @@ const Admin = () => {
       <div className="flex justify-center flex-wrap gap-8 p-1 animate-fadeIn">
         <AdminStatCard
           title={"Users"}
-          url={"/user"}
+          url={"/user/usersCount"}
           link={"/manageusers"}
           icon={
             <FontAwesomeIcon icon={faAddressCard} size="lg" className="group-hover:text-blue-500" />
@@ -56,7 +56,7 @@ const Admin = () => {
         />
         <AdminStatCard
           title={"Equipment"}
-          url={"/equipment"}
+          url={"/equipment/equipmentCount"}
           link={"/manageequipment"}
           icon={
             <FontAwesomeIcon icon={faToolbox} size="lg" className="group-hover:text-orange-500" />
@@ -65,7 +65,7 @@ const Admin = () => {
         />
         <AdminStatCard
           title={"Safety Incidents"}
-          url={"/safety"}
+          url={"/safety/safetyCount"}
           link={"/managesafety"}
           icon={
             <FontAwesomeIcon
@@ -78,7 +78,7 @@ const Admin = () => {
         />
         <AdminStatCard
           title={"Check-Ins"}
-          url={"/checkin"}
+          url={"/checkin/checkInCount"}
           link={"/managecheckins"}
           icon={<FontAwesomeIcon icon={faHeart} size="lg" className="group-hover:text-red-500" />}
           onClick={navigateManage}

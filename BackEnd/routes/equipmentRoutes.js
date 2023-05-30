@@ -17,6 +17,7 @@ router.get("/stockHighToLow", equipmentController.getStockHighToLow);
 router.get("/stockLowToHigh", equipmentController.getStockLowToHigh);
 router.get("/newest", equipmentController.getNewest);
 router.get("/oldest", equipmentController.getOldest);
+router.get("/equipmentCount", equipmentController.getEquipmentCount);
 
 // POST
 router.post("/", upload.single("imgUpload"), equipmentController.createEquipment);

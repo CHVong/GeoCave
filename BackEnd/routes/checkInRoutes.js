@@ -6,6 +6,7 @@ const verifyJWT = require("../middlewares/verifyJWT");
 router.use(verifyJWT);
 
 router.get("/", checkInController.getCheckInItems);
+router.get("/checkInCount", checkInController.getCheckInCount);
 router.post("/", checkInController.createCheckInItem);
 // router.patch("/", checkInController.updateCheckInItem);
 router.delete("/", checkInController.deleteCheckInItem);

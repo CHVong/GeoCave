@@ -14,6 +14,18 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  getCheckInCount: async (req, res) => {
+    try {
+      const count = await checkInModel.countDocuments();
+      if (count === 0) {
+        return res.status(400).json({ message: "No check-ins found" });
+      }
+      res.json({ count });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   createCheckInItem: async (req, res) => {
     try {
       const {

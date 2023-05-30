@@ -14,6 +14,18 @@ module.exports = {
       res.status(500).json({ message: "Server error" });
     }
   },
+  getEquipmentCount: async (req, res) => {
+    try {
+      const count = await equipmentModel.countDocuments();
+      if (count === 0) {
+        return res.status(400).json({ message: "No equipment found" });
+      }
+      res.json({ count });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
   getSearchedEquipment: async (req, res) => {
     try {
       const { searchText } = req.query; // Get the search query from the request query parameters

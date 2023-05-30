@@ -15,6 +15,7 @@ router.get("/inactive", userController.getInactive);
 router.get("/nameAZ", userController.getNameAZ);
 router.get("/nameZA", userController.getNameZA);
 router.get("/recentlyUpdated", userController.getRecentlyUpdated);
+router.get("/usersCount", userController.getUsersCount);
 // router.patch("/", userController.updateUser);
 router.patch("/addRole", userController.addRole);
 router.patch("/updateRole", userController.updateRole);
