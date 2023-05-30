@@ -15,10 +15,10 @@ const AdminStatCard = ({ title, url, icon, onClick, link }) => {
 
   useEffect(() => {
     // Adjust the animation duration based on the target value
-    if (data > displayedNumber) {
+    if (data.count > displayedNumber) {
       const minDuration = 500; // Minimum duration (0.5 seconds)
       const maxDuration = 2000; // Maximum duration (2 seconds)
-      const targetValue = data;
+      const targetValue = data.count;
       const adjustedDuration = Math.max(
         minDuration,
         Math.min(
@@ -28,18 +28,18 @@ const AdminStatCard = ({ title, url, icon, onClick, link }) => {
       );
       setAnimationDuration(adjustedDuration);
     }
-  }, [data, displayedNumber]);
+  }, [data.count, displayedNumber]);
 
   useEffect(() => {
     // Animate the count-up effect
-    if (displayedNumber < data) {
+    if (displayedNumber < data.count) {
       const timer = setInterval(() => {
-        setDisplayedNumber((prevNumber) => Math.min(prevNumber + 1, data));
-      }, animationDuration / (data - displayedNumber)); // Adjust the divisor for desired animation speed
+        setDisplayedNumber((prevNumber) => Math.min(prevNumber + 1, data.count));
+      }, animationDuration / (data.count - displayedNumber)); // Adjust the divisor for desired animation speed
 
       return () => clearInterval(timer);
     }
-  }, [data, displayedNumber, animationDuration]);
+  }, [data.count, displayedNumber, animationDuration]);
 
   const fetchData = async () => {
     try {
