@@ -43,6 +43,8 @@ const AdminEquipmentCard = ({
   const [expandName, setExpandName] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
+  const [showEdit, setShowEdit] = useState(false);
+
   const handleCheckboxChange = (e) => {
     const { value } = e.target;
     if (e.target.checked) {
@@ -74,7 +76,11 @@ const AdminEquipmentCard = ({
   };
 
   return (
-    <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
+    <div
+      className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn"
+      onMouseEnter={() => setShowEdit(true)}
+      onMouseLeave={() => setShowEdit(false)}
+    >
       <div className="flex flex-col justify-stretch items-center">
         <h2
           className="text-2xl font-bold bg-slate-800 w-full p-1 flex items-center justify-between"
@@ -122,13 +128,16 @@ const AdminEquipmentCard = ({
                   : name}
               </span>
               <div
-                className="inline p-2 cursor-pointer animate-fadeIn"
+                className="inline px-2 cursor-pointer animate-fadeIn"
                 onClick={(e) => setEditName(!editName)}
               >
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  className="hover:scale-95 hover:text-gray-500 transition"
-                />
+                {showEdit && (
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    size="sm"
+                    className="animate-fadeIn hover:scale-95 hover:text-gray-500 transition"
+                  />
+                )}
               </div>
             </div>
           )}
@@ -153,14 +162,16 @@ const AdminEquipmentCard = ({
                 />
               </>
             ) : (
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                size="sm"
-                className="hover:text-red-500 cursor-pointer hover:scale-90 transition"
-                onClick={() => {
-                  setShowConfirmDelete(true);
-                }}
-              />
+              showEdit && (
+                <FontAwesomeIcon
+                  icon={faTrashCan}
+                  size="sm"
+                  className="animate-fadeIn hover:text-red-500 cursor-pointer hover:scale-90 transition"
+                  onClick={() => {
+                    setShowConfirmDelete(true);
+                  }}
+                />
+              )
             )}
           </div>
         </h2>
@@ -202,10 +213,12 @@ const AdminEquipmentCard = ({
                     className="inline p-2 cursor-pointer animate-fadeIn"
                     onClick={(e) => setEditStock(!editStock)}
                   >
-                    <FontAwesomeIcon
-                      icon={faPenToSquare}
-                      className="hover:scale-95 hover:text-gray-500 transition"
-                    />
+                    {showEdit && (
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        className="animate-fadeIn hover:scale-95 hover:text-gray-500 transition"
+                      />
+                    )}
                   </div>
                 </>
               )}
@@ -247,10 +260,12 @@ const AdminEquipmentCard = ({
                     className="inline p-2 cursor-pointer animate-fadeIn"
                     onClick={(e) => setEditVendor(!editVendor)}
                   >
-                    <FontAwesomeIcon
-                      icon={faPenToSquare}
-                      className="hover:scale-95 hover:text-gray-500 transition"
-                    />
+                    {showEdit && (
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        className="animate-fadeIn hover:scale-95 hover:text-gray-500 transition"
+                      />
+                    )}
                   </div>
                 </>
               )}
@@ -291,10 +306,12 @@ const AdminEquipmentCard = ({
                     className="inline p-2 cursor-pointer animate-fadeIn"
                     onClick={(e) => setEditLocation(!editLocation)}
                   >
-                    <FontAwesomeIcon
-                      icon={faPenToSquare}
-                      className="hover:scale-95 hover:text-gray-500 transition"
-                    />
+                    {showEdit && (
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        className="animate-fadeIn hover:scale-95 hover:text-gray-500 transition"
+                      />
+                    )}
                   </div>
                 </>
               )}
@@ -351,11 +368,13 @@ const AdminEquipmentCard = ({
                 accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG,"
                 className="hidden" // hide the input element
               />
-              <FontAwesomeIcon
-                icon={faFileArrowUp}
-                className="hover:scale-95 hover:text-sky-500 transition cursor-pointer"
-                onClick={(e) => handleFileUpload(e, id)} // trigger file upload on click
-              />
+              {showEdit && (
+                <FontAwesomeIcon
+                  icon={faFileArrowUp}
+                  className="animate-fadeIn hover:scale-95 hover:text-sky-500 transition cursor-pointer"
+                  onClick={(e) => handleFileUpload(e, id)} // trigger file upload on click
+                />
+              )}
               {/* <FontAwesomeIcon
                 icon={faFileArrowUp}
                 className="hover:scale-95 hover:text-sky-500 transition cursor-pointer"
@@ -432,10 +451,12 @@ const AdminEquipmentCard = ({
                 className="inline p-2 cursor-pointer animate-fadeIn"
                 onClick={(e) => setEditJobs(!editJobs)}
               >
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  className="hover:scale-95 hover:text-gray-500 transition"
-                />
+                {showEdit && (
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    className="animate-fadeIn hover:scale-95 hover:text-gray-500 transition"
+                  />
+                )}
               </div>
             </>
           )}
@@ -476,10 +497,12 @@ const AdminEquipmentCard = ({
                 className="inline p-2 cursor-pointer animate-fadeIn"
                 onClick={(e) => setEditDescription(!editDescription)}
               >
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  className="hover:scale-95 hover:text-gray-500 transition"
-                />
+                {showEdit && (
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    className="animate-fadeIn hover:scale-95 hover:text-gray-500 transition"
+                  />
+                )}
               </div>
             </>
           )}
