@@ -108,6 +108,13 @@ const AdminUsersCard = ({
         </div>
 
         <div className="flex gap-2 flex-wrap items-center p-2">
+          {roles.length === 0 && !editRoles ? (
+            <h3 className="text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all animate-fadeIn bg-stone-700 border-stone-600 hover:border-stone-500">
+              Unassigned
+            </h3>
+          ) : (
+            ""
+          )}
           {!editRoles &&
             roles.map((e, i) => {
               return (

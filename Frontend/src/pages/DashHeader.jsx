@@ -57,7 +57,7 @@ const DashHeader = () => {
         alt="SVG image of a mountain top"
         className="w-14 p-2 cursor-pointer hoverScale hover:bg-primary rounded-lg"
         onClick={() => {
-          navigate("/dash");
+          navigate("/");
           handleLinkClick();
         }}
       />
