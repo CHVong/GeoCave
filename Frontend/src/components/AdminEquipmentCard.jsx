@@ -77,7 +77,7 @@ const AdminEquipmentCard = ({
 
   return (
     <div
-      className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn"
+      className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn break-all"
       onMouseEnter={() => setShowEdit(true)}
       onMouseLeave={() => setShowEdit(false)}
     >
@@ -117,9 +117,7 @@ const AdminEquipmentCard = ({
           ) : (
             <div className="flex items-center flex-wrap text-start">
               <span
-                className={`animate-fadeIn flex-1 break-all ${
-                  expandName ? "text-wrap" : "text-ellipsis"
-                }`}
+                className={`animate-fadeIn flex-1 ${expandName ? "text-wrap" : "text-ellipsis"}`}
               >
                 {expandName
                   ? name
@@ -492,7 +490,7 @@ const AdminEquipmentCard = ({
             </>
           ) : (
             <>
-              <span className="animate-fadeIn break-all"> {description}</span>
+              <span className="animate-fadeIn"> {description}</span>
               <div
                 className="inline p-2 cursor-pointer animate-fadeIn"
                 onClick={(e) => setEditDescription(!editDescription)}

@@ -24,7 +24,7 @@ const EquipmentCard = ({
   const [expandName, setExpandName] = useState(false);
 
   return (
-    <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn">
+    <div className="border-4 border-primary rounded-md grid  transition-all hover:border-tertiary gap-2 animate-fadeIn break-all">
       <div className="flex flex-col justify-stretch items-center">
         <h2
           className="text-2xl font-bold bg-slate-800 w-full p-1 flex items-center justify-center"
@@ -32,11 +32,7 @@ const EquipmentCard = ({
           onMouseLeave={() => setExpandName(false)}
         >
           <div className="flex items-center flex-wrap text-start">
-            <span
-              className={`animate-fadeIn flex-1 break-all ${
-                expandName ? "text-wrap" : "text-ellipsis"
-              }`}
-            >
+            <span className={`animate-fadeIn flex-1 ${expandName ? "text-wrap" : "text-ellipsis"}`}>
               {expandName ? name : name && name.length > 15 ? `${name.substring(0, 15)}...` : name}
             </span>
           </div>
@@ -143,8 +139,8 @@ const EquipmentCard = ({
         <h3>
           <span className="text-lg underline underline-offset-4">Jobs:</span> {job.join(", ")}
         </h3>
-        <h3 className="">
-          <span className="text-lg underline underline-offset-4 ">Description:</span> {description}
+        <h3>
+          <span className="text-lg underline underline-offset-4">Description:</span> {description}
         </h3>
         <h6 className="italic">Created by: {createdByUser}</h6>
       </div>
