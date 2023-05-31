@@ -492,7 +492,7 @@ const AdminEquipmentCard = ({
             </>
           ) : (
             <>
-              <span className="animate-fadeIn"> {description}</span>
+              <span className="animate-fadeIn break-all"> {description}</span>
               <div
                 className="inline p-2 cursor-pointer animate-fadeIn"
                 onClick={(e) => setEditDescription(!editDescription)}
