@@ -87,7 +87,7 @@ const FormCheckOptional = ({ id, title, job, onClick }) => {
   };
 
   return (
-    <div className="text-left animate-fadeIn flex flex-row items-center gap-2 md:gap-4 m-2">
+    <div className="text-left animate-fadeIn flex flex-row items-center gap-2 md:gap-4 m-2 break-all">
       {showEdit ? (
         <form
           onSubmit={handleSubmit}

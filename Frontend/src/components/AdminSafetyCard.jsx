@@ -25,7 +25,7 @@ const AdminSafetyCard = ({
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   return (
-    <div className="lg:w-1/2 m-auto animate-fadeIn">
+    <div className="lg:w-1/2 m-auto animate-fadeIn break-all">
       <div className="text-left border-2 border-primary p-4 lg:p-8 rounded-md relative">
         <div className="flex justify-end flex-row gap-2 pb-2">
           {showConfirmDelete ? (

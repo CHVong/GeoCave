@@ -8,7 +8,7 @@ const RecentSafetyIncident = ({ data }) => {
   const createdAtMoment = moment(data[0]?.createdAt);
 
   return (
-    <div className="lg:w-1/2 m-auto animate-fadeIn">
+    <div className="lg:w-1/2 m-auto animate-fadeIn break-all">
       <h1 className="p-8 text-2xl underline">Latest Reported Safety Incident</h1>
       {data && data.length > 0 ? (
         <div className="text-left border-2 border-primary p-4 lg:p-8 rounded-md relative">
