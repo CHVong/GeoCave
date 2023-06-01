@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import LoadingCard from "./LoadingCard";
 
 const AdminStatCard = ({ title, count, icon, onClick, link }) => {
   const [displayedNumber, setDisplayedNumber] = useState(0);
@@ -34,16 +35,23 @@ const AdminStatCard = ({ title, count, icon, onClick, link }) => {
 
   return (
     <div className="h-40 w-64 rounded-lg flex flex-col justify-around bg-gray-800 shadow-2xl hover:ring hover:ring-gray-500 group p-2">
-      <h2 className="text-5xl">{displayedNumber}</h2>
-      {icon}
-      <h2 className="text-lg font-medium">{title}</h2>
+      {count ? (
+        <div className="animate-fadeIn">
+          <h2 className="text-5xl">{displayedNumber}</h2>
 
-      <h2
-        className="bg-gray-700 w-max mx-auto rounded-lg px-3 py-1 cursor-pointer hover:scale-90 hover:text-gray-700 hover:bg-gray-300 transition hover:font-medium"
-        onClick={() => onClick(link)}
-      >
-        Manage
-      </h2>
+          {icon}
+          <h2 className="text-lg font-medium">{title}</h2>
+
+          <h2
+            className="bg-gray-700 w-max mx-auto rounded-lg px-3 py-1 cursor-pointer hover:scale-90 hover:text-gray-700 hover:bg-gray-300 transition hover:font-medium"
+            onClick={() => onClick(link)}
+          >
+            Manage
+          </h2>
+        </div>
+      ) : (
+        <LoadingCard />
+      )}
     </div>
   );
 };
