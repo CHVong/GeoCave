@@ -120,7 +120,7 @@ const AdminUsersCard = ({
               return (
                 <div
                   key={i}
-                  className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all animate-fadeIn ${
+                  className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-default transition-all animate-fadeIn ${
                     e === "Employee"
                       ? "bg-blue-900 border-blue-500 hover:border-blue-400"
                       : e === "Admin"
@@ -223,7 +223,7 @@ const AdminUsersCard = ({
 
         <div className="flex gap-2 flex-wrap p-2">
           <div
-            className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-pointer transition-all animate-fadeIn ${
+            className={`text-xs font-medium border-2 rounded-2xl px-2 cursor-default transition-all animate-fadeIn ${
               active
                 ? "bg-green-900 border-green-500 hover:border-green-400"
                 : !active
