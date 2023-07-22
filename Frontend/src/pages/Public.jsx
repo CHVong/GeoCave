@@ -61,7 +61,7 @@ const Public = () => {
     <div className="flex flex-col gap-10 animate-fadeIn items-center p-6">
       <img src={mountainbg} alt="SVG image of a mountain top" className="w-48" />
       <header className="text-5xl font-medium text-tertiary">Welcome to the GeoCave!</header>
-      <main className="text-justify indent-8 md:w-3/4 lg:w-1/2 p-2">
+      <main className="text-justify indent-8 md:w-3/4 lg:w-1/2 p-2 pb-4">
         We are a comprehensive platform created for geologists, engineers, and professionals in the
         geotechnical engineering and environmental consulting industry. Our platform optimizes
         workflows and enhances efficiency by offering features such as inventory supply tracking,
