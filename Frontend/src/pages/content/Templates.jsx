@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import PageHeading from "../../components/PageHeading";
+import DeniedAccessNotification from "../../components/DeniedAccessNotification";
 
 const Templates = () => {
   useEffect(() => {
@@ -8,10 +9,7 @@ const Templates = () => {
   return (
     <div>
       <PageHeading heading={"Templates"} />
-      <div>
-        Sorry, this page is currently unavailable for the public. <br />
-        You are either using a guest demo or you do not have the permitted roles.
-      </div>
+      <DeniedAccessNotification />
     </div>
   );
 };
