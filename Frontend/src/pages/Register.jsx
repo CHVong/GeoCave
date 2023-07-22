@@ -13,6 +13,7 @@ const REGISTER_URL = "/user";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [buttonLoad, setButtonLoad] = useState(false);
 
   const userRef = useRef();
   const errRef = useRef();
@@ -51,6 +52,7 @@ const Register = () => {
   }, [user, pwd, matchPwd]);
 
   const handleSubmit = async (e) => {
+    setButtonLoad(true);
     e.preventDefault();
     // if button enabled with JS hack
     const v1 = USER_REGEX.test(user);
@@ -78,6 +80,7 @@ const Register = () => {
       setUser("");
       setPwd("");
       setMatchPwd("");
+      setButtonLoad(false);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -89,6 +92,7 @@ const Register = () => {
         setErrMsg(`Registration Failed. ${err.response.data.message}`);
       }
       errRef.current.focus();
+      setButtonLoad(false);
     }
   };
 
@@ -140,7 +144,7 @@ const Register = () => {
               {errMsg}
             </p>
           </h1>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2 relative">
             <label htmlFor="username" className="text-left italic">
               Username:
               <FontAwesomeIcon
@@ -277,6 +281,30 @@ const Register = () => {
               </button>
               <LinkButton path={""} name={"Cancel"} />
             </div>
+            {buttonLoad ? (
+              <svg
+                class="animate-spin h-5 w-5 text-white absolute  self-center top-[103%]"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            ) : (
+              ""
+            )}
           </form>
           <p>
             Already registered?
