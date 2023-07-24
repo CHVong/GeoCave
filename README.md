@@ -35,7 +35,20 @@ Select "Guest Demo" or Register/Login with your own account
 <img src="https://github.com/BrunchWithYou/GeoCave/assets/84001929/d5141576-424f-4664-9be0-9d546c23e523" alt="InfiniteGraph Logo" width="750">
 </div>
 
+## Tech Stack
 
+- **Frontend:** React.js, TailwindCSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Build Tool:** Vite.js
+- **Authentication:** JWT with refresh and access token
+- **File upload:** Multer
+- **Image hosting:** Cloudinary
+- **Hosting:** Cyclic (backend), Vercel (frontend)
+
+## Acknowledgements
+
+GeoCave is inspired by the real-life needs and challenges of geoscience professionals. I would like to thank all the geotechnical engineers and geologists who shared their insights and feedback.
 
 
 
