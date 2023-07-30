@@ -1,13 +1,13 @@
-
-# GeoCave : A Web Portal for Geotechnical Engineers and Geologists. 
+# GeoCave : A Web Portal for Geotechnical Engineers and Geologists.
 
 GeoCave is an application that provides geoscience professionals with a variety of tools and resources to assist with on-site investigations, laboratory testing, or office-oriented tasks.
 
 <div align="center" >
-<img src="https://github.com/BrunchWithYou/GeoCave/assets/84001929/7e68e212-90be-4c46-9610-a73d8d2379f9" alt="InfiniteGraph Logo" width="750">
+<img src="https://user-images.githubusercontent.com/84001929/255500152-7e68e212-90be-4c46-9610-a73d8d2379f9.png" alt="Dashboard Page" width="750">
 </div>
 
 ## Demo
+
 Visit https://geocave.vercel.app/
 
 Select "Guest Demo" or Register/Login with your own account
@@ -28,11 +28,11 @@ Select "Guest Demo" or Register/Login with your own account
 - **Role Access:** Admin dashboard to view and manage your team's access and data.
 
 <div align="center" >
-<img src="https://github.com/BrunchWithYou/GeoCave/assets/84001929/7fd0ef1e-d292-46ad-b607-10e833ab405c" alt="InfiniteGraph Logo" width="750">
+<img src="https://user-images.githubusercontent.com/84001929/255520004-7fd0ef1e-d292-46ad-b607-10e833ab405c.png" alt="Admin Dashboard" width="750">
 </div>
 
 <div align="center" >
-<img src="https://github.com/BrunchWithYou/GeoCave/assets/84001929/d5141576-424f-4664-9be0-9d546c23e523" alt="InfiniteGraph Logo" width="750">
+<img src="https://user-images.githubusercontent.com/84001929/255522060-d5141576-424f-4664-9be0-9d546c23e523.png" alt="Manage Users Page" width="750">
 </div>
 
 ## Tech Stack
@@ -49,10 +49,3 @@ Select "Guest Demo" or Register/Login with your own account
 ## Acknowledgements
 
 GeoCave is inspired by the real-life needs and challenges of geoscience professionals. I would like to thank all the geotechnical engineers and geologists who shared their insights and feedback.
-
-
-
-
-
-
-
