@@ -40,7 +40,7 @@ module.exports = {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "30m" }
+        { expiresIn: "1d" }
       );
 
       const refreshToken = jwt.sign(
@@ -91,7 +91,7 @@ module.exports = {
               },
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "30m" }
+            { expiresIn: "1d" }
           );
           // const roles = foundUser.roles;
 
